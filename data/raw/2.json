@@ -1,0 +1,302 @@
+[
+    {
+        "id": 61,
+        "question": "What is a flat file database?",
+        "answer": "A flat file database is a simple database that stores all its data in a single table, often in a plain text file (like a CSV or TSV file). Unlike relational databases, it lacks programmatic access languages (like SQL) and has no capability to establish relationships or enforce referential integrity between different files. While user-friendly for very small, simple datasets, it suffers severely from data redundancy, inconsistency, and the other limitations of file processing systems as the data grows."
+    },
+    {
+        "id": 62,
+        "question": "What is a transparent DBMS?",
+        "answer": "A transparent DBMS is one that hides its physical storage details and internal implementation complexities from the users and application programs. Users interact with the database through a logical, high-level interface (like SQL) without needing to know how or where the data is physically stored, what indexes are used, or how queries are optimized. This transparency is a key benefit of the DBMS, providing physical and logical data independence."
+    },
+    {
+        "id": 63,
+        "question": "What is a database query?",
+        "answer": "A query is a request for data or for manipulation of data from a database. It is a user command, written in a database query language, that instructs the DBMS to perform a specific operation. Queries can be used to retrieve, insert, update, or delete data. The most common standard is the Structured Query Language (SQL), which includes Data Manipulation Language (DML) commands like `SELECT`, `INSERT`, `UPDATE`, and `DELETE`."
+    },
+    {
+        "id": 64,
+        "question": "What is a correlated subquery in SQL?",
+        "answer": "A correlated subquery is an inner subquery that is executed repeatedly, once for each row processed by the outer main query. It is 'correlated' because it references a column from the outer query within its `WHERE` clause. The result of the inner query depends on the value of the current row being evaluated in the outer query. This is different from a regular (non-correlated) subquery, which is executed only once, independently of the outer query. Correlated subqueries can be less performant than joins but are powerful for solving certain types of problems."
+    },
+    {
+        "id": 65,
+        "question": "What are the primitive operations common to all record management systems?",
+        "answer": "At their most fundamental level, all record management systems, from simple flat files to complex DBMS, must support three basic primitive operations on data: 1. **Addition:** Inserting new records into the dataset. 2. **Deletion:** Removing existing records from the dataset. 3. **Modification (Update):** Changing the values within existing records. All other complex operations, like querying and reporting, are built upon these three core actions."
+    },
+    {
+        "id": 66,
+        "question": "What are the unary operations in Relational Algebra?",
+        "answer": "Unary operations are those that operate on a single relation (table). The two fundamental unary operations in Relational Algebra are: 1. **Selection (σ):** This operation filters rows from a relation based on a given condition or predicate. It chooses a horizontal subset of a table. 2. **Projection (π):** This operation selects specific columns from a relation, eliminating all others. It also removes duplicate rows from the result. It chooses a vertical subset of a table."
+    },
+    {
+        "id": 67,
+        "question": "Are the results of the PRODUCT and JOIN operations the same?",
+        "answer": "No, the results are fundamentally different. *   **PRODUCT (Cartesian Product):** This operation returns all possible combinations of rows from the two involved relations. If table A has 'm' rows and table B has 'n' rows, the product A × B will have m * n rows. It does not require or use any logical relationship between the tables. *   **JOIN:** This operation combines rows from two relations based on a related column (a join condition) between them. It is essentially a Cartesian Product followed by a Selection operation to filter only the meaningful combinations. The result of a join is always a subset of the Cartesian Product."
+    },
+    {
+        "id": 68,
+        "question": "What is the RDBMS Kernel?",
+        "answer": "The RDBMS Kernel, often just called the kernel, is the core heart of the database management system. It is the central software component that resides in memory and handles the most critical tasks. Its functions include: parsing and optimizing SQL statements, managing memory buffers and caching, controlling transaction management (ACID properties), handling locking and concurrency control, enforcing security and authorization, and interacting directly with the data storage layer. Think of it as the database's operating system."
+    },
+    {
+        "id": 69,
+        "question": "What are the major subsystems of an RDBMS?",
+        "answer": "A full-featured RDBMS is composed of several integrated subsystems that work together: 1. **Query Processor:** Handles parsing, optimization, and execution of queries. 2. **Storage Manager:** Manages disk space, data files, and data structures like indexes. 3. **Transaction Manager:** Ensures ACID properties (Atomicity, Consistency, Isolation, Durability). 4. **Buffer Manager:** Handles the transfer of data between disk and main memory. 5. **Lock Manager:** Controls concurrent access to data items. 6. **Log Manager:** Records all changes for recovery and auditing. 7. **Security and Authorization Subsystem:** Manages users, roles, and permissions. 8. **Network Communication Subsystem:** Handles communication with database clients."
+    },
+    {
+        "id": 70,
+        "question": "Which part of the RDBMS manages the data dictionary and how?",
+        "answer": "The data dictionary is exclusively managed and maintained by the RDBMS kernel itself. It is stored as a set of special system tables within the database. The kernel is the only software component with the privilege to directly modify these tables. When a user issues a DDL statement (like `CREATE TABLE`), the kernel's DDL interpreter processes the command and updates the corresponding metadata entries in the data dictionary tables. All other components of the RDBMS and all user queries constantly read from the data dictionary to function correctly."
+    },
+    {
+        "id": 71,
+        "question": "What is the purpose of the information stored in the data dictionary?",
+        "answer": "The data dictionary's metadata serves as the central nervous system for the DBMS. Its primary purposes are: 1. **Validation:** It validates the existence of database objects (tables, columns, users) when they are referenced in SQL statements. 2. **Access Control:** It stores security information, determining which users have what permissions on which objects. 3. **Mapping and Translation:** It provides the essential mapping between the logical schema (table and column names) and the physical schema (file locations, storage details), enabling data independence. 4. **Query Optimization:** The optimizer uses statistics and structural information from the data dictionary to choose efficient query execution plans."
+    },
+    {
+        "id": 72,
+        "question": "How do you communicate with a relational database management system?",
+        "answer": "The primary and standard method to communicate with an RDBMS is through the Structured Query Language (SQL). Applications and users send SQL statements to the DBMS. These statements can be sent through: 1. **Command-Line Interfaces:** Tools like `mysql` or `psql`. 2. **Graphical User Interfaces (GUIs):** Applications like MySQL Workbench or DBeaver. 3. **Application Programming Interfaces (APIs):** Code in languages like Python, Java, or PHP uses drivers (e.g., JDBC, ODBC) to connect to the database and send SQL commands. The DBMS receives the SQL, processes it, and returns the result."
+    },
+    {
+        "id": 73,
+        "question": "How does SQL differ from conventional programming languages?",
+        "answer": "SQL is a declarative language, whereas conventional languages like Java or Python are imperative (procedural). This is the key difference: *   **SQL (Declarative):** You specify *what* data you want, but not *how* to get it. You describe the desired result set, and the DBMS's query optimizer figures out the most efficient algorithm, execution plan, and steps to retrieve it. *   **Conventional Languages (Imperative):** You provide explicit, step-by-step instructions for the computer to follow to achieve a result. You control the flow and logic (loops, conditionals) in detail. SQL is also set-oriented, processing groups of records, while procedural languages typically process one record at a time."
+    },
+    {
+        "id": 74,
+        "question": "What are the three major sets of files that compose an Oracle database?",
+        "answer": "An Oracle database is physically comprised of three essential file types: 1. **Datafiles:** These files store the actual database data, including tables, indexes, and other segments. All the user data and most of the system data resides here. 2. **Control Files:** A small but critical binary file that records the physical structure of the database. It contains information like the database name, timestamps, and the locations of all datafiles and redo log files. The database cannot start without it. 3. **Redo Log Files:** These files record all changes made to the database data. They are crucial for recovery, allowing the database to replay transactions in the event of a failure. They are written to in a circular fashion."
+    },
+    {
+        "id": 75,
+        "question": "What is a database trigger?",
+        "answer": "A database trigger is a named program unit, written in a procedural language like PL/SQL, that is stored in the database and automatically executed ('fired') in response to a specific event on a particular table or view. The events are typically Data Manipulation Language (DML) statements: `INSERT`, `UPDATE`, or `DELETE`. Triggers can be defined to fire once per statement or once for every row affected by the statement. They are used to enforce complex business rules, audit changes, maintain derived data, and enhance security."
+    },
+    {
+        "id": 76,
+        "question": "What are stored procedures and what advantages do they offer?",
+        "answer": "Stored procedures are named programs containing a sequence of SQL and procedural statements that are stored, compiled, and executed on the database server. Their advantages include: 1. **Performance:** They are pre-compiled, reducing parsing and optimization overhead. 2. **Reduced Network Traffic:** Applications can call a single procedure instead of sending multiple SQL statements. 3. **Modularity & Reusability:** Business logic is written once, stored centrally, and can be called by any application. 4. **Security:** Users can be granted permission to execute a procedure without having direct access to the underlying tables, providing a strong security layer. 5. **Maintainability:** Logic is centralized, making it easier to change and debug."
+    },
+    {
+        "id": 77,
+        "question": "What is the role of the Storage Manager in a DBMS?",
+        "answer": "The Storage Manager is a crucial DBMS component that provides the interface between the low-level data stored on disk and the rest of the DBMS components (e.g., the query processor). It is responsible for: 1. **Managing Storage:** Allocating space on disk for database files. 2. **Managing Data Structures:** Implementing and managing efficient file structures for storing data (e.g., heap files, hashing) and indexes. 3. **Translating Requests:** Converting the logical requests for data (e.g., 'get row with id=5') into low-level commands to read from or write to the physical storage system."
+    },
+    {
+        "id": 78,
+        "question": "What does the Buffer Manager do?",
+        "answer": "The Buffer Manager is responsible for managing the database buffer pool in main memory. Its core duties are: 1. **Data Transfer:** Fetching data pages from disk into memory buffers when needed by a query, and writing modified pages ('dirty pages') back to disk. 2. **Caching:** Deciding which pages to keep in memory to maximize the chance that future requests can be served from the much faster RAM, thus minimizing slow disk I/O. 3. **Page Replacement:** Using algorithms (like LRU - Least Recently Used) to decide which pages to evict from the buffer when space is needed for new pages."
+    },
+    {
+        "id": 79,
+        "question": "What is the function of the Transaction Manager?",
+        "answer": "The Transaction Manager is the component that ensures transactions satisfy the ACID properties. Its key responsibilities are: 1. **Atomicity & Durability:** It works with the Log Manager to ensure transactions are all-or-nothing and durable upon commit. 2. **Consistency:** It ensures that a transaction takes the database from one consistent state to another. 3. **Isolation:** It works with the Lock Manager (or other concurrency control schemes) to control the interaction between concurrent transactions, preventing problems like dirty reads and lost updates. It is the central coordinator for transaction scheduling and recovery."
+    },
+    {
+        "id": 80,
+        "question": "What is the role of the File Manager?",
+        "answer": "The File Manager is a lower-level component within the Storage Manager. It handles the interaction with the operating system's file system. Its role is to: 1. **File Management:** Create, delete, and allocate database files on disk. 2. **Space Management:** Manage the free space available within these files. 3. **Page Management:** Read and write fixed-size blocks of data (pages) from and to these files as requested by the Buffer Manager. It abstracts the OS file system for the rest of the DBMS."
+    },
+    {
+        "id": 81,
+        "question": "What is the Authorization and Integrity Manager?",
+        "answer": "This DBMS component is responsible for enforcing rules that maintain database security and correctness: 1. **Authorization (Security):** It checks the authority of every user and program attempting to access the database. It verifies if the user has the required privileges (SELECT, INSERT, etc.) to perform the requested operation on the specified data object. 2. **Integrity (Correctness):** It tests for the satisfaction of integrity constraints (e.g., primary key uniqueness, foreign key validity, CHECK constraints) whenever data is inserted, updated, or deleted. It prevents invalid data from entering the database."
+    },
+    {
+        "id": 82,
+        "question": "What are stand-alone procedures?",
+        "answer": "Stand-alone procedures are stored procedures that are not encapsulated within a package. They are independently defined database objects. While they offer the general benefits of stored procedures (like reduced network traffic), they have limitations compared to packaged procedures: they cannot be grouped logically with related functions and procedures, and in some older systems, they might have different dependency management and performance characteristics. Packaged procedures generally offer better organization, security, and performance due to their ability to be loaded into memory as a unit."
+    },
+    {
+        "id": 83,
+        "question": "What are database cursors and what types exist?",
+        "answer": "A cursor is a database control structure that enables traversal over the rows in a result set. It provides a way to retrieve more than one row from a database and then process each row individually. The two main types are: 1. **Implicit Cursors:** Automatically created and managed by the DBMS for every SQL statement that returns a result set. The programmer has no direct control over them. 2. **Explicit Cursors:** Defined and controlled explicitly by the programmer within a procedural code block (like PL/SQL). They offer fine-grained control, allowing the programmer to open, fetch rows from, and close the cursor as needed for complex row-by-row processing."
+    },
+    {
+        "id": 84,
+        "question": "What is the difference between a cold backup and a hot backup?",
+        "answer": "This distinction is based on the state of the database during the backup: *   **Cold Backup (Offline Backup):** Performed while the database is shut down. This ensures a perfectly consistent copy of all database files (datafiles, control files, redo logs) at a single point in time. It is simple and safe but requires database downtime, making it unsuitable for 24/7 systems. *   **Hot Backup (Online Backup):** Performed while the database is running and open for use. This allows backups without downtime. It is more complex because it requires the DBMS to put tablespaces into a special backup mode to ensure the backed-up files are consistent and can be used for recovery. This is essential for high-availability systems."
+    },
+    {
+        "id": 85,
+        "question": "What are proactive, retroactive, and simultaneous updates?",
+        "answer": "These terms classify database updates based on their timing relative to real-world events: 1. **Proactive Update:** Applied to the database *before* it becomes effective in the real world. For example, scheduling a price change to take effect in the system at a future date. 2. **Retroactive Update:** Applied to the database *after* it has become effective in the real world. This is often a correction of a past error or a late entry of data. 3. **Simultaneous Update:** Applied to the database *at the same time* it becomes effective in the real world. This is the most common type of update for transactional systems (e.g., deducting payment at the moment of sale)."
+    },
+    {
+        "id": 86,
+        "question": "What is the relationship between data and information in a database context?",
+        "answer": "Data are raw, unorganized facts and figures (e.g., the numbers 25, 10, 2023). Information is data that has been processed, organized, and interpreted to be useful and meaningful in a specific context (e.g., 'Total Sales for ProductX on October 10, 2023, were $25'). A database stores data in a structured way. When this data is queried, filtered, aggregated, and presented, it is transformed into valuable information that supports decision-making and knowledge."
+    },
+    {
+        "id": 87,
+        "question": "What is ERP and what type of database does it use?",
+        "answer": "Enterprise Resource Planning (ERP) is a suite of integrated applications that a company uses to manage its core business processes, such as finance, supply chain, manufacturing, operations, reporting, and human resources. An ERP system relies on a central, unified database to eliminate data redundancy and provide a single source of truth across the entire organization. This database is typically a robust, multi-user **Relational Database Management System (RDBMS)** like Oracle, SQL Server, or SAP HANA, capable of handling massive transactional workloads and complex queries from various functional modules."
+    },
+    {
+        "id": 88,
+        "question": "Can you define DBMS in a comprehensive way?",
+        "answer": "A Database Management System (DBMS) is a complex software system that serves as an intermediary between the database of stored data and the users or application programs that need to access it. Its primary purpose is to provide a convenient, efficient, and secure environment for defining, creating, manipulating, and controlling access to databases. It shields users from the physical storage details and provides abstract data views, while simultaneously ensuring data integrity, security, concurrency control, and reliable recovery from failures."
+    },
+    {
+        "id": 89,
+        "question": "Why is a database considered 'self-describing'?",
+        "answer": "A database is called self-describing because it contains not only the users' data but also a detailed description of its own structure. This descriptive data, known as **metadata**, is stored in the system catalog or data dictionary. The metadata includes definitions of all tables, columns, data types, constraints, indexes, views, and user privileges. Because this information is stored within the database itself, the DBMS always has the necessary context to understand and manage the data it contains, without relying on external sources."
+    },
+    {
+        "id": 90,
+        "question": "Who was E.F. Codd and why is he important to database technology?",
+        "answer": "Dr. Edgar F. Codd was a British computer scientist who worked for IBM. In 1970, he published a seminal paper titled 'A Relational Model of Data for Large Shared Data Banks' that introduced the **relational model** for database management. This groundbreaking work laid the theoretical foundation for relational databases. His 12 rules (Codd's Rules) defined the criteria for a system to be considered a fully relational database management system (RDBMS). His ideas are the reason SQL and modern RDBMS like Oracle, DB2, SQL Server, and MySQL exist today."
+    },
+    {
+        "id": 91,
+        "question": "What is SQL and why is it so significant?",
+        "answer": "Structured Query Language (SQL) is the standard and most widely used programming language for managing and querying data in relational database management systems (RDBMS). Its significance stems from several factors: 1. **Standardization:** It is an ANSI/ISO standard, ensuring portability across different database systems (though with some vendor-specific extensions). 2. **Declarative Nature:** Users specify *what* data they want, not *how* to get it, making it powerful and relatively easy to learn. 3. **Comprehensive Functionality:** It provides a unified language for data definition (DDL), data manipulation (DML), data control (DCL), and transaction control (TCL). 4. **Ubiquity:** It is supported by all major relational databases, making it an essential skill for developers, analysts, and administrators."
+    },
+    {
+        "id": 92,
+        "question": "Write a SQL query to select all data for students with a grade of 90 or higher.",
+        "answer": "```sql\nSELECT *\nFROM STUDENT\nWHERE Grade >= 90;\n```\nThis query uses the `SELECT *` statement to retrieve all columns from the `STUDENT` table. The `WHERE` clause acts as a filter, specifying that only those rows where the value in the `Grade` column is greater than or equal to 90 should be included in the result set."
+    },
+    {
+        "id": 93,
+        "question": "What are the five primary SQL aggregate functions?",
+        "answer": "Aggregate functions perform a calculation on a set of values and return a single summary value. The five primary ones are: 1. **COUNT():** Returns the number of rows in a group. 2. **SUM():** Returns the sum of a numeric column. 3. **AVG():** Returns the average value of a numeric column. 4. **MAX():** Returns the maximum value in a column. 5. **MIN():** Returns the minimum value in a column. These functions are almost always used with the `GROUP BY` clause to calculate values for categories of data."
+    },
+    {
+        "id": 94,
+        "question": "Write a SQL query to count all students and display the count with a column alias.",
+        "answer": "```sql\nSELECT COUNT(*) AS NumStudents\nFROM STUDENT;\n```\nThis query uses the `COUNT(*)` function to count every row in the `STUDENT` table. The `AS NumStudents` clause provides a user-friendly alias for the output column, so the result will have a column named `NumStudents` instead of the default `COUNT(*)`."
+    },
+    {
+        "id": 95,
+        "question": "What is an SQL subquery?",
+        "answer": "An SQL subquery (or nested query) is a query placed within another SQL query. It is a `SELECT` statement enclosed in parentheses and embedded within a clause (most commonly the `WHERE` or `HAVING` clause) of the outer query. The result of the inner subquery is used by the outer query to complete its operation. Subqueries are powerful tools for performing complex filtering, calculations, and data retrieval that would be difficult or impossible with a single query. They can be used for comparisons using operators like `IN`, `ANY`, `ALL`, or `EXISTS`."
+    },
+    {
+        "id": 96,
+        "question": "What alternative terms are used for the components of the relational model?",
+        "answer": "The formal terms of the relational model have more common equivalents: *   **Relation** is commonly called a **Table**. *   **Tuple** is commonly called a **Row** or **Record**. *   **Attribute** is commonly called a **Column** or **Field**. *   **Relation Schema** is often referred to as the **Table Definition** or **Structure**. While the formal terms are used in academic and design contexts, the common terms (table, row, column) are ubiquitous in everyday database use and SQL syntax."
+    },
+    {
+        "id": 97,
+        "question": "Why are functional dependencies not considered mathematical equations?",
+        "answer": "Functional dependencies (FDs) are not equations because they represent existence and constraint, not numerical equality. An equation (like A + B = C) denotes a numerical relationship where the values on both sides are equal and calculable. A functional dependency (like Zipcode → City) denotes a deterministic relationship: if you know the value of the determinant (Zipcode), you know the value of the dependent attribute (City). It's a statement about uniqueness and constraint, not arithmetic. The value '12345' is not equal to 'Springfield', but it does determine it."
+    },
+    {
+        "id": 98,
+        "question": "What is a foreign key and what is its purpose?",
+        "answer": "A foreign key is an attribute (or set of attributes) in one table that references the primary key of another table. Its purpose is to establish and enforce a link between the data in these two tables. This link is the mechanism for creating relationships in the relational model. The foreign key constraint ensures **referential integrity**, meaning that any value in the foreign key column must either be NULL or must match an existing value in the primary key of the referenced table, preventing orphaned records."
+    },
+    {
+        "id": 99,
+        "question": "What are insertion and deletion anomalies?",
+        "answer": "These are problems that occur in poorly designed, unnormalized tables: *   **Insertion Anomaly:** The inability to add data about one entity without adding data about another, unrelated entity. For example, you cannot record a new department's information until at least one employee is assigned to it. *   **Deletion Anomaly:** The unintended loss of data about one entity when deleting data about another entity. For example, if you delete the only employee in a department, you might also lose all information about that department itself. Normalization aims to eliminate these anomalies by splitting data into appropriate tables."
+    },
+    {
+        "id": 100,
+        "question": "What does it mean for a relation to be in Boyce-Codd Normal Form (BCNF)?",
+        "answer": "A relation is in Boyce-Codd Normal Form (BCNF) if it meets the following condition: For every non-trivial functional dependency (X → Y) in the relation, the determinant (X) must be a superkey. A superkey is any set of attributes that uniquely identifies a tuple. In simpler terms, BCNF requires that the *only* determinants in the table are candidate keys. This eliminates all redundancy due to functional dependencies. A common summary of the goal of normalization is: *Every non-key attribute must provide a fact about the key, the whole key, and nothing but the key.* BCNF enforces this very strictly."
+    },
+    {
+        "id": 101,
+        "question": "What should you look for in table data when designing a new database?",
+        "answer": "When given existing data to model, you should analyze it to discover: 1. **Functional Dependencies (FDs):** What attributes determine others? (e.g., ProductID determines Price). 2. **Multi-Valued Dependencies (MVDs):** Are there independent multi-valued facts? (e.g., an employee has multiple skills and multiple certifications independently). 3. **Candidate Keys:** What set(s) of attributes can uniquely identify each row? 4. **Primary Key:** Which candidate key is best suited to be the main identifier? 5. **Foreign Keys:** What relationships exist between potential tables? This analysis directly informs the normalization process and schema design."
+    },
+    {
+        "id": 102,
+        "question": "Why does using normalized tables often lead to more complex SQL in applications?",
+        "answer": "Normalization involves breaking data down into multiple smaller tables to eliminate redundancy. To answer a business question that requires data from several of these tables, application code must reassemble it. This reassembly is done in SQL using **JOIN** operations to link tables together on their primary and foreign keys, and **subqueries**. Writing these multi-table joins and correlated subqueries is inherently more complex than writing a simple `SELECT * FROM one_big_table`. The trade-off is that this complexity in querying is accepted to gain massive benefits in data integrity, non-redundancy, and update performance."
+    },
+    {
+        "id": 103,
+        "question": "What is the multivalue, multicolumn problem?",
+        "answer": "This is a common design flaw where a table is created with multiple columns that store variations of the same type of attribute, violating First Normal Form. For example, a table for customer surveys might have columns like `Phone_Model_1`, `Phone_Model_2`, `Phone_Model_3` to store up to three phone models a customer owns. This design causes problems: it limits the number of values, makes querying difficult (e.g., 'find all customers who own iPhone X'), and wastes space. The correct solution is to create a separate related table with one row per phone model per customer."
+    },
+    {
+        "id": 104,
+        "question": "How is the multivalue, multicolumn problem related to multivalued dependencies?",
+        "answer": "Both problems are different manifestations of the same core issue: trying to store multiple values for a single attribute within a single table. *   **Multivalue, Multicolumn Problem:** Stores the multiple values in *multiple columns* within the same row. *   **Multivalued Dependency (MVD):** Implicitly exists when the multiple values would be stored in *multiple rows* if the table were properly normalized. Both designs are incorrect. The solution for both is identical: remove the repeating groups and place them in a separate table. The multicolumn problem is essentially a pre-1NF violation, while an MVD describes a dependency in a 1NF table that needs to be resolved to achieve 4NF."
+    },
+    {
+        "id": 105,
+        "question": "What is the inconsistent values problem?",
+        "answer": "The inconsistent values problem occurs when the same real-world data is recorded in different, inconsistent formats within the same database. This often happens when data comes from multiple sources or different users enter data without validation rules. For example, the same color might be entered as 'Red', 'RED', 'R', '01' (a code), or 'Scarlet'. This inconsistency makes querying and reporting unreliable and difficult. Solutions include implementing strong data validation, using check constraints, and providing users with pick-lists or dropdown menus instead of free-text fields."
+    },
+    {
+        "id": 106,
+        "question": "Explain the relationship between entity, entity class, and entity instance.",
+        "answer": "These terms describe different levels of abstraction in data modeling: *   **Entity:** A general term for a 'thing' or object in the real world that can be distinctly identified (e.g., a specific customer named John Doe). *   **Entity Class (Entity Type):** A classification or category of entities that share common properties. It is the template or definition (e.g., the 'Customer' class). *   **Entity Instance:** A single, specific occurrence or example of an entity class (e.g., the database record for customer John Doe with ID 123). Analogy: 'Vehicle' is the class; your specific car with VIN 123ABC is an instance of that class."
+    },
+    {
+        "id": 107,
+        "question": "What is the difference between attributes and identifiers?",
+        "answer": "Both are properties of entities, but they serve different purposes: *   **Attributes:** These are descriptive properties that characterize an entity. They describe the entity's features (e.g., for a 'Product' entity: `Color`, `Weight`, `Price`). *   **Identifiers (Keys):** These are special attributes that are used to uniquely identify an entity instance. An identifier's purpose is to ensure each instance is distinct and can be reliably referenced (e.g., for a 'Product' entity: `ProductID` or `SKU`). All identifiers are attributes, but not all attributes are identifiers."
+    },
+    {
+        "id": 108,
+        "question": "What are the three types of binary relationship cardinalities?",
+        "answer": "Binary relationship cardinality defines the numerical relationship between instances of two entity classes: 1. **One-to-One (1:1):** One instance of Entity A is associated with at most one instance of Entity B, and vice versa. (e.g., a `Country` has exactly one `CapitalCity`, and a `CapitalCity` is the capital of exactly one `Country`). 2. **One-to-Many (1:N):** One instance of Entity A can be associated with many instances of Entity B, but an instance of B is associated with at most one instance of A. (e.g., one `Department` has many `Employees`, but one `Employee` works in only one `Department`). 3. **Many-to-Many (M:N):** One instance of Entity A can be associated with many instances of Entity B, and one instance of Entity B can be associated with many instances of Entity A. (e.g., one `Student` takes many `Courses`, and one `Course` is taken by many `Students`)."
+    },
+    {
+        "id": 109,
+        "question": "What is the archetype/instance pattern?",
+        "answer": "The archetype/instance pattern is a common data modeling pattern used to represent a template (the archetype) and its specific occurrences (the instances). A classic example is the relationship between a `CLASS` (the archetype, e.g., 'Introduction to Database Systems') and a `SECTION` (the instance, e.g., 'Fall 2023, Section 01' which has a specific time, room, and instructor). The instance is often ID-dependent on the archetype, meaning the primary key of the `SECTION` includes the key of the `CLASS`. This pattern separates the definition of a thing from its specific manifestations."
+    },
+    {
+        "id": 110,
+        "question": "What is a recursive relationship?",
+        "answer": "A recursive relationship (or unary relationship) is a relationship where an entity is related to itself. It links different instances of the same entity type. For example, in an `EMPLOYEE` entity: *   A recursive relationship `Supervises` can model who supervises whom (an employee can supervise other employees). *   A recursive relationship `Precedes` in a `TASK` entity can model task dependencies (one task must be completed before another can start). In the database table, this is implemented by adding a foreign key column that references the primary key of the same table (e.g., an `ReportsTo` column in the `EMPLOYEE` table that contains the `EmployeeID` of the manager)."
+    },
+    {
+        "id": 111,
+        "question": "What are the steps for transforming an entity into a database table?",
+        "answer": "Transforming an entity from an ER diagram into a physical table involves: 1. **Define the Table Structure:** Create a table with the same name as the entity. 2. **Specify Attributes as Columns:** Create a column for each of the entity's attributes, choosing appropriate data types and lengths. 3. **Define the Primary Key:** Choose the identifier attribute to be the primary key. For weak entities, form a composite key with the owner's primary key. 4. **Specify Constraints:** Define null status (NOT NULL), default values, and check constraints for columns. 5. **Define Foreign Keys:** Based on relationships with other entities, add foreign key columns to establish links. 6. **Verify Normalization:** Ensure the table design adheres to the desired normal form to avoid anomalies."
+    },
+    {
+        "id": 112,
+        "question": "What is a surrogate key and why is it considered an ideal primary key?",
+        "answer": "A surrogate key is an artificial, system-generated primary key that has no business meaning. It is typically a simple integer that auto-increments with each new record (e.g., `CustomerID`, `OrderID`). It is considered ideal for several reasons: 1. **Stability:** It never changes, unlike natural keys (e.g., an email address can change). 2. **Simplicity:** It is usually a single, numeric column, making joins and indexing very efficient. 3. **Anonymity:** It reveals no information about the entity it identifies. 4. **Uniqueness Guarantee:** The system ensures its uniqueness. While natural keys exist in the business domain, surrogate keys are often preferred for internal system efficiency and maintenance."
+    },
+    {
+        "id": 113,
+        "question": "What are data constraints and what are their types?",
+        "answer": "Data constraints are rules enforced on data columns to ensure the accuracy, integrity, and reliability of the data in a database. The main types are: 1. **Domain Constraints:** Ensure a column's value is of a valid data type and falls within a defined set of values or range (e.g., `Age` must be a number between 0 and 120). 2. **Entity Integrity Constraints:** Ensure each row is uniquely identifiable (Primary Key constraint: unique and not null). 3. **Referential Integrity Constraints:** Ensure relationships between tables remain consistent (Foreign Key constraint). 4. **User-Defined Integrity Constraints (CHECK):** Enforce custom business rules that are specific to the application (e.g., `EndDate` must be after `StartDate`)."
+    },
+    {
+        "id": 114,
+        "question": "How are recursive relationships typically implemented in a database?",
+        "answer": "A recursive relationship is implemented by adding a foreign key column within the same table. This column references the primary key of another row in the same table. For example, to model an employee hierarchy in an `EMPLOYEE` table: 1. The table has an `EmployeeID` primary key column. 2. It also has a `ManagerID` foreign key column. 3. The `ManagerID` column contains the `EmployeeID` of the employee who is the manager of the current employee. It references the `EmployeeID` column in the same table. If an employee has no manager (e.g., the CEO), the `ManagerID` would be NULL. Queries on such tables often use self-joins (joining the table to itself) to navigate the hierarchy."
+    },
+    {
+        "id": 115,
+        "question": "What is a cascading update?",
+        "answer": "A cascading update is a referential integrity action defined on a foreign key. When the primary key value referenced by a foreign key is updated in the parent table, the DBMS automatically propagates that update to all matching foreign key values in the child table. This ensures that the relationship between the parent and child records is not broken. It is a crucial feature for maintaining data consistency when primary keys need to be changed, which is rare with stable surrogate keys but might be necessary with natural keys."
+    },
+    {
+        "id": 116,
+        "question": "What is a SQL view and what are its primary uses?",
+        "answer": "A view is a virtual table whose contents are defined by a query. It does not store data itself but displays data from one or more underlying base tables. Its primary uses are: 1. **Simplification:** Hides the complexity of multi-table joins and calculations. 2. **Security:** Restricts user access to specific rows and/or columns, providing a tailored interface. 3. **Logical Data Independence:** Can provide a consistent interface to applications even if the underlying table structures change. 4. **Data Integrity:** Can enforce certain checks at the view level for users who only access data through the view."
+    },
+    {
+        "id": 117,
+        "question": "What is the 'paradigm mismatch' between SQL and application programming languages?",
+        "answer": "The paradigm mismatch refers to the fundamental difference in how data is handled: *   **SQL is set-oriented:** It processes and returns entire sets of rows at a time. *   **Application Languages (e.g., Java, Python) are record-oriented (row-oriented):** They process data one object or record at a time using loops and individual variables. This mismatch means that the result of an SQL query (a set) cannot be directly processed by an application language. A mechanism like a **cursor** is required to bridge this gap, allowing the application to iterate through the result set one row at a time."
+    },
+    {
+        "id": 118,
+        "question": "What are four common applications for database triggers?",
+        "answer": "Triggers are used to automatically enforce business rules and logic at the database level: 1. **Auditing and Logging:** Automatically recording changes made to sensitive data (e.g., logging every update to a `Salary` column into an `AUDIT_TRAIL` table). 2. **Enforcing Complex Constraints:** Implementing business rules that are too complex for standard CHECK or foreign key constraints (e.g., 'cannot update an order after it has been shipped'). 3. **Deriving Data:** Automatically maintaining derived or denormalized data (e.g., updating a `TotalOrderAmount` column in a `CUSTOMER` table whenever a new order is inserted). 4. **Implementing Security Authorizations:** Performing additional security checks beyond standard GRANT permissions before allowing a data modification."
+    },
+    {
+        "id": 119,
+        "question": "How do stored procedures differ from triggers?",
+        "answer": "| Feature | Stored Procedure | Trigger |\n| :--- | :--- | :--- |\n| **Execution** | Explicitly called and executed by a user or application. | Automatically fired (executed) by the DBMS in response to a DML event (`INSERT`, `UPDATE`, `DELETE`). |\n| **Parameters** | Can have input and output parameters. | Cannot have explicit parameters; they use special pseudo-records (e.g., `:NEW`, `:OLD` in Oracle) to access row data. |\n| **Transaction Control** | Can contain transaction control statements like `COMMIT` or `ROLLBACK` (use with caution). | Generally cannot contain transaction control statements; they are part of the transaction that fired them. |\n| **Purpose** | Used to encapsulate and execute a defined business process. | Used to enforce business rules or maintain integrity in response to data changes."
+    },
+    {
+        "id": 120,
+        "question": "What are the advantages of using stored procedures?",
+        "answer": "Stored procedures offer significant benefits for application development and performance: 1. **Enhanced Performance:** They are pre-compiled and stored in executable form, reducing parsing and optimization overhead on the database server. 2. **Reduced Network Traffic:** An application can call a single procedure instead of sending multiple SQL statements across the network. 3. **Improved Security:** Users can be granted execute permission on a procedure without having direct access to the underlying tables, providing a strong security layer. 4. **Code Reusability and Maintainability:** Business logic is stored centrally in the database, making it reusable by any application and easier to maintain and change in one place. 5. **Data Integrity:** Complex business rules can be enforced consistently within the database itself."
+    }
+]

@@ -1,0 +1,302 @@
+[
+    {
+        "id": 1,
+        "question": "What is a database in the context of software systems?",
+        "answer": "A database is an organized, persistent collection of logically related data designed to meet the information needs of an organization. It represents some aspect of the real world (the miniworld) and is built to be shared by multiple users and applications. Unlike a simple file system, a database minimizes redundancy and allows for efficient querying and data management. For example, a social media platform's database stores user profiles, posts, comments, and connections in separate but interrelated tables, enabling complex features like news feeds and search."
+    },
+    {
+        "id": 2,
+        "question": "What is a DBMS and what are its primary functions?",
+        "answer": "A Database Management System (DBMS) is a software suite that provides a systematic and scalable way to create, retrieve, update, and manage data in a database. It acts as an intermediary between the database and end-users/application programs. Its core functions include: data storage and retrieval, concurrency control to manage simultaneous access, security and authorization, integrity enforcement to ensure data accuracy, and backup and recovery. Examples include MySQL, PostgreSQL, Oracle, and MongoDB."
+    },
+    {
+        "id": 3,
+        "question": "How does a Database System differ from just a database?",
+        "answer": "The term 'Database System' or 'Database Management System (DBMS)' refers to the entire software application, which includes both the database itself (the stored data) and the DBMS software that manipulates it. It's the complete ecosystem: the data, the hardware it resides on, the software to manage it, and the personnel who use and administer it. You can't have a functional database system without the DBMS software."
+    },
+    {
+        "id": 4,
+        "question": "What are the key advantages of using a DBMS over traditional file systems?",
+        "answer": "DBMS offers significant advantages over file processing systems: 1. **Reduced Data Redundancy:** Data is stored in one place, minimizing duplication. 2. **Improved Data Integrity:** Rules and constraints ensure data is accurate and consistent. 3. **Enhanced Data Sharing and Security:** Multiple users can access data concurrently with controlled permissions. 4. **Data Independence:** Application programs are insulated from changes in how the data is stored. 5. **Powerful Data Retrieval:** SQL provides a efficient, standardized language for complex queries. 6. **Backup and Recovery:** Built-in mechanisms protect data from system failures."
+    },
+    {
+        "id": 5,
+        "question": "What were the main limitations of traditional file processing systems that led to the DBMS?",
+        "answer": "File processing systems suffered from several critical flaws: 1. **Data Redundancy and Inconsistency:** The same data was often stored in multiple files, leading to wasted space and potential inconsistencies. 2. **Difficulty in Accessing Data:** Writing new queries to extract specific data was often complex and required deep knowledge of the file structure. 3. **Data Isolation:** Data was scattered across various files in different formats, making it hard to get a unified view. 4. **Integrity Problems:** It was hard to apply and enforce business rules (e.g., 'account balance > 0') across the entire system. 5. **Atomicity Problems:** Difficulty ensuring operations like bank transfers completed entirely or not at all. 6. **Concurrent Access Anomalies:** Uncontrolled simultaneous access could lead to incorrect data updates."
+    },
+    {
+        "id": 6,
+        "question": "Can you describe the three-schema architecture for data abstraction in DBMS?",
+        "answer": "The three-schema architecture defines different levels of abstraction to achieve data independence: 1. **Internal Level (Physical Schema):** Describes *how* the data is physically stored on the storage device (files, indices, storage structures). 2. **Conceptual Level (Logical Schema):** Describes *what* data is stored and the relationships between them. It defines the structure of the entire database for the community of users (entities, attributes, relationships, constraints). 3. **External Level (View Schema):** Describes the data as it is seen by specific end-user groups or applications. It is a tailored subset of the conceptual schema, hiding irrelevant data."
+    },
+    {
+        "id": 7,
+        "question": "What are the two primary integrity rules in the relational model?",
+        "answer": "The relational model is governed by two key integrity rules: 1. **Entity Integrity:** This rule states that no attribute that is part of the primary key in a base relation (table) can have a NULL value. This ensures every row can be uniquely identified. 2. **Referential Integrity:** This rule states that if a relation has a foreign key, then every value of that foreign key must either be NULL or must match the value of the primary key in the relation it references. This maintains consistency between related tables."
+    },
+    {
+        "id": 8,
+        "question": "What is the difference between the intension and extension of a database?",
+        "answer": "This distinction separates the database's blueprint from its current state: *   **Intension (Database Schema):** This is the constant, logical design of the database. It's the overall structure, including table definitions, attributes, data types, constraints, and relationships. It changes infrequently, only when the design is modified. *   **Extension (Database Instance):** This is the dynamic, time-dependent collection of data stored in the database at a particular moment. It's the set of all tuples (rows) in all the tables. The extension changes every time data is inserted, updated, or deleted."
+    },
+    {
+        "id": 9,
+        "question": "What was System R and why was it historically significant?",
+        "answer": "System R was a groundbreaking research project at IBM's San Jose Research Laboratory in the 1970s. It was one of the first systems to demonstrate that a relational database management system could be implemented with practical performance. Its two major subsystems were: 1. **Research Storage (RS):** Managed the low-level storage of data on disk. 2. **System Relational Data System (RDS):** Provided the higher-level relational interface, including the pioneering SQL query language (then called SEQUEL). System R proved the viability of relational databases and directly influenced the development of commercial RDBMS like IBM's DB2 and SQL/DS."
+    },
+    {
+        "id": 10,
+        "question": "How did the data model of System R differ from the pure relational model defined by Codd?",
+        "answer": "As a pioneering prototype, System R did not implement the full relational model as originally defined: 1. **No Domain Support:** It did not support the concept of domains (distinct data types with constraints), using simple data types instead. 2. **Optional Uniqueness:** Enforcement of candidate key uniqueness was not mandatory. 3. **Optional Entity Integrity:** The rule that primary keys cannot be null was not strictly enforced. 4. **No Referential Integrity:** The system did not automatically enforce foreign key constraints. These simplifications were practical choices for the initial implementation but were addressed in later commercial systems."
+    },
+    {
+        "id": 11,
+        "question": "What is meant by data independence in a DBMS?",
+        "answer": "Data independence is the immunity of application programs to changes in the definition and organization of data. It is a fundamental benefit of the three-schema architecture. There are two types: 1. **Physical Data Independence:** The ability to modify the physical schema (storage structures, indexing) without needing to change the logical or conceptual schema. Applications are shielded from changes like switching from one storage engine to another. 2. **Logical Data Independence:** The ability to modify the conceptual schema (adding a new column, splitting a table) without having to change existing external schemas (views) or application programs, as long as the data they use remains available."
+    },
+    {
+        "id": 12,
+        "question": "What is a database view and how does it promote data independence?",
+        "answer": "A view is a virtual table derived from one or more base tables. It does not store data itself but represents a stored query. Views are crucial for logical data independence because they create an abstraction layer. Users and applications can interact with views instead of base tables. If the underlying base tables need to be restructured (e.g., a table is split), the view's definition can be updated to reconstruct the original virtual table for the user. This means the application's interface to the data remains unchanged, insulating it from changes in the database's logical structure."
+    },
+    {
+        "id": 13,
+        "question": "What is a data model?",
+        "answer": "A data model is a collection of conceptual tools used to describe the structure of a database. It provides a framework for defining data elements, their relationships, the semantics (meaning) of the data, and the consistency constraints that apply to the data. Think of it as a blueprint. Common data models include the Relational Model (tables), Entity-Relationship Model (entities and relationships), and Document Model (JSON-like documents)."
+    },
+    {
+        "id": 14,
+        "question": "How does the Entity-Relationship (E-R) Model represent data?",
+        "answer": "The Entity-Relationship Model is a high-level, conceptual data model based on perceiving the real world as a set of basic objects called **entities** and the **relationships** among these objects. *   **Entities:** Represent real-world objects (e.g., a `Student`, a `Course`, an `Employee`). *   **Attributes:** Properties that describe an entity (e.g., `StudentID`, `CourseName`, `Salary`). *   **Relationships:** Associations between entities (e.g., a Student *is enrolled in* a Course). It is primarily used for database design to visually map out requirements before implementation."
+    },
+    {
+        "id": 15,
+        "question": "What are the core concepts of the Object-Oriented Data Model?",
+        "answer": "The Object-Oriented Data Model represents data as **objects**, similar to those in object-oriented programming. Its core concepts are: 1. **Objects:** Contain both data (in **instance variables** or attributes) and behavior (**methods** or functions that operate on the data). 2. **Classes:** A collection of similar objects that share the same attributes and methods. A class is a blueprint for creating objects. 3. **Inheritance:** A class (subclass) can inherit attributes and methods from a more general class (superclass), promoting code reusability. This model is useful for representing complex data with rich behavior, like in CAD or multimedia systems."
+    },
+    {
+        "id": 16,
+        "question": "In database design, what is an entity?",
+        "answer": "An entity is a distinct, identifiable object or concept in the real world that we want to store information about. It has an independent existence and can be uniquely identified. Entities are represented as tables in a relational database. *   **Example:** In a hospital management system, `PATIENT`, `DOCTOR`, `APPOINTMENT`, and `MEDICATION` could all be entities."
+    },
+    {
+        "id": 17,
+        "question": "What defines an entity type?",
+        "answer": "An entity type defines a category or a blueprint for a set of entities that share the same properties or attributes. It is the structure or schema. *   **Example:** The entity type `CAR` defines the structure for all car entities. Its attributes could be `VIN`, `Make`, `Model`, `Year`, and `Color`. Every individual car (e.g., the specific car with VIN '123ABC') is an instance of the `CAR` entity type."
+    },
+    {
+        "id": 18,
+        "question": "How is an entity set different from an entity type?",
+        "answer": "This is the critical distinction between a *definition* and a *collection*: *   **Entity Type:** The *definition* or category (e.g., `STUDENT`). *   **Entity Set:** The actual *collection* of all entities of a particular type that exist in the database at a given time (e.g., the set of all student rows in the STUDENT table: {Alice, Bob, Charlie...}). The entity set is the extension of the entity type."
+    },
+    {
+        "id": 19,
+        "question": "What is the extension of an entity type?",
+        "answer": "The extension of an entity type is simply another name for the **entity set**—the collection of all entities of that specific type present in the database at a specific moment in time. It is dynamic and changes as data is added or removed. If `PRODUCT` is the entity type, the extension is the complete, current list of all products in the database."
+    },
+    {
+        "id": 20,
+        "question": "What characterizes a weak entity set?",
+        "answer": "A weak entity set is an entity set that does not have a sufficient set of attributes to form a primary key on its own. Its existence is dependent on another entity, called the **owner** or **identifying** entity. It must relate to the owner entity via a **identifying relationship**. The primary key of a weak entity is formed by combining its **partial key** (a discriminator) with the primary key of its owner entity. *   **Example:** An `DEPENDENT` entity (e.g., a child) for an `EMPLOYEE`. `DependentName` might be a partial key, but the full primary key for `DEPENDENT` would be {`EmployeeID` (from EMPLOYEE), `DependentName`}."
+    },
+    {
+        "id": 21,
+        "question": "What is an attribute in the context of a database entity?",
+        "answer": "An attribute is a defining property or characteristic of an entity or a relationship. It describes the details we want to store about an entity. Each attribute has a name and a domain, which defines the set of possible values it can hold (e.g., INTEGER, VARCHAR(100), DATE). *   **Example:** For an entity type `PRODUCT`, possible attributes include `ProductID`, `Name`, `Description`, `Price`, and `StockQuantity`."
+    },
+    {
+        "id": 22,
+        "question": "Can you explain the difference between a relation schema and a relation instance?",
+        "answer": "This is the structure vs. content distinction for a table: *   **Relation Schema:** This is the table's structure or blueprint. It is defined by the relation name and a fixed set of attributes. It is static and rarely changes. For example: `Student(StudentID, Name, Major, GPA)`. *   **Relation Instance:** This is the actual set of data (the rows or tuples) that populates the table at a given moment. It is dynamic and changes frequently with data manipulation operations (INSERT, UPDATE, DELETE). The instance is the current 'state' of the relation."
+    },
+    {
+        "id": 23,
+        "question": "What is meant by the 'degree' of a relation?",
+        "answer": "The degree of a relation is the number of attributes (columns) in its relation schema. It's a measure of how 'wide' the table is. *   **Example:** A relation schema `Customer(CustomerID, FirstName, LastName, Email)` has a degree of 4. A relation schema `LogEntry(Timestamp, Message)` has a degree of 2."
+    },
+    {
+        "id": 24,
+        "question": "In data modeling, what is a relationship?",
+        "answer": "A relationship is an association between two or more entities. It represents a business rule or a interaction between the entities. Relationships are crucial for connecting data across different tables. *   **Example:** In a library database, there is a relationship between the `Member` entity and the `Book` entity. This relationship, which we might call `BORROWS`, records which member has borrowed which book."
+    },
+    {
+        "id": 25,
+        "question": "What is a relationship set?",
+        "answer": "A relationship set is a collection of relationships of the same type. It groups together all the individual instances of a specific relationship that exist in the database. *   **Example:** If the relationship is `WORKS_FOR` between `Employee` and `Department`, then the relationship set is the complete list of all (Employee, Department) pairs that currently exist, such as {(Alice, Sales), (Bob, Engineering), (Charlie, Sales)}."
+    },
+    {
+        "id": 26,
+        "question": "How is a relationship type defined?",
+        "answer": "A relationship type defines the nature of the association between entity types. It is the schema for a relationship. It specifies the entity types that participate in the relationship and the name of the relationship itself. *   **Example:** The relationship type `Enrollment` defines an association between the `Student` entity type and the `Course` entity type. It establishes that students can be enrolled in courses."
+    },
+    {
+        "id": 27,
+        "question": "What is the degree of a relationship type?",
+        "answer": "The degree of a relationship type is the number of entity types that participate in the relationship. *   **Binary Relationship:** Degree 2. This is the most common type (e.g., `Employee` WORKS_FOR `Department`). *   **Ternary Relationship:** Degree 3 (e.g., a `Doctor` prescribes a `Medication` to a `Patient`). *   **N-ary Relationship:** Degree n, for relationships involving more than two entity types."
+    },
+    {
+        "id": 28,
+        "question": "What is the purpose of the Data Definition Language (DDL)?",
+        "answer": "Data Definition Language (DDL) is a subset of SQL used to define, modify, and delete the structure of database objects, but not the data within them. It is used by database designers and administrators to create the database's schema. Common DDL commands are `CREATE` (to create tables, indexes, views), `ALTER` (to modify existing structures), and `DROP` (to delete objects). DDL statements implicitly commit transactions."
+    },
+    {
+        "id": 29,
+        "question": "What role does a View Definition Language (VDL) play?",
+        "answer": "View Definition Language (VDL) is the component of a DBMS used to specify user views and their mappings to the conceptual schema. In modern SQL-based systems, this functionality is integrated into the standard DDL using the `CREATE VIEW` statement. This statement allows the definition of a virtual table (a view) as a query on other base tables or views, effectively customizing how different users perceive the database."
+    },
+    {
+        "id": 30,
+        "question": "What is the function of the Storage Definition Language (SDL)?",
+        "answer": "Storage Definition Language (SDL) is used to specify the internal schema of the database. It defines how the data is physically stored on the storage device. This includes specifying file organizations, indexing techniques, storage media, and the mapping between the conceptual and internal levels. SDL is typically used by database administrators to tune the database for performance and is often hidden from regular users and application developers."
+    },
+    {
+        "id": 31,
+        "question": "How does Data Storage-Definition Language relate to physical storage?",
+        "answer": "Data Storage-Definition Language is a specific type of DDL focused exclusively on the physical layer. It is used to define the low-level storage structures and access methods that the database system will use. This includes commands to create table spaces, data files, and to control physical properties like page size, buffer pools, and encryption at rest. It provides the crucial link between the logical data model and its physical implementation on disk."
+    },
+    {
+        "id": 32,
+        "question": "What are the two main types of Data Manipulation Language (DML)?",
+        "answer": "DML is used for managing data within database objects. The two main types are: 1. **Procedural DML (Low-Level):** Requires the user to specify *what* data is needed and *how* to get it. The user must express the logic to navigate the database (e.g., using loops and pointers). Relational Algebra is a procedural language. 2. **Non-Procedural DML (High-Level/Declarative):** Requires the user to specify *only what* data is needed, without describing how to retrieve it. The DBMS's query optimizer determines the most efficient execution path. SQL's `SELECT`, `INSERT`, `UPDATE`, `DELETE` are non-procedural."
+    },
+    {
+        "id": 33,
+        "question": "What is the role of a DML Compiler?",
+        "answer": "The DML Compiler is a crucial component of the DBMS query processing engine. Its primary role is to translate high-level, non-procedural DML statements (like SQL queries) into a sequence of low-level instructions (often called a query plan or access plan). These low-level instructions are in a form that the query evaluation engine can understand and execute efficiently against the physical storage system."
+    },
+    {
+        "id": 34,
+        "question": "What does the Query Evaluation Engine do?",
+        "answer": "The Query Evaluation Engine is the component that executes the low-level instructions generated by the DML compiler. It is responsible for carrying out the actual operations required to fulfill a data request. This includes reading data from storage, performing operations like sorting and joining, applying filters, and returning the final result set to the user or application. It interacts directly with the storage manager."
+    },
+    {
+        "id": 35,
+        "question": "What is the function of a DDL Interpreter?",
+        "answer": "The DDL Interpreter processes Data Definition Language (DDL) statements. It parses DDL commands (like `CREATE TABLE`, `ALTER VIEW`) and executes them. Its key function is to record the definitions of database objects (their metadata) in the system catalog or data dictionary. This metadata includes table schemas, constraints, indexes, and privileges, which is essential for the DBMS to understand and manage the database structure."
+    },
+    {
+        "id": 36,
+        "question": "What is a Record-at-a-time DML operation?",
+        "answer": "Record-at-a-time DML is a low-level, procedural style of data manipulation where operations are performed on a single record (row) at a time. The application code must typically open a cursor, loop through a set of records, and process each one individually. This approach gives the programmer fine-grained control but is more complex and less efficient for set-based operations. It is characteristic of navigational database models and older programming interfaces."
+    },
+    {
+        "id": 37,
+        "question": "What is a Set-at-a-time DML operation?",
+        "answer": "Set-at-a-time DML is a high-level, declarative style of data manipulation where operations are performed on entire sets of records simultaneously. A single DML statement (like a SQL `UPDATE` or `DELETE` with a `WHERE` clause) can identify and modify multiple rows in one go. This is a fundamental strength of the relational model, leading to more concise code and allowing the DBMS to optimize execution for high performance."
+    },
+    {
+        "id": 38,
+        "question": "What is Relational Algebra?",
+        "answer": "Relational Algebra is a formal, procedural query language for the relational model. It provides a set of operations that take one or two relations (tables) as input and produce a new relation as output. Its operations form the theoretical foundation for SQL. Core operations include **Select (σ)** to filter rows, **Project (π)** to select columns, **Union (∪)**, **Set Difference (-)**, **Cartesian Product (×)**, and various **Join** operations. It specifies *how* a query should be executed."
+    },
+    {
+        "id": 39,
+        "question": "What is Relational Calculus?",
+        "answer": "Relational Calculus is a formal, non-procedural query language for the relational model. It is based on first-order predicate logic. Instead of specifying *how* to retrieve data, it describes *what* data is desired by stating the desired properties of the result set. There are two variants: Tuple Relational Calculus and Domain Relational Calculus. SQL's `SELECT...WHERE` clause is heavily influenced by relational calculus, as you declare the conditions the result must satisfy."
+    },
+    {
+        "id": 40,
+        "question": "What is the key difference between Tuple and Domain Relational Calculus?",
+        "answer": "The key difference lies in what the variables in the formulas represent: *   **Tuple Relational Calculus (TRC):** Variables range over tuples (rows) from relations. A query specifies the tuples we want based on a condition involving their attribute values. It is closer to how SQL is written. *   **Domain Relational Calculus (DRC):** Variables range over values from the domains of attributes. A query specifies the constraints on the values we want to appear in the result. It operates at a more atomic level than TRC."
+    },
+    {
+        "id": 41,
+        "question": "What is database normalization and what are its goals?",
+        "answer": "Normalization is a systematic process of decomposing (breaking down) complex database tables into smaller, simpler tables to eliminate data redundancy and avoid data anomalies. The primary goals are: 1. **Minimize Data Redundancy:** Store each piece of data only once to save space and prevent update anomalies. 2. **Eliminate Anomalies:** Prevent inconsistencies that can occur during data insertion, deletion, and updating. 3. **Simplify Data Integrity:** Make it easier to enforce integrity constraints. The process involves analyzing tables based on their functional dependencies and primary keys."
+    },
+    {
+        "id": 42,
+        "question": "What is a Functional Dependency (FD) in a database?",
+        "answer": "A Functional Dependency is a constraint between two sets of attributes in a relation. It is denoted as X → Y, meaning that the set of attributes X functionally determines the set of attributes Y. This implies that for any two tuples (rows) in the relation, if they have the same values for X, they must also have the same values for Y. X is called the determinant. Functional dependencies are derived from the real-world meaning of the data and are fundamental to the process of normalization."
+    },
+    {
+        "id": 43,
+        "question": "What is the Lossless Join (Non-Additive Join) property in decomposition?",
+        "answer": "The Lossless Join property is a critical characteristic of a valid database decomposition. It guarantees that when the decomposed relations (tables) are joined back together using a natural join operation, the result is exactly the original relation—no more and no fewer tuples. A decomposition that does not have this property is considered faulty because it creates spurious (fake) tuples that were not in the original data, leading to incorrect information."
+    },
+    {
+        "id": 44,
+        "question": "What defines the First Normal Form (1NF)?",
+        "answer": "A relation is in First Normal Form (1NF) if and only if every attribute (column) contains only atomic (indivisible) values. This means: 1. **No Multi-Valued Attributes:** Each cell must contain a single value, not a list or set of values. 2. **No Composite Attributes:** Attributes should not be broken down into smaller sub-parts within the same column. 3. **A Fixed Set of Columns:** All rows must have the same number of columns. 1NF is the most basic requirement for a relational table."
+    },
+    {
+        "id": 45,
+        "question": "What is a Full Functional Dependency?",
+        "answer": "A functional dependency X → Y is a **full functional dependency** if the removal of any attribute A from the determinant X means that the dependency no longer holds. In other words, Y is functionally dependent on the entire key X, and not on any proper subset of X. This concept is central to the definition of Second Normal Form (2NF). *   **Example:** In {StudentID, CourseID} → Grade, if Grade depends on both the student and the course (i.e., you can't determine the grade with just StudentID or just CourseID), then it is a full functional dependency."
+    },
+    {
+        "id": 46,
+        "question": "What are the conditions for a relation to be in Second Normal Form (2NF)?",
+        "answer": "A relation is in Second Normal Form (2NF) if it meets two criteria: 1. It is already in First Normal Form (1NF). 2. **No Partial Dependency:** Every non-prime attribute (an attribute not part of any candidate key) must be fully functionally dependent on the entire primary key. This means no non-prime attribute should be dependent on only a part of a composite primary key. Relations with a single-column primary key are automatically in 2NF if they are in 1NF."
+    },
+    {
+        "id": 47,
+        "question": "What are the conditions for a relation to be in Third Normal Form (3NF)?",
+        "answer": "A relation is in Third Normal Form (3NF) if it meets two criteria: 1. It is in Second Normal Form (2NF). 2. **No Transitive Dependency:** No non-prime attribute is transitively dependent on the primary key. Transitive dependency occurs when a non-prime attribute depends on another non-prime attribute, which in turn depends on the primary key (e.g., PK → A → B). In 3NF, non-prime attributes must depend directly on the primary key. A common definition states that for every functional dependency X → A, either X is a superkey or A is a prime attribute."
+    },
+    {
+        "id": 48,
+        "question": "What is Boyce-Codd Normal Form (BCNF) and how is it stronger than 3NF?",
+        "answer": "Boyce-Codd Normal Form (BCNF) is a stronger version of 3NF. A relation is in BCNF if for every non-trivial functional dependency X → Y, the determinant X must be a superkey (a superset of a candidate key). BCNF addresses rare anomalies that can remain in a 3NF relation when there are multiple overlapping candidate keys. In simpler terms, BCNF ensures that the only determinants (things on the left-hand side of a functional dependency) in the table are candidate keys. Every relation in BCNF is also in 3NF, but not vice-versa."
+    },
+    {
+        "id": 49,
+        "question": "What is Fourth Normal Form (4NF) and what problem does it solve?",
+        "answer": "Fourth Normal Form (4NF) deals with dependencies beyond functional dependencies, specifically Multi-Valued Dependencies (MVDs). A relation is in 4NF if it is in BCNF and for every non-trivial multi-valued dependency X →→ Y, X must be a superkey. A multi-valued dependency exists when for a single value of X, there is a set of values for Y, and this set is independent of other attributes. 4NF eliminates redundancy caused by independent multi-valued facts about an entity. For example, it separates a table storing employees, their children, and their skills into two separate tables."
+    },
+    {
+        "id": 50,
+        "question": "What is Fifth Normal Form (5NF) or Project-Join Normal Form (PJNF)?",
+        "answer": "Fifth Normal Form (5NF) or Project-Join Normal Form (PJNF) is the highest level of normalization based on join dependencies. A relation is in 5NF if it is in 4NF and every join dependency in the relation is implied by its candidate keys. A join dependency means that the relation can be recreated by joining its projections (subsets of columns) without losing information. 5NF deals with very complex, subtle cases of redundancy that are unlikely to be intentionally designed into a schema. It is more of theoretical interest than practical use."
+    },
+    {
+        "id": 51,
+        "question": "What is Domain-Key Normal Form (DKNF)?",
+        "answer": "Domain-Key Normal Form (DKNF) is a theoretical ideal normal form. A relation is in DKNF if every constraint on the relation is a logical consequence of the definitions of its domains and keys. Constraints include functional dependencies, multi-valued dependencies, and join dependencies. DKNF ensures that no insertion or deletion anomalies exist. Achieving DKNF is often not practical as it requires all business rules to be expressed solely through domain and key constraints. It represents a 'perfect' database design."
+    },
+    {
+        "id": 52,
+        "question": "Can you explain different types of keys used in database design?",
+        "answer": "Various keys serve different purposes in uniquely identifying and linking data: 1. **Partial Key:** A set of attributes that uniquely identifies a weak entity relative to its owner entity. Also called a discriminator. 2. **Alternate Key:** A candidate key that is not chosen as the primary key. A table can have multiple alternate keys. 3. **Artificial Key (Surrogate Key):** A system-generated, meaningless numeric identifier (e.g., an auto-increment number) created solely to act as the primary key. It has no business meaning. 4. **Compound Key (Composite Key):** A primary key that consists of two or more attributes. 5. **Natural Key:** A candidate key that has business meaning and is used to identify an entity in the real world (e.g., SocialSecurityNumber, ISBN)."
+    },
+    {
+        "id": 53,
+        "question": "What is database indexing and what are common types of indexes?",
+        "answer": "Indexing is a database optimization technique that creates a separate, smaller data structure (an index) to allow faster retrieval of records from a table. An index works like a book's index, providing a sorted list of values and pointers to their location in the table. Common types include: 1. **B-Tree Index:** The most common type, efficient for equality and range queries. 2. **Hash Index:** Excellent for exact-match queries but useless for ranges. 3. **Bitmap Index:** Ideal for columns with a low cardinality (few distinct values), like gender or status flags. 4. **Clustered Index:** Determines the physical order of data storage in a table. A table can have only one. 5. **Non-Clustered Index:** Creates a separate sorted structure with pointers to the data. A table can have many."
+    },
+    {
+        "id": 54,
+        "question": "What is the system catalog and what is its common name?",
+        "answer": "The system catalog is a collection of special tables within a database that contain metadata, which is 'data about the data'. It stores comprehensive information about every database object, including tables, columns, data types, constraints, indexes, views, privileges, and users. This catalog is maintained automatically by the DBMS itself. It is more commonly known as the **Data Dictionary**. The DBMS constantly consults the data dictionary to parse queries, enforce constraints, and manage security."
+    },
+    {
+        "id": 55,
+        "question": "What is query optimization in a DBMS?",
+        "answer": "Query optimization is the process performed by the DBMS where it analyzes a declarative query (like a SQL `SELECT` statement) and selects the most efficient execution plan (or query plan) from among many possible alternatives. The goal is to minimize the total estimated cost of executing the query, which is typically measured in terms of disk I/O, CPU usage, and memory consumption. The optimizer uses statistics about the data (e.g., table sizes, index availability) and sophisticated algorithms to choose the best way to access and join tables."
+    },
+    {
+        "id": 56,
+        "question": "What does the 'Durability' property of a transaction mean?",
+        "answer": "Durability is the 'D' in the ACID properties of a transaction. It guarantees that once a transaction has been committed, its effects are permanent and will persist even in the event of a system failure (e.g., power outage, crash). The DBMS ensures durability typically by writing the transaction's changes to non-volatile storage (like a hard disk or SSD) in a transaction log *before* the commit operation is reported as successful to the user. After a crash, the DBMS uses this log to recover and restore all committed transactions."
+    },
+    {
+        "id": 57,
+        "question": "What is the difference between Atomicity and Aggregation in databases?",
+        "answer": "These are two distinct concepts: *   **Atomicity:** This is the 'A' in ACID. It is a transaction property that ensures a transaction is treated as an indivisible unit of work. It must execute entirely ('all') or not at all ('nothing'). If any part of the transaction fails, the entire transaction is rolled back, leaving the database unchanged. *   **Aggregation:** This is a conceptual data modeling concept. It represents a relationship between a relationship and an entity (or between multiple relationships). It is used to model a 'has-a' relationship where one entity is composed of others, or when a relationship itself has attributes that need to be tracked."
+    },
+    {
+        "id": 58,
+        "question": "What is a Phantom Deadlock in distributed systems?",
+        "answer": "A Phantom Deadlock is a false positive in deadlock detection that can occur in distributed database systems. It happens due to delays in propagating local state information (like lock ownership and wait-for graphs) across different nodes in the network. The distributed deadlock detection algorithm might incorrectly infer a cycle in the global wait-for graph based on outdated information, identifying a deadlock that does not actually exist. This can lead to the unnecessary aborting of a transaction."
+    },
+    {
+        "id": 59,
+        "question": "What is a database checkpoint and why is it important?",
+        "answer": "A checkpoint is a mechanism where the DBMS periodically forces all modified buffers (dirty pages) in memory to be written to disk. It creates a consistent snapshot of the database state at a point in time. Checkpoints are crucial for recovery: during restart after a crash, the DBMS only needs to redo (replay) transactions committed after the last checkpoint and undo (roll back) transactions that were active at the time of the crash. This significantly reduces recovery time compared to processing the entire transaction log."
+    },
+    {
+        "id": 60,
+        "question": "What are the phases of transaction recovery?",
+        "answer": "After a system crash, the DBMS goes through a recovery process with distinct phases: 1. **Analysis Phase:** The transaction log is scanned to identify the state of all transactions at the time of the crash. It determines which transactions need to be redone (committed) and which need to be undone (not committed). 2. **Redo Phase:** This phase reapplies all the updates of committed transactions. It starts from the oldest log record of a transaction that was not yet written to disk at the time of the crash and moves forward, ensuring all committed changes are durable. 3. **Undo Phase:** This phase rolls back (reverses) the updates of any transactions that were active but not committed at the time of the crash, restoring the database to a consistent state."
+    }
+]

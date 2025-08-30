@@ -1,0 +1,10 @@
+{
+  "DBMS": {
+    "Basics": ["Data Models", "Entities & Keys", "ER Modeling", "Normalization"],
+    "SQL": ["DDL", "DML", "Joins", "Aggregations", "Subqueries", "Views", "Indexes"],
+    "Transactions": ["ACID", "Isolation Levels", "Locks", "Deadlocks", "Logging & Recovery"],
+    "Design": ["Functional Dependencies", "Normal Forms", "Denormalization", "Schema Design"],
+    "Performance": ["Indexing", "Query Execution", "Query Optimization", "Cost-Based Optimizer"],
+    "Advanced": ["Distributed Databases", "Replication", "Sharding", "CAP Theorem", "NoSQL", "NewSQL", "Consistency Models"]
+  }
+}

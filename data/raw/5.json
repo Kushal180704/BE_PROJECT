@@ -1,0 +1,52 @@
+[
+  {
+    "id": 226,
+    "question": "What is a file-based system and what are its main disadvantages?",
+    "answer": "A file-based system is an application program designed to manipulate data files where information is stored in permanent files. Each application program is designed to manipulate specific data files, and new applications are added as needed. The main disadvantages include: 1) Data redundancy - same information kept in several places leading to inconsistency, 2) Data isolation - difficulty retrieving appropriate data stored in various files, 3) Integrity problems - difficulty maintaining data correctness and consistency, 4) Security problems - constraints regarding accessing privileges, and 5) Concurrency access issues - files are locked when opened, preventing multiple users from accessing the same file simultaneously."
+  },
+  {
+    "id": 227,
+    "question": "What is the database approach and how does it differ from file-based systems?",
+    "answer": "The database approach is a method of managing large amounts of organizational information that was developed to address the difficulties arising from using file-based systems. Unlike file-based systems where each application manages its own data files, the database approach provides a shared collection of related data that supports the activities of a particular organization. Key differences include: concurrency management allowing multiple users access to the same record, reduced data redundancy, improved data integrity, better security controls, and centralized data management."
+  },
+  {
+    "id": 228,
+    "question": "What is a Database Management System (DBMS)?",
+    "answer": "A Database Management System (DBMS) is a collection of programs that enables users to create and maintain databases and control all access to them. The primary goal of a DBMS is to provide an environment that is both convenient and efficient for users to retrieve and store information. It serves as an interface between the database and users/application programs, ensuring data is organized and accessible while maintaining security and integrity."
+  },
+  {
+    "id": 229,
+    "question": "What are the key properties of a database?",
+    "answer": "A database has the following properties: 1) It is a representation of some aspect of the real world or a collection of data elements representing real-world information, 2) It is logical, coherent and internally consistent, 3) It is designed, built and populated with data for a specific purpose, 4) Each data item is stored in a field, and 5) A combination of fields makes up a table. A database can contain many tables that are related to each other."
+  },
+  {
+    "id": 230,
+    "question": "What are the main characteristics and benefits of a database system?",
+    "answer": "The main characteristics and benefits include: 1) Self-describing nature - contains both data and metadata, 2) Insulation between program and data (program-data independence), 3) Support for multiple views of data, 4) Sharing of data and multiuser system support, 5) Control of data redundancy, 6) Data sharing capabilities, 7) Enforcement of integrity constraints, 8) Restriction of unauthorized access, 9) Data independence, 10) Transaction processing capabilities, and 11) Backup and recovery facilities."
+  },
+  {
+    "id": 231,
+    "question": "What is data independence and why is it important?",
+    "answer": "Data independence is the immunity of user applications to changes made in the definition and organization of data. It is important because it allows changes to the data structure without affecting application programs. There are two types: logical data independence (ability to change logical schema without changing external schema) and physical data independence (immunity of internal model to changes in physical model). This separation ensures that applications continue to work even when database structures are modified."
+  },
+  {
+    "id": 232,
+    "question": "What are the different types of data models?",
+    "answer": "The main types of data models are: 1) High-level conceptual data models (like Entity Relationship model) that provide concepts close to how people perceive data, 2) Record-based logical data models including relational data models (data as tables/relations), network data models (data as record types with set types), and hierarchical data models (data as hierarchical tree structures)."
+  },
+  {
+    "id": 233,
+    "question": "What is data modeling and what is its purpose in database design?",
+    "answer": "Data modeling is the first step in the process of database design, sometimes considered a high-level and abstract design phase (conceptual design). The purpose is to describe: the data contained in the database (entities), the relationships between data items, and the constraints on data. It results in a (semi) formal representation of the database structure that is easy to understand and serves as a reference to ensure all user requirements are met before implementation."
+  },
+  {
+    "id": 234,
+    "question": "What are the different degrees of data abstraction in database design?",
+    "answer": "The degrees of data abstraction include: 1) External models - represent the user's view of the database containing multiple different external views, 2) Conceptual models - provide flexible data-structuring capabilities and present a 'community view' of the entire database, 3) Internal models - closer to physical level representation (relational, network, hierarchical), and 4) Physical models - the physical representation of the database with the lowest level of abstraction dealing with storage details."
+  },
+  {
+    "id": 235,
+    "question": "How are database management systems classified?",
+    "answer": "DBMS can be classified based on: 1) Data model - relational, hierarchical, network, or object-oriented models, 2) User numbers - single-user or multiuser database systems, and 3) Database distribution - centralized systems (DBMS and database stored at single site), distributed database systems (database distributed across multiple sites), homogeneous distributed systems (same DBMS software), or heterogeneous distributed systems (different DBMS software with common support for data exchange)."
+  }
+]

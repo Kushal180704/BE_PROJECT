@@ -1,0 +1,227 @@
+[
+    {
+        "id": 181,
+        "question": "What are the primary objectives of database normalization?",
+        "answer": "The core goals of normalization are to: 1. **Minimize Data Redundancy:** Store each logical data item in only one place to conserve space and prevent update anomalies. 2. **Eliminate Anomalies:** Prevent inconsistencies that arise from insertion, deletion, and update operations. 3. **Simplify Data Integrity:** Make it easier to enforce integrity constraints by structuring data logically. 4. **Produce a Stable Database Structure:** Create a design that is less susceptible to changes in requirements and is logically flexible. The process achieves this by organizing data into tables based on their functional dependencies."
+    },
+    {
+        "id": 182,
+        "question": "What are the key properties of a well-defined relation in a database?",
+        "answer": "A proper relation in the relational model adheres to these properties: 1. **Unique Name:** Every relation (table) must have a distinct name within its schema. 2. **Atomic Values:** Every attribute (column) must contain only atomic (indivisible) values, satisfying 1NF. 3. **Unique Rows:** Every tuple (row) must be unique; no two rows can be identical. 4. **Unordered Rows:** The order of the rows is not significant for data meaning. 5. **Unordered Columns:** The order of the columns is not significant; each column is identified by its name, not its position. 6. **Unique Attribute Names:** Every attribute within a relation must have a unique name."
+    },
+    {
+        "id": 183,
+        "question": "What are the steps to convert a relation into Third Normal Form (3NF)?",
+        "answer": "Converting a relation to 3NF is a systematic process: 1. **Ensure 1NF:** Verify that the table has no repeating groups or composite attributes; all values are atomic. 2. **Ensure 2NF:** Identify the primary key and verify that all non-prime attributes are fully functionally dependent on the entire key (remove partial dependencies). 3. **Identify Transitive Dependencies:** Find non-prime attributes that are dependent on another non-prime attribute instead of directly on the primary key. 4. **Remove Transitive Dependencies:** For each transitive dependency (e.g., PK -> A -> B), create a new relation. The determinant (A) becomes the primary key of the new relation, and all attributes dependent on it (B) are moved into it. Leave the determinant (A) as a foreign key in the original relation to maintain the link."
+    },
+    {
+        "id": 184,
+        "question": "How is a supertype/subtype relationship mapped to physical database tables?",
+        "answer": "The most common mapping strategy for supertype/subtype hierarchies is to create a separate table for the supertype and for each subtype: 1. **Supertype Table:** Contains all attributes common to all subtypes. Its primary key is the primary key for the entire hierarchy. 2. **Subtype Tables:** Each subtype table contains two types of columns: a) The primary key of the supertype (which is also the primary key of the subtype table and a foreign key back to the supertype). b) The attributes that are unique to that specific subtype. This design supports the 'is-a' relationship and allows for efficient querying of all instances (via the supertype) or just specific types (via the subtypes). A discriminator attribute (e.g., `EmployeeType`) is often added to the supertype to indicate which subtype table to look in for additional details."
+    },
+    {
+        "id": 185,
+        "question": "How would you describe domain constraints in a database?",
+        "answer": "Domain constraints are the most fundamental rules that enforce data integrity at the column level. A domain is the set of all possible valid values that an attribute is allowed to contain. Domain constraints ensure that the value for a given attribute must be: 1. **Of the Correct Data Type:** An `Age` column must be an integer. 2. **Within a Defined Set or Range:** An `Age` value must be between 0 and 120. A `Status` value must be in ('Active', 'Inactive', 'Pending'). 3. **A Member of a Distinct List:** Enforced by `CHECK` constraints or user-defined data types. 4. **Consistent with Nullability:** If a column is defined as `NOT NULL`, it must always contain a value. These constraints are checked whenever a value is inserted or updated."
+    },
+    {
+        "id": 186,
+        "question": "What are the four key objectives when selecting a data type for an attribute?",
+        "answer": "Choosing the right data type is crucial for efficiency and integrity. The objectives are: 1. **Represent All Possible Values:** The data type must be able to represent all valid values for the attribute, both current and future. 2. **Improve Data Integrity:** The data type should inherently prevent invalid data (e.g., a `DATE` type prevents the entry of 'abc' as a date). 3. **Support All Required Data Manipulations:** The data type must allow for the necessary operations (e.g., you can perform arithmetic on `INTEGER` but not on `VARCHAR`). 4. **Minimize Storage Space:** Choose the most space-efficient data type that meets the other objectives (e.g., use `SMALLINT` instead of `INTEGER` if values will never exceed 32,767)."
+    },
+    {
+        "id": 187,
+        "question": "What are the four primary types of indexes and their purposes?",
+        "answer": "Indexes are categorized based on their structure and uniqueness: 1. **Unique Primary Index:** Determines the physical storage order of the data in a table (the clustered index). There can be only one per table. It must contain unique values. 2. **Nonunique Primary Index:** Used in some database systems where the primary index does not require uniqueness, but still governs storage. 3. **Unique Secondary Index:** A non-clustered index that enforces uniqueness on a column or set of columns (e.g., a unique constraint on an `Email` column). It provides fast access for lookups. 4. **Nonunique Secondary Index:** A non-clustered index that does not enforce uniqueness. It is used to speed up queries on columns that have many duplicate values and are frequently used in `WHERE` clauses or as join conditions."
+    },
+    {
+        "id": 188,
+        "question": "What is denormalization and why would a database designer use it?",
+        "answer": "Denormalization is the **strategic process of intentionally introducing redundancy into a previously normalized database table.** It is a performance optimization technique that trades off some degree of data redundancy and potential anomaly risk for improved query speed. Designers use it when: 1. **Query Performance is Critical:** When joins between multiple normalized tables are too slow for frequently run reports or queries. 2. **Heavy Read Operations:** In data warehouses or reporting databases where the vast majority of operations are reads (SELECT), and writes (INSERT/UPDATE) are less frequent and controlled. The goal is to reduce the number of table joins needed by pre-consolidating data, which can dramatically speed up complex queries."
+    },
+    {
+        "id": 189,
+        "question": "How do the hierarchical and network database models differ?",
+        "answer": "These are two pre-relational data models with key differences: *   **Hierarchical Model:** Structures data in a strict tree-like, parent-child hierarchy. Each parent can have many children, but each child can have only one parent. It efficiently represents one-to-many relationships but struggles with many-to-many relationships. Data access is navigational, following predefined paths. *   **Network Model:** An extension of the hierarchical model that allows a child (member) to have multiple parents (owners). This allows it to directly represent more complex relationships, including many-to-many. It is more flexible than the hierarchical model but is also more complex to design and navigate. Both models lack the simplicity and ad-hoc query capability of the relational model."
+    },
+    {
+        "id": 190,
+        "question": "What is the difference between horizontal and vertical partitioning?",
+        "answer": "Partitioning is the physical process of splitting a large table into smaller, more manageable pieces: *   **Horizontal Partitioning (Sharding):** Splits a table by **rows**. Each partition has the same columns but contains a different subset of the total rows. This is often done based on a range of values (e.g., orders from 2023, orders from 2024) or a hash key. It is useful for distributing data across storage devices and improving query performance on specific data segments. *   **Vertical Partitioning:** Splits a table by **columns**. One partition contains frequently accessed columns, while another contains less frequently accessed or large (BLOB) columns. This is often used to improve I/O performance for common queries that don't need all the table's data."
+    },
+    {
+        "id": 191,
+        "question": "What is the difference between a dynamic view and a materialized view?",
+        "answer": "This is a key distinction in how views are implemented and updated: *   **Dynamic View (Standard View):** A virtual table that does not store data. Whenever the view is queried, its defining `SELECT` statement is executed against the underlying base tables in real-time. It always returns the most current data but can be slow if the query is complex. *   **Materialized View (Snapshot):** A physical copy of the view's result set is stored as a separate table. The data is persisted to disk. It is extremely fast to query because it avoids recomputing the join and aggregation, but the data can become stale. The view must be periodically **refreshed** to update its stored data with changes from the base tables. This is a trade-off between performance and data currency."
+    },
+    {
+        "id": 192,
+        "question": "What techniques can be used to tune the performance of an operational database?",
+        "answer": "Database performance tuning involves multiple strategies: 1. **Query Optimization:** Rewriting application SQL to be more efficient (e.g., avoiding `SELECT *`, using joins instead of subqueries). 2. **Indexing:** Adding appropriate indexes on columns used in `WHERE`, `JOIN`, `ORDER BY`, and `GROUP BY` clauses. 3. **Database Design Adjustment:** Considering denormalization for critical, slow queries. 4. **Hardware Optimization:** Adding more RAM (for buffer cache), using faster disks (SSDs), or adding more CPUs. 5. **Configuration Tuning:** Adjusting DBMS configuration parameters (e.g., memory allocation, parallelism settings). 6. **Statistics Maintenance:** Ensuring the DBMS's optimizer has up-to-date statistics on table sizes and data distribution to choose the best execution plans."
+    },
+    {
+        "id": 193,
+        "question": "What are the three main categories of SQL commands?",
+        "answer": "SQL commands are broadly classified based on their function: 1. **Data Definition Language (DDL):** Commands used to define, alter, and drop the structure of database objects. These commands implicitly commit transactions. Key commands: `CREATE`, `ALTER`, `DROP`, `TRUNCATE`, `RENAME`. 2. **Data Manipulation Language (DML):** Commands used to manipulate data within existing objects. Key commands: `SELECT` (retrieval), `INSERT` (add), `UPDATE` (modify), `DELETE` (remove). 3. **Data Control Language (DCL):** Commands used to control access to the database and its objects. Key commands: `GRANT` (give privileges), `REVOKE` (take away privileges). Some systems also define Transaction Control Language (TCL) with commands like `COMMIT` and `ROLLBACK`."
+    },
+    {
+        "id": 194,
+        "question": "What are the key steps to prepare for creating a database table?",
+        "answer": "Thorough preparation before executing a `CREATE TABLE` statement is essential: 1. **Define Attributes:** Finalize the list of column names. 2. **Assign Data Types:** Choose the most appropriate data type, length, and precision for each column. 3. **Identify Keys:** Designate the primary key and any foreign keys. 4. **Establish Constraints:** Decide on `NOT NULL`, `UNIQUE`, `CHECK`, and `DEFAULT` constraints for each column. 5. **Plan Indexes:** Identify which columns will need indexes for performance. 6. **Consider Relationships:** Understand how this table relates to others to define foreign keys correctly. 7. **Review Normalization:** Ensure the table design adheres to the desired normal form to avoid redundancy. This planning is often done using a data modeling tool or ER diagram."
+    },
+    {
+        "id": 195,
+        "question": "What are some potential disadvantages of a standardized language like SQL?",
+        "answer": "While standardization is largely beneficial, it has some drawbacks: 1. **Complexity:** The SQL standard is vast and complex, making full compliance difficult for vendors and mastery difficult for developers. 2. **Vendor Extensions:** DBMS vendors often add proprietary extensions to standard SQL to provide additional functionality. This can hurt portability between different database systems. 3. **Pace of Innovation:** The formal standards process can be slow, sometimes lagging behind the innovative features introduced by individual vendors. 4. **'Lowest Common Denominator' Effect:** To ensure portability, developers might avoid using powerful vendor-specific features, potentially resulting in less efficient or more complex code."
+    },
+    {
+        "id": 196,
+        "question": "What is a table join and why is it fundamental to the relational model?",
+        "answer": "A join is a fundamental SQL operation that combines rows from two or more tables based on a related column between them. It is the primary mechanism for querying data across multiple tables, which is the core principle of the relational model. By storing data in separate, normalized tables and using joins to reassemble it, the model achieves its goals of minimizing redundancy and maintaining data integrity. The join operation, typically based on primary key-foreign key relationships, allows the database to reconstruct complex entity relationships at query time, providing tremendous flexibility."
+    },
+    {
+        "id": 197,
+        "question": "How would you contrast a database trigger with a stored procedure?",
+        "answer": "| Feature | Trigger | Stored Procedure |\n| :--- | :--- | :--- |\n| **Invocation** | Automatically fired (executed) by the DBMS in response to a specific DML event (`INSERT`, `UPDATE`, `DELETE`) on a table. | Explicitly called and executed by a user, application, or another procedure. |\n| **Control** | Event-driven; the programmer has no control over when it runs. | Called on demand; the programmer has full control over execution. |\n| **Parameters** | Cannot accept explicit parameters. They use special pseudo-records (e.g., `NEW` and `OLD`) to access the affected row data. | Can accept input, output, and input/output parameters. |\n| **Transaction Context** | Part of the transaction that caused it to fire. | Can contain its own transaction control statements (`COMMIT`, `ROLLBACK`). |\n| **Common Use Case** | Enforcing complex business rules, auditing, maintaining derived data automatically. | Modularizing application logic, performing complex operations, improving performance."
+    },
+    {
+        "id": 198,
+        "question": "What is an outer join and when would you use it?",
+        "answer": "An outer join is a type of join that returns not only the matching rows between two tables but also the non-matching rows from one or both tables. The result set includes `NULL` values for columns from the table that lacks a matching row. Types include: *   **LEFT OUTER JOIN:** Returns all rows from the left table and the matched rows from the right table. *   **RIGHT OUTER JOIN:** Returns all rows from the right table and the matched rows from the left table. *   **FULL OUTER JOIN:** Returns all rows when there is a match in either the left or right table. You use an outer join when you need a complete list from one table regardless of whether a corresponding record exists in the other table (e.g., list all customers and their orders, including customers who have never placed an order)."
+    },
+    {
+        "id": 199,
+        "question": "What is a subquery and how is it used?",
+        "answer": "A subquery (or inner query or nested query) is a `SELECT` statement embedded within the `WHERE` or `HAVING` clause of another SQL statement (the outer query). It is used to return a value or set of values that the outer query uses to complete its search condition. Subqueries are powerful for: 1. **Set Membership:** Using `IN` or `NOT IN` (e.g., `SELECT * FROM Products WHERE CategoryID IN (SELECT CategoryID FROM Categories WHERE Name = 'Beverages')`). 2. **Comparisons:** Using operators like `=`, `>`, `ANY`, `ALL`. 3. **Existence Checks:** Using `EXISTS` or `NOT EXISTS` with correlated subqueries. They allow for dynamic, data-driven query conditions that would be impossible to hard-code."
+    },
+    {
+        "id": 200,
+        "question": "What is the difference between embedded SQL and dynamic SQL?",
+        "answer": "This distinction lies in when the SQL statement is constructed and prepared: *   **Embedded SQL:** SQL statements are **hard-coded** directly within the source code of a host programming language (like C, COBOL, or Java). The statements are static and known at application compile time. They are pre-compiled into an executable access plan. *   **Dynamic SQL:** SQL statements are constructed and **assembled as strings at runtime** within the application. The application can build the statement on the fly based on user input or other conditions. The DBMS must parse, optimize, and compile the statement at runtime, which adds overhead but provides ultimate flexibility for ad-hoc query tools."
+    },
+    {
+        "id": 201,
+        "question": "What is the difference between two-tier and three-tier client-server architecture?",
+        "answer": "This refers to the logical separation of an application's components: *   **Two-Tier Architecture:** Has only two logical layers: 1) The **Client Tier** (Presentation Layer), which handles the user interface and application logic, and 2) The **Database Server Tier** (Data Layer), which houses the DBMS and database. The client communicates directly with the database. It is simpler but can lead to performance and scalability issues as the number of clients grows. *   **Three-Tier Architecture:** Introduces a middle tier: 1) **Client Tier** (Presentation Layer: UI), 2) **Application Server Tier** (Business Logic Layer: rules, processing), and 3) **Database Server Tier** (Data Layer). The client talks to the application server, which in turn talks to the database. This improves scalability, security, and flexibility, as business logic is centralized and separated from the data and presentation layers."
+    },
+    {
+        "id": 202,
+        "question": "How do SQL and QBE differ as database query languages?",
+        "answer": "SQL and QBE offer different paradigms for querying a database: *   **SQL (Structured Query Language):** A text-based, declarative language. The user writes a command in a syntax similar to a sentence to specify what data is wanted. It is a standard, powerful, and precise language used by programmers and power users. *   **QBE (Query-by-Example):** A graphical, visual language. The user retrieves data by filling in templates or putting example elements directly into table skeletons on the screen. It is often considered more intuitive for novice users. Many modern GUI database tools (like Microsoft Access's query designer) translate QBE-like actions into SQL commands behind the scenes. SQL is the universal standard, while QBE is a user-friendly interface that generates SQL."
+    },
+    {
+        "id": 203,
+        "question": "What is ODBC and what problem does it solve?",
+        "answer": "ODBC (Open Database Connectivity) is a standard application programming interface (API) for accessing database management systems (DBMS). It solves the problem of application **portability** and **interoperability**. Before ODBC, applications had to be written to use the specific API of a single DBMS vendor (e.g., Oracle's OCI). To switch databases, the application had to be rewritten. ODBC provides a universal, vendor-neutral interface. An application written to the ODBC standard can connect to any DBMS (Oracle, SQL Server, MySQL, etc.) for which an ODBC driver exists, dramatically reducing development and maintenance costs."
+    },
+    {
+        "id": 204,
+        "question": "What is the difference between a 'thin client' and a 'fat client'?",
+        "answer": "This classification depends on how much processing logic is handled by the client machine: *   **Fat Client (Thick Client):** A client machine that runs the majority of the application's logic, including data processing, business rules, and the user interface. It requires significant resources on the client PC and often maintains a direct connection to the database. It can function offline but is complex to deploy and update. *   **Thin Client:** A client machine that primarily handles only the **user interface**. The application's core logic and data processing are executed on one or more application servers. It requires minimal resources on the client PC, is easy to deploy and update, and relies on a constant network connection. Web browsers are the ultimate thin clients."
+    },
+    {
+        "id": 205,
+        "question": "Why would an Access user learn VBA?",
+        "answer": "While Microsoft Access provides a powerful interface for building databases without code, learning VBA (Visual Basic for Applications) unlocks advanced capabilities: 1. **Complex Functionality:** Create custom functions and procedures that go beyond the built-in wizards and expression builder. 2. **Error Handling:** Write robust code that can gracefully handle unexpected errors and user mistakes. 3. **Automation:** Automate complex, multi-step tasks that involve forms, reports, and data manipulation. 4. **Integration:** Interact with other Windows applications (like Excel, Word, Outlook) through OLE Automation. 5. **Performance:** VBA code can execute complex operations faster than a series of macro actions. 6. **User Interaction:** Create sophisticated custom dialog boxes and user forms for data entry and navigation."
+    },
+    {
+        "id": 206,
+        "question": "What is middleware in the context of web-database connectivity?",
+        "answer": "In web-database integration, middleware is software that acts as a bridge between a web server and a database server. It resides on the web server and facilitates communication between the two. Its primary role is to: 1. **Receive Requests:** Accept requests from a user's web browser sent to the web server. 2. **Process Business Logic:** Execute the application's programming logic. 3. **Interact with the Database:** Generate database queries, connect to the DBMS, pass the queries, and retrieve the results. 4. **Format Results:** Format the database results (e.g., into HTML, JSON, or XML). 5. **Return Response:** Send the formatted response back to the web server, which then delivers it to the user's browser. Examples include ASP.NET, PHP, Java Servlets, and ColdFusion."
+    },
+    {
+        "id": 207,
+        "question": "What are JavaScript and VBScript and how were they used?",
+        "answer": "JavaScript and VBScript are client-side scripting languages primarily used to add interactivity and dynamic behavior to web pages within a user's browser. *   **JavaScript:** A versatile language developed by Netscape. It became the dominant client-side scripting standard due to its cross-browser support. It is used for tasks like form validation, creating dynamic menus, and interacting with the HTML Document Object Model (DOM). It is not related to Java. *   **VBScript:** A scripting language from Microsoft based on Visual Basic syntax. It was primarily used to script web pages in Microsoft's Internet Explorer browser. It never achieved cross-browser adoption and is now largely obsolete. Both executed code on the client machine, reducing the load on the web server but depending on the browser's capabilities."
+    },
+    {
+        "id": 208,
+        "question": "What are Web Services?",
+        "answer": "Web Services are a standardized way for different software applications, running on a variety of platforms and frameworks, to communicate and exchange data over a network (typically the internet). They use open standards: *   **XML** to tag the data. *   **SOAP** (or REST) to define the message format. *   **WSDL** to describe the service available. *   **UDDI** to list what services are available. The key idea is **interoperability**. A Java application on a Linux server can call a web service provided by a .NET application on a Windows server to request data or trigger a process, without needing to know the internal details of the other system."
+    },
+    {
+        "id": 209,
+        "question": "Can you provide an overview of XML and its role?",
+        "answer": "XML (eXtensible Markup Language) is a meta-markup language that provides a flexible, self-describing way to structure and store data. Its key roles are: 1. **Data Transport:** It is the fundamental language for transmitting data between heterogeneous systems, especially in web services. 2. **Data Storage:** It can be used to store configuration files and complex, hierarchical data. 3. **Separation of Concerns:** It strictly separates data content from its presentation, unlike HTML which mixes them. 4. **Interoperability:** As a text-based, platform-independent standard, it enables data exchange between vastly different applications. XML uses custom tags (e.g., `<price>29.99</price>`) that describe the meaning of the data, making it both human and machine-readable."
+    },
+    {
+        "id": 210,
+        "question": "What are the primary website security concerns?",
+        "answer": "Website security involves protecting all components of a web application from threats. Primary concerns include: 1. **Unauthorized Data Access:** Preventing hackers from accessing sensitive data in the database (e.g., through SQL Injection attacks). 2. **Data Integrity:** Ensuring data cannot be maliciously altered. 3. **Availability:** Protecting against Denial-of-Service (DoS) attacks that make the site unavailable to users. 4. **Authentication & Authorization:** Ensuring users are who they claim to be (authentication) and can only access data and functions they are permitted to (authorization). 5. **Client-Side Attacks:** Protecting users from cross-site scripting (XSS) and other attacks launched from the website. Security must be addressed at every level: network, operating system, web server, application code, and database."
+    },
+    {
+        "id": 211,
+        "question": "What is the role of metadata in a three-layer data architecture?",
+        "answer": "In a three-layer architecture (e.g., a data warehouse with operational, reconciled, and derived data layers), metadata acts as the essential 'glue' and 'map' for the entire system. Each layer has its own associated metadata: 1. **Operational Metadata:** Describes the data in the operational source systems - its structure, format, and meaning. It is used for extraction and transformation. 2. **Reconciled Data Metadata (Enterprise Data Warehouse):** Describes the integrated, cleansed, and historical data in the central warehouse. It defines the 'single version of the truth' for the enterprise. 3. **Derived Data Metadata (Data Marts):** Describes the data as it is structured in departmental data marts for specific business analysis. It includes definitions of pre-calculated measures, dimensions, and hierarchies used in OLAP and reporting. This metadata is crucial for developers, administrators, and business users to understand and trust the data."
+    },
+    {
+        "id": 212,
+        "question": "Why are operational and informational systems typically kept separate?",
+        "answer": "Operational systems (OLTP - Online Transaction Processing) and informational systems (OLAP - Online Analytical Processing) are separated because they have fundamentally different and conflicting purposes and characteristics: | Aspect | Operational System (OLTP) | Informational System (OLAP) |\n| :--- | :--- | :--- |\n| **Primary Purpose** | Run the day-to-day business. | Support decision-making and analysis. |\n| **Data Content** | Current, detailed data. | Historical, summarized, and consolidated data. |\n| **Data Model** | Highly normalized for integrity and update speed. | Denormalized (star/snowflake schema) for query speed. |\n| **Access Pattern** | Many small, quick read/write transactions. | Few, but complex and long-running, read-only queries. |\n| **Users** | Clerks, customers, administrators. | Managers, analysts, data scientists. |\n| Separating them prevents analytical queries from slowing down critical transaction processing and allows each system to be optimized for its specific workload."
+    },
+    {
+        "id": 213,
+        "question": "What are the defining characteristics of a data warehouse?",
+        "answer": "A data warehouse, as defined by Bill Inmon, has four key characteristics: 1. **Subject-Oriented:** Data is organized around major subjects of the enterprise (e.g., customers, products, sales), rather than by specific operational applications. 2. **Integrated:** Data is gathered from various disparate source systems and made consistent. This involves resolving naming conflicts, data type differences, and encoding inconsistencies. 3. **Nonvolatile:** Once data is entered into the warehouse, it is not updated or deleted in the same way operational data is. It is a stable, read-only environment for analysis. Data is loaded and refreshed, not changed. 4. **Time-Variant:** Data is stored to provide a historical perspective. Every record is accurate with respect to some moment in time, enabling analysis of trends and changes over time."
+    },
+    {
+        "id": 214,
+        "question": "Why does an 'information gap' often exist in organizations?",
+        "answer": "An information gap exists when decision-makers lack the timely, integrated, and relevant information they need. This gap is caused by two main factors: 1. **Data Silos:** Operational systems are typically built independently for specific functions (e.g., sales, inventory, HR). This leads to data being stored in isolated 'silos' with different structures and meanings, making it difficult to get a unified, enterprise-wide view. 2. **Differing Processing Needs:** The primary design goal of operational systems is to support high-volume transaction processing, not complex decision-support queries. Running analytical queries directly on operational systems would degrade their performance, creating a technical barrier to accessing information. Data warehouses and data marts are built specifically to bridge this gap."
+    },
+    {
+        "id": 215,
+        "question": "How do a data warehouse and a data mart differ?",
+        "answer": "| Characteristic | Data Warehouse | Data Mart |\n| :--- | :--- | :--- |\n| **Scope** | Enterprise-wide. Centralized. | Departmental or functional. Decentralized. |\n| **Subject** | Multiple integrated subjects. | A single, specific subject (e.g., 'Sales', 'Finance'). |\n| **Data Sources** | Many diverse sources from across the organization. | Fewer sources, often a subset of the data warehouse. |\n| **Size** | Very large (TB to PB range). | Smaller (GB to TB range). |\n| **Implementation Time** | Long (months to years). | Shorter (months). |\n| **Design** | Highly normalized (Inmon) or dimensional (Kimball). | Dimensional (star schema). |\n| A data mart can be a **dependent** subset of a data warehouse or an **independent** stand-alone system built directly from operational sources."
+    },
+    {
+        "id": 216,
+        "question": "What is the difference between data administration and database administration?",
+        "answer": "These are two distinct but related roles: *   **Data Administration (DA):** A **business-oriented** function focused on the management of data as a strategic corporate asset. DA responsibilities are high-level and include: data planning, defining data standards and policies, managing the data dictionary, and resolving data ownership and privacy issues. *   **Database Administration (DBA):** A **technically-oriented** function focused on the physical implementation and maintenance of the database management system (DBMS). DBA responsibilities are hands-on and include: DBMS installation, database design, performance tuning, backup and recovery, security implementation, and troubleshooting. DA is about *what* data is needed and *why*; DBA is about *how* to store and manage it effectively."
+    },
+    {
+        "id": 217,
+        "question": "What are key security features provided by a DBMS?",
+        "answer": "A robust DBMS provides multiple layers of security features: 1. **Authentication:** Verifying the identity of a user trying to connect to the database (e.g., via username/password, integrated Windows authentication). 2. **Authorization:** Controlling what a user can do through **privileges** (e.g., `SELECT`, `INSERT`) and **roles** (groups of privileges). 3. **Views:** Providing a security mechanism to hide sensitive columns or rows from users. 4. **Encryption:** Scrambling data so it is unreadable without a key. Can be applied to data at rest (on disk) or in transit (over the network). 5. **Auditing:** Tracking and logging database activity to monitor for suspicious behavior and ensure compliance with regulations. 6. **Data Integrity Controls:** Ensuring data is valid through constraints, which is also a security measure."
+    },
+    {
+        "id": 218,
+        "question": "What is concurrency control?",
+        "answer": "Concurrency control is the set of techniques a DBMS uses to manage simultaneous operations by multiple users or transactions on a database without allowing them to interfere with each other. Its primary goal is to ensure the **isolation** property of transactions, preventing problems like lost updates, dirty reads, and unrepeatable reads. The two main approaches are: 1. **Pessimistic Concurrency Control:** Prevents conflicts by locking data before it is used. This is the most common method. 2. **Optimistic Concurrency Control:** Allows conflicts to occur but detects them at transaction commit time. If a conflict is detected, the transaction is rolled back. It is used in low-contention environments."
+    },
+    {
+        "id": 219,
+        "question": "What is database locking?",
+        "answer": "Locking is the primary mechanism used for pessimistic concurrency control. A lock is a flag or variable associated with a data item (e.g., a row, a page, a table) that controls how transactions can access it. The basic rules are: *   Before a transaction can read or write a data item, it must first acquire the appropriate lock. *   If a lock is held by another transaction, the requesting transaction must wait. *   Locks are released when the transaction commits or rolls back. The main types are **shared locks** (for reading) and **exclusive locks** (for writing). The lock manager subsystem of the DBMS is responsible for granting and tracking locks."
+    },
+    {
+        "id": 220,
+        "question": "What are the key factors affecting database performance?",
+        "answer": "Database performance is influenced by factors across the entire system stack: 1. **Database Design:** Poorly designed schemas (lack of normalization, missing indexes, inefficient data types) are a primary cause of performance issues. 2. **Application Design:** Inefficient SQL queries (e.g., `SELECT *`, unnecessary loops, Cartesian products) and poor application logic place unnecessary load on the database. 3. **DBMS Configuration:** Improperly set memory allocation, cache sizes, and parallelism parameters can cripple performance. 4. **Hardware Resources:** Insufficient CPU power, RAM (leading to excessive disk I/O), and slow disk subsystems are common bottlenecks. 5. **Concurrency:** High levels of user contention for the same data can lead to locking and blocking, slowing down all transactions. Tuning requires a holistic approach addressing all these areas."
+    },
+    {
+        "id": 221,
+        "question": "What is the difference between a homogeneous and a heterogeneous distributed database?",
+        "answer": "This classification depends on the uniformity of the DBMS software across sites: *   **Homogeneous DDBMS:** All sites in the distributed system use the **same** DBMS software (e.g., all run Oracle). The underlying operating system can be different. This is easier to manage, design, and implement because the software is uniform. *   **Heterogeneous DDBMS:** Different sites may use **different** DBMS software (e.g., one site uses Oracle, another uses SQL Server, another uses IMS). This is much more complex. It requires additional middleware (gateways) to translate queries and resolve differences in data models, query languages, and transaction protocols. It is more common in real-world scenarios where different departments have chosen different systems over time."
+    },
+    {
+        "id": 222,
+        "question": "What is a distributed database?",
+        "answer": "A distributed database is a single logical database that is physically spread across multiple computers (nodes) located in different geographical locations and connected by a network. The key principle is that users can access the data as if it were all stored on their local machine, without needing to know where the data is physically located. The system is managed by a Distributed Database Management System (DDBMS) that provides: 1. **Location Transparency:** Hides the physical location of the data from the user. 2. **Replication Transparency:** Hides the fact that data may be duplicated (replicated) at multiple sites. 3. **Fragmentation Transparency:** Hides the fact that a table may be split (horizontally or vertically) and stored at different sites."
+    },
+    {
+        "id": 223,
+        "question": "Explain the difference between horizontal and vertical fragmentation.",
+        "answer": "Fragmentation is the technique of breaking a table into smaller pieces (fragments) and distributing them across different sites in a distributed database. *   **Horizontal Fragmentation:** Splits a table by **rows**. Each fragment contains a subset of the table's rows. For example, a `Customer` table could be fragmented so that customers from the East Coast are stored on a server in New York, and customers from the West Coast are stored on a server in California. A predicate (e.g., `Region = 'East'`) defines each fragment. *   **Vertical Fragmentation:** Splits a table by **columns**. Each fragment contains a subset of the table's columns. For example, one fragment could contain `CustomerID`, `Name`, `Address`, while another contains `CustomerID`, `CreditLimit`, `AccountBalance`. The `CustomerID` column is repeated in all fragments to allow reconstruction of the original row."
+    },
+    {
+        "id": 224,
+        "question": "What is concurrency transparency in a distributed system?",
+        "answer": "Concurrency transparency is a design goal for distributed DBMS where multiple transactions, which may be executing at different sites, are scheduled in such a way that their concurrent execution produces the same final result as if they had been executed one after the other in some serial order (serializability). The user and the application programmer should be unaware of the concurrency and distribution. The DDBMS, specifically the distributed transaction manager, is responsible for ensuring this property across all sites, making the complexity of coordinating distributed locks and schedules invisible to the user."
+    },
+    {
+        "id": 225,
+        "question": "What is snapshot replication?",
+        "answer": "Snapshot replication is a method of data replication where the entire current state of a published table (or other database object) is copied and distributed to subscribers at a specific point in time. It does not monitor for incremental updates to data. Instead, every time the snapshot is applied, it completely overwrites the previous snapshot at the subscriber. It is best used for: 1. **Data that changes infrequently** (e.g., lookup tables, dimension tables in a data warehouse). 2. **When a large volume of changes occurs** all at once. 3. **When subscribers do not need to have up-to-the-minute data** and can work with data that is refreshed periodically (e.g., nightly, weekly). It is simpler to set up than transactional replication but can place a significant load on the network when transferring large snapshots."
+    }
+]

@@ -1,0 +1,302 @@
+[
+    {
+        "id": 121,
+        "question": "Why is database redesign sometimes a necessary process?",
+        "answer": "Database redesign is a critical maintenance activity driven by two primary factors: 1. **Correcting Initial Design Flaws:** Mistakes, oversights, or misunderstandings of requirements during the initial design phase are often discovered only after the system is in use. Redesign is needed to fix these issues, such as poor performance due to lack of indexes or data anomalies from insufficient normalization. 2. **Adapting to Evolving Requirements:** Businesses and their processes change over time. New features, regulations, or business models can necessitate changes to the database structure to store new data or support new types of queries. A database must evolve to remain useful and relevant."
+    },
+    {
+        "id": 122,
+        "question": "What is the key difference between a correlated subquery and a regular subquery?",
+        "answer": "The key difference lies in their execution and dependency: *   **Regular (Non-Correlated) Subquery:** The inner query can be executed independently of the outer query. It is processed once, and its result is passed to the outer query. It is like a constant value within the outer query. *   **Correlated Subquery:** The inner query cannot be executed independently because it references a column from the outer query. It is executed repeatedly, once for each row candidate processed by the outer query. The result of the inner query depends on the specific value of the current row in the outer query, creating a looping mechanism."
+    },
+    {
+        "id": 123,
+        "question": "What is a dependency graph used for in database management?",
+        "answer": "A dependency graph is a visual tool or diagram used to map the connections and dependencies between various elements within a database system. It helps database administrators and developers understand the potential impact of a proposed change. For example, it can show that a specific table is used by several views, application modules, stored procedures, and reports. Before altering or dropping that table, the graph makes it clear which other components will be affected and need to be reviewed, updated, or tested, thus preventing system failures after deployment."
+    },
+    {
+        "id": 124,
+        "question": "What is the correct process for adding a NOT NULL column to an existing table with data?",
+        "answer": "You cannot directly add a `NOT NULL` column to a populated table because existing rows would have `NULL` for the new column, violating the constraint. The correct process is: 1. **Add the Column as NULLable:** First, add the column without the `NOT NULL` constraint. `ALTER TABLE table_name ADD column_name data_type;` 2. **Populate the Column:** Update the new column for all existing rows with a valid default value. `UPDATE table_name SET column_name = default_value;` 3. **Add the NOT NULL Constraint:** Finally, alter the column to add the `NOT NULL` constraint now that all rows have a value. `ALTER TABLE table_name ALTER COLUMN column_name SET NOT NULL;`"
+    },
+    {
+        "id": 125,
+        "question": "How do you convert a one-to-one relationship to a one-to-many relationship in a database schema?",
+        "answer": "Consider two tables, `EMPLOYEE` and `COMPUTER`, in a 1:1 relationship where a computer is assigned to one employee and an employee has one computer. The `COMPUTER` table has a foreign key `EmpNumber` that must be unique. To change this to a 1:N relationship (one employee can have many computers), you simply need to **remove the uniqueness constraint** on the foreign key column (`EmpNumber`) in the `COMPUTER` table. This allows multiple rows in the `COMPUTER` table to have the same `EmpNumber` value, meaning one employee can now be associated with multiple computers. The physical structure of the tables remains the same; only the constraint changes."
+    },
+    {
+        "id": 126,
+        "question": "What is the difference between an exclusive lock and a shared lock?",
+        "answer": "These locks control how multiple transactions can access the same data item concurrently: *   **Exclusive Lock (X Lock):** Grants a transaction exclusive write access to a data item. While an exclusive lock is held, no other transaction can acquire any type of lock (shared or exclusive) on the same data item. It is used for `UPDATE`, `DELETE`, and `INSERT` operations. *   **Shared Lock (S Lock):** Grants a transaction read-only access to a data item. Multiple transactions can hold shared locks on the same data item simultaneously, allowing for concurrent reads. However, no transaction can acquire an exclusive lock on the data item until all shared locks are released."
+    },
+    {
+        "id": 127,
+        "question": "What is the difference between optimistic and pessimistic concurrency control?",
+        "answer": "These are two strategies for managing concurrent access to data: *   **Pessimistic Locking:** Assumes conflicts are likely. It prevents conflicts by locking data *before* a transaction begins to use it. Readers block writers and writers block readers. It is used in high-contention environments. *   **Optimistic Locking:** Assumes conflicts are rare. It allows transactions to proceed without locking. Conflicts are detected at the *end* of the transaction when a commit is attempted. If a conflict is detected (e.g., the data was changed by another transaction after it was read), the transaction is rolled back and must be restarted. It is preferred for low-contention environments like web applications, as it provides better scalability."
+    },
+    {
+        "id": 128,
+        "question": "What is a deadlock and how is it handled?",
+        "answer": "A deadlock is a situation where two or more transactions are permanently blocked because each transaction holds a lock on a resource that the other transactions need to proceed. It's a cyclic wait condition (e.g., Transaction A holds Lock 1 and waits for Lock 2, while Transaction B holds Lock 2 and waits for Lock 1). *   **Prevention:** Systems can use protocols to ensure that deadlocks cannot occur (e.g., requiring transactions to acquire all locks at once). *   **Detection and Resolution:** The DBMS has a deadlock detector that periodically checks the wait-for graph for cycles. When a deadlock is found, the system resolves it by choosing a **victim transaction** and rolling it back, releasing its locks and allowing the other transaction(s) to proceed. The aborted transaction must be restarted by the application."
+    },
+    {
+        "id": 129,
+        "question": "What are the primary responsibilities of a Database Administrator (DBA)?",
+        "answer": "A DBA's role is multifaceted and crucial for ensuring a database's health, performance, and security. Key responsibilities include: 1. **Database Design & Implementation:** Planning and creating new databases. 2. **Performance Tuning:** Monitoring and optimizing database performance (indexing, query optimization). 3. **Security Management:** Creating users, roles, and managing access permissions. 4. **Backup and Recovery:** Designing and testing robust strategies to prevent data loss. 5. **Availability Management:** Ensuring the database is highly available and online. 6. **Change Management:** Applying patches, upgrades, and managing schema changes. 7. **Capacity Planning:** Forecasting future storage and performance needs."
+    },
+    {
+        "id": 130,
+        "question": "What does ACID mean in the context of database transactions?",
+        "answer": "ACID is an acronym that describes the four essential properties of a reliable database transaction: *   **Atomicity:** Guarantees that a transaction is treated as a single, indivisible unit of work. It either executes completely ('All') or not at all ('Nothing'). *   **Consistency:** Ensures that a transaction takes the database from one valid state to another, preserving all defined rules and constraints (e.g., foreign keys, unique keys). *   **Isolation:** Ensures that the execution of concurrent transactions leaves the database in the same state as if they were executed sequentially. Transactions are protected from intermediate states of other transactions. *   **Durability:** Guarantees that once a transaction is committed, its changes are permanent and will survive any subsequent system failure."
+    },
+    {
+        "id": 131,
+        "question": "What are the common methods for creating an Oracle database?",
+        "answer": "There are three primary methods to create an Oracle database: 1. **Using the Database Configuration Assistant (DBCA):** This is a graphical user interface (GUI) tool that guides the DBA through the creation process with easy-to-follow steps. It is the simplest and most common method. 2. **Using Oracle-Managed Scripts:** This involves running prepared SQL scripts provided by Oracle. It offers more control than DBCA but is more complex. 3. **Manual Creation with the CREATE DATABASE Statement:** This is an advanced method where the DBA manually issues SQL commands to create the database. It provides the ultimate level of control but requires deep knowledge of the Oracle architecture and is error-prone."
+    },
+    {
+        "id": 132,
+        "question": "What are database sequences and what are potential issues with their use?",
+        "answer": "A sequence is a database object that generates a sequence of unique integers, typically used to create artificial primary key values. **Potential Issues:** 1. **Gaps in Sequence Values:** Gaps can occur naturally due to transaction rollbacks, database crashes, or caching. This is usually not a functional problem but can be undesirable for some business requirements (e.g., invoice numbers). 2. **Misuse:** A sequence created for one table might be accidentally used for another, or a developer might insert rows without using the sequence, breaking the consistency of key generation. 3. **Lack of Enforced Relationship:** The sequence itself is independent of the table; the DBMS does not enforce that its values are actually used as the primary key, which is the application's responsibility."
+    },
+    {
+        "id": 133,
+        "question": "Under what conditions should you create a database index?",
+        "answer": "Indexes should be created strategically to improve query performance. Consider creating an index when: 1. **Frequent Query Filters:** A column is commonly used in the `WHERE` clause for filtering (e.g., `WHERE email = 'x@y.com'`). 2. **Join Conditions:** A column is used frequently to join tables. 3. **Sorting and Grouping:** A column is often used in `ORDER BY` or `GROUP BY` clauses. 4. **Enforcing Uniqueness:** A unique index is required to enforce a primary key or unique constraint. **Caution:** Indexes slow down `INSERT`, `UPDATE`, and `DELETE` operations because the index must be maintained. Therefore, avoid over-indexing, especially on tables with heavy write operations."
+    },
+    {
+        "id": 134,
+        "question": "What are the common transaction isolation levels in Oracle?",
+        "answer": "Oracle Database primarily supports the following isolation levels: 1. **READ COMMITTED (Default):** Guarantees that a statement will only see data that was committed before the statement began (not the transaction). It prevents dirty reads but allows non-repeatable reads and phantoms. 2. **SERIALIZABLE:** Guarantees that a transaction will see only data that was committed before the transaction began and changes made by the transaction itself. It provides the highest level of isolation, preventing dirty reads, non-repeatable reads, and phantoms. 3. **READ ONLY:** A variant that specifies the transaction cannot perform any DML operations and sees only data committed at the start of the transaction."
+    },
+    {
+        "id": 135,
+        "question": "What file types are crucial for Oracle database recovery?",
+        "answer": "A successful recovery depends on these files: 1. **Datafiles:** Contain the actual data. Backups of these files are the foundation of restoration. 2. **Control Files:** Essential for mounting and opening the database. They describe the structure of the database, including the location of all datafiles and online redo log files. A backup is critical. 3. **Online Redo Log Files:** Record all changes made to the database. They are used for instance recovery after a crash. 4. **Archived Redo Log Files:** These are copies of filled online redo log files. They are absolutely vital for complete media recovery, allowing you to 'replay' all transactions up to the point of failure."
+    },
+    {
+        "id": 136,
+        "question": "What is the difference between a complete and a differential backup in SQL Server?",
+        "answer": "These are two backup strategies in a recovery plan: *   **Complete Backup:** A full copy of the entire database. It backs up all data files and enough of the transaction log to allow for recovering that database. It is the foundation for any restore operation but can be large and time-consuming. *   **Differential Backup:** Backs up only the data pages that have changed since the last complete backup. It is smaller and faster to create than a full backup. To restore, you first restore the last complete backup and then restore the last differential backup. This strategy reduces the number of transaction log files needed for recovery compared to using only full backups."
+    },
+    {
+        "id": 137,
+        "question": "What are the different transaction isolation levels in SQL Server and their meanings?",
+        "answer": "SQL Server defines several isolation levels: 1. **READ UNCOMMITTED:** The lowest level. Allows dirty reads, meaning a transaction may see uncommitted changes from other transactions. No shared locks are taken. 2. **READ COMMITTED (Default):** Prevents dirty reads. A transaction will only see committed data. It uses locking to hold read locks only for the duration of the statement. 3. **REPEATABLE READ:** Prevents dirty reads and non-repeatable reads. Locks are held on all data read by the transaction until it completes. 4. **SERIALIZABLE:** The highest level. Prevents dirty reads, non-repeatable reads, and phantom reads. It uses range locks to prevent other transactions from inserting new rows that would fall into the range of data read by the transaction. 5. **SNAPSHOT:** Provides a transactionally consistent view of the data as it existed at the start of the transaction, using row versioning instead of locking."
+    },
+    {
+        "id": 138,
+        "question": "What are the differences between Simple, Full, and Bulk-Logged recovery models in SQL Server?",
+        "answer": "The recovery model determines how the transaction log is used and what restore options are available: *   **Simple Recovery Model:** Transaction log space is automatically reused, minimally logging most operations. Point-in-time recovery is *not* supported. You can only restore to the exact time of a full or differential backup. *   **Full Recovery Model:** All transactions are fully logged. This allows for point-in-time recovery up to the last committed transaction before a failure, using the transaction log backups. This is required for maximum data protection. *   **Bulk-Logged Recovery Model:** A special-purpose model that performs minimal logging for certain bulk operations (like BULK INSERT) to improve performance, while otherwise behaving like the Full model. It allows point-in-time recovery unless a bulk operation occurred, in which case the entire log backup containing that operation must be restored."
+    },
+    {
+        "id": 139,
+        "question": "What is the difference between a clustered and a nonclustered index in SQL Server?",
+        "answer": "This is a fundamental physical storage difference: *   **Clustered Index:** Determines the physical order of data rows in the table. The data rows themselves are stored in the leaf pages of the index. Therefore, a table can have **only one** clustered index. It is typically created on the primary key. Retrieving data via a clustered index is very fast. *   **Nonclustered Index:** Creates a separate structure from the data rows. The leaf pages of a nonclustered index contain pointers to the actual data rows (either the clustered index key or a row identifier if no clustered index exists). A table can have **many** nonclustered indexes. They are used to improve query performance on columns that are not the primary key."
+    },
+    {
+        "id": 140,
+        "question": "What types of triggers does SQL Server support?",
+        "answer": "SQL Server supports two main types of triggers based on their timing and purpose: 1. **AFTER Triggers (FOR Triggers):** These fire *after* the triggering DML action (`INSERT`, `UPDATE`, `DELETE`) has been processed. They are used for auditing, enforcing business rules, or creating follow-up actions. A table can have multiple AFTER triggers for each action. 2. **INSTEAD OF Triggers:** These fire *in place of* the triggering action. The original DML operation is not performed; instead, the code within the INSTEAD OF trigger is executed. They are often used to allow updates to complex views that would otherwise be non-updatable. A view or table can have at most one INSTEAD OF trigger per triggering action. SQL Server does not have built-in BEFORE triggers."
+    },
+    {
+        "id": 141,
+        "question": "How are ODBC, OLE DB, and ADO related to each other?",
+        "answer": "These are Microsoft data access technologies that evolved over time: 1. **ODBC (Open Database Connectivity):** The oldest standard. It provides a C-language API specifically for accessing relational databases. 2. **OLE DB (Object Linking and Embedding for Databases):** The successor to ODBC. It is a COM-based specification that provides access to a broader range of data sources, not just relational databases (e.g., spreadsheets, text files, email). ODBC is for relational data; OLE DB is for any data. 3. **ADO (ActiveX Data Objects):** A high-level, easy-to-use API that provides an object-oriented interface to OLE DB. It simplifies data access for programmers in languages like Visual Basic and ASP by wrapping the complexity of OLE DB. The relationship is often visualized as ADO -> OLE DB -> ODBC -> Data Source."
+    },
+    {
+        "id": 142,
+        "question": "What are the three types of ODBC data sources?",
+        "answer": "An ODBC data source is a stored configuration that defines how to connect to a specific database. The three types are: 1. **User DSN:** The data source information is stored in the Windows registry and is visible only to the user who created it. 2. **System DSN:** The data source information is stored in the Windows registry and is visible to all users on the machine, including Windows services. This is the most common type for server applications. 3. **File DSN:** The data source information is stored in a text file (with a .dsn extension) on the disk. This file can be shared with other users who have the same ODBC driver installed, making it portable."
+    },
+    {
+        "id": 143,
+        "question": "What disadvantage of ODBC did OLE DB aim to overcome?",
+        "answer": "ODBC's primary disadvantage was its focus solely on **relational data** that could be accessed via SQL. OLE DB was designed to overcome this limitation by providing a universal data access model. Its COM-based architecture allowed it to create 'providers' for any type of data store, whether relational (e.g., SQL Server, Oracle) or non-relational (e.g., spreadsheets, email systems, directory services, text files). This enabled developers to use a more consistent programming model to access a much wider variety of data sources."
+    },
+    {
+        "id": 144,
+        "question": "What were the primary design goals of OLE DB?",
+        "answer": "The major goals of OLE DB were to: 1. **Provide Universal Data Access:** Create a single, unified interface for accessing data from any source, relational or non-relational. 2. **Component Object Model (COM) Based:** Use the COM standard to define interoperable objects for data access, promoting software reusability. 3. **Increase Flexibility:** Allow data providers to expose functionality in pieces, enabling them to implement only the features they supported. 4. **Avoid Data Movement:** Provide a means to access and manipulate data in place, in its native store, without requiring it to be moved or converted into a different format first."
+    },
+    {
+        "id": 145,
+        "question": "In OLE DB, what distinguishes an interface from an implementation?",
+        "answer": "This is a core concept of COM, which OLE DB is built upon: *   **Interface:** A contract. It is a defined set of properties and methods that an object must expose. It specifies *what* an object can do, but not *how* it does it. OLE DB defines standardized interfaces. *   **Implementation:** The actual code inside the object that fulfills the contract specified by the interface. It defines *how* the properties and methods work. The implementation is hidden from the user (data consumer). This separation allows a provider (implementation) to change its internal code without breaking any applications that use it, as long as it continues to honor the interface contract."
+    },
+    {
+        "id": 146,
+        "question": "Why is XML often considered a better markup language than HTML?",
+        "answer": "The key difference is in their purpose: *   **HTML (HyperText Markup Language):** Designed for *presenting* and displaying data in a web browser. It uses a fixed set of tags that describe appearance (e.g., `<b>`, `<i>`). It mixes structure, content, and presentation. *   **XML (eXtensible Markup Language):** Designed for *storing and transporting* data. It is extensible—you define your own tags that describe the meaning of the data (e.g., `<price>`, `<author>`). It provides a clear separation between the structure of the data, the data itself, and its presentation. This makes XML self-describing, portable, and far superior for data exchange between heterogeneous systems."
+    },
+    {
+        "id": 147,
+        "question": "What are the two main ways to describe the structure and content of an XML document?",
+        "answer": "To define the legal structure, elements, and attributes of an XML document, you use a schema language: 1. **Document Type Definition (DTD):** The older, simpler method. It defines the basic structure with a list of legal elements and attributes. An XML document that conforms to its DTD is 'valid'. 2. **XML Schema Definition (XSD):** A more powerful and modern language written in XML itself. XSD provides much stronger data typing (e.g., integers, dates), supports namespaces, and allows for more complex constraints than DTD. XSD has largely replaced DTD for most serious data exchange applications."
+    },
+    {
+        "id": 148,
+        "question": "What is the difference between simple elements and complexType elements in XML Schema?",
+        "answer": "In XML Schema (XSD), this distinction defines what content an element can contain: *   **Simple Element:** An element that can contain only text (data value). It cannot contain other elements or attributes. For example: `<first_name>John</first_name>`. *   **complexType Element:** An element that can contain other elements, attributes, and text. It defines a complex structure. For example, a `<customer>` element that contains child elements like `<name>`, `<address>`, and an attribute like `id='123'` must be defined as a complexType."
+    },
+    {
+        "id": 149,
+        "question": "What is ADO.NET?",
+        "answer": "ADO.NET is the primary data access technology within the Microsoft .NET framework. It is the successor to ADO (ActiveX Data Objects). ADO.NET provides a set of classes for connecting to data sources, executing commands, and retrieving results. Its key innovation is the **disconnected architecture**, centered around the `DataSet` object, which allows applications to work with a local in-memory copy of data, disconnect from the database server, and later reconnect to update the server with changes. It provides high performance and scalability for multi-tier applications."
+    },
+    {
+        "id": 150,
+        "question": "What is a DataSet in ADO.NET?",
+        "answer": "A `DataSet` is an in-memory, disconnected representation of data. It is a major component of ADO.NET's disconnected architecture. Think of it as a miniature, in-memory database. It can contain: *   Multiple `DataTable` objects (like tables). *   `DataRelation` objects that define relationships between these tables (like foreign keys). *   Constraints (`UniqueConstraint`, `ForeignKeyConstraint`) to enforce data integrity. Because it is disconnected from the data source, a `DataSet` allows an application to work with data locally without maintaining a continuous database connection, which is crucial for web application scalability."
+    },
+    {
+        "id": 151,
+        "question": "What are the four JDBC driver types defined by Sun?",
+        "answer": "JDBC driver types are categorized by how they implement the connection to the database: 1. **Type 1: JDBC-ODBC Bridge Driver:** Uses an ODBC driver to connect to the database. Requires ODBC to be configured on the client machine. Legacy and not recommended for production. 2. **Type 2: Native-API Driver (Partly Java Driver):** Uses the client-side libraries of the database. Converts JDBC calls into calls to the native API (e.g., OCI for Oracle). Requires native libraries on the client. 3. **Type 3: Network-Protocol Driver (Pure Java Driver for Middleware):** Uses a middleware application server that converts JDBC calls into a database-independent network protocol. The middleware then translates this to the database-specific protocol. 4. **Type 4: Database-Protocol Driver (Pure Java Driver):** Directly converts JDBC calls into the network protocol used by the DBMS. This is a direct-to-database pure Java driver. It is the most common and efficient driver type for most applications (e.g., MySQL Connector/J)."
+    },
+    {
+        "id": 152,
+        "question": "What is the difference between a Java Servlet and a Java Applet?",
+        "answer": "These are two very different Java technologies: *   **Java Applet:** A small client-side application that runs *inside* a web browser on the user's machine. It is downloaded from a web server and executed by the browser's Java Virtual Machine (JVM). Applets are largely obsolete due to security concerns and lack of browser support. *   **Java Servlet:** A server-side Java program that runs *on* a web server. It extends the capabilities of the server to generate dynamic web content. Servlets receive requests from clients (e.g., web browsers), process them (often involving database access), and return responses (usually HTML). They are a fundamental part of Java web development."
+    },
+    {
+        "id": 153,
+        "question": "What is the standard pattern for using JDBC in Java code?",
+        "answer": "The fundamental steps for JDBC database access are: 1. **Load and Register the Driver:** `Class.forName('com.mysql.cj.jdbc.Driver');` (Note: JDBC 4.0+ often auto-loads drivers). 2. **Establish a Connection:** `Connection conn = DriverManager.getConnection(url, user, password);` 3. **Create a Statement:** `Statement stmt = conn.createStatement();` (or `PreparedStatement` for parameterized queries). 4. **Execute the Query:** `ResultSet rs = stmt.executeQuery('SELECT * FROM table');` 5. **Process the ResultSet:** `while (rs.next()) { String data = rs.getString('column_name'); }` 6. **Close Resources:** Close the `ResultSet`, `Statement`, and `Connection` objects in a `finally` block or using try-with-resources to avoid memory leaks."
+    },
+    {
+        "id": 154,
+        "question": "What is a JavaBean?",
+        "answer": "A JavaBean is a reusable software component model for Java. It is a standard class that follows specific conventions: 1. **It has a public no-argument constructor.** 2. **Its properties are accessed through 'getter' and 'setter' methods** following a naming pattern (e.g., `getPropertyName()`, `setPropertyName()`). 3. **It is serializable,** meaning its state can be saved and restored. JavaBeans are primarily used to encapsulate many objects into a single object (the bean), making them easier to work with. They are widely used in Java frameworks for applications like JSP (JavaServer Pages) to represent form data or business objects."
+    },
+    {
+        "id": 155,
+        "question": "How does MySQL handle surrogate keys and metadata?",
+        "answer": "*   **Surrogate Keys:** MySQL uses the `AUTO_INCREMENT` attribute for a column (typically an `INTEGER` or `BIGINT`) to automatically generate unique surrogate key values. When inserting a new row, you omit this column, and MySQL automatically assigns the next sequential number. *   **Metadata:** MySQL stores its metadata in a special database named `mysql`. This database contains tables that store information about users, privileges, databases, tables, columns, and other system settings. For example, the `user` table stores user accounts and global privileges, while the `tables` table in the `information_schema` database provides information about all tables."
+    },
+    {
+        "id": 156,
+        "question": "What is a data mart?",
+        "answer": "A data mart is a focused subset of a data warehouse that is tailored to the specific needs of a particular business unit, department, or team (e.g., marketing, sales, finance). It contains a curated collection of data designed to serve a specific group of users with a common analytical need. A data mart can be dependent (derived from an existing enterprise data warehouse) or independent (built directly from operational sources without a data warehouse). It is typically smaller, simpler, and more focused than a full data warehouse, allowing for faster implementation and more targeted analysis."
+    },
+    {
+        "id": 157,
+        "question": "What is RFM analysis?",
+        "answer": "RFM analysis is a customer segmentation technique used in marketing and business intelligence to rank customers based on their past purchasing behavior. The acronym stands for: *   **Recency (R):** How recently did the customer make a purchase? (Customers who bought more recently are more likely to respond to promotions.) *   **Frequency (F):** How often do they purchase? (Frequent purchasers are more engaged.) *   **Monetary Value (M):** How much money do they spend? (High-spending customers are more valuable.) Customers are scored on each dimension (e.g., on a scale of 1-5, with 5 being best). An RFM score like '5-1-3' represents a customer who bought very recently (5), buys infrequently (1), but spends a good amount when they do (3)."
+    },
+    {
+        "id": 158,
+        "question": "What are the core functions of a BI reporting system?",
+        "answer": "A Business Intelligence (BI) reporting system has three primary functional areas: 1. **Report Authoring:** Allows users to create reports by connecting to data sources, defining the report structure (queries, groupings, filters), and formatting the layout and style. 2. **Report Management:** Handles the 'what, who, when, and how' of report delivery. It involves defining schedules, user subscriptions, security permissions, and delivery channels (e.g., email, portal). 3. **Report Delivery:** Executes the management plan. It is the engine that generates the report based on the authoring definition and delivers it to the intended recipients at the scheduled time, either by 'pushing' it to them or making it available for them to 'pull' (view on demand)."
+    },
+    {
+        "id": 159,
+        "question": "What is OLAP?",
+        "answer": "OLAP (Online Analytical Processing) is a category of software technology that allows users to interactively analyze multidimensional data from multiple perspectives. It is a core component of BI systems. Key characteristics include: *   **Multidimensional View:** Data is organized in cubes with dimensions (e.g., Time, Product, Location) and measures (e.g., Sales, Profit). *   **Complex Calculations:** Supports advanced operations like drilling down/up, slicing (selecting one dimension), dicing (selecting sub-cubes), and pivoting (rotating the view). *   **Fast Query Performance:** Pre-aggregates data to provide very quick answers to complex analytical queries. OLAP enables users to gain insights from historical data for strategic planning and decision support."
+    },
+    {
+        "id": 160,
+        "question": "What is market basket analysis?",
+        "answer": "Market basket analysis is a data mining technique used to discover relationships between items that are frequently purchased together. It is the science behind 'customers who bought this also bought...' recommendations. The analysis is based on calculating: *   **Support:** The frequency with which an itemset appears in all transactions. (How popular is this combination?) *   **Confidence:** The probability that if item A is purchased, item B will also be purchased. (How strong is the rule A -> B?) *   **Lift:** Measures how much more likely item B is to be purchased when item A is purchased, compared to its general probability of being purchased. (Is this association real or random?) It helps retailers with strategies for product placement, cross-selling, and promotions."
+    },
+    {
+        "id": 161,
+        "question": "What is the difference between structured and unstructured data?",
+        "answer": "This is a fundamental classification of data: *   **Structured Data:** Data that is organized in a predefined format, typically a tabular schema with rows and columns. It is easily stored, queried, and analyzed in relational databases. Examples include numbers, dates, and strings in database tables or CSV files. *   **Unstructured Data:** Data that does not have a predefined data model or is not organized in a predefined manner. It accounts for the vast majority of enterprise data. Examples include text documents, emails, videos, photos, audio files, social media posts, and web pages. Specialized databases (NoSQL) and techniques (NLP, computer vision) are needed to manage and analyze it."
+    },
+    {
+        "id": 162,
+        "question": "Why is it important to understand file processing systems even though they are outdated?",
+        "answer": "Understanding the limitations of traditional file processing systems is crucial for two reasons: 1. **Legacy Systems:** Many businesses still rely on legacy applications built on file processing systems. DBAs and developers need to understand them to maintain, interface with, or migrate these systems. 2. **Appreciating DBMS Benefits:** Studying the problems of file processing (data redundancy, inconsistency, program-data dependence) provides a deep appreciation for the features and benefits of modern DBMS. It answers the 'why' behind database principles like data independence, data integrity, and non-redundancy, reinforcing their importance in good design."
+    },
+    {
+        "id": 163,
+        "question": "What are the major disadvantages of conventional file processing systems?",
+        "answer": "File processing systems suffer from several critical drawbacks: 1. **Data Redundancy and Inconsistency:** The same data is often stored in multiple files, leading to duplication, wasted storage, and potential inconsistencies. 2. **Difficulty in Accessing Data:** Writing ad-hoc queries is hard; new programs need to be written for each new task. 3. **Data Isolation:** Data is scattered in various files, making it difficult to get a unified view. 4. **Integrity Problems:** It is hard to apply consistency constraints (e.g., account balance > 0) across multiple files. 5. **Atomicity Problems:** Ensuring a transaction (like a fund transfer) completes entirely or not at all is difficult to program. 6. **Concurrent Access Anomalies:** Uncontrolled multi-user access can lead to incorrect data."
+    },
+    {
+        "id": 164,
+        "question": "What are the five categories of database applications based on scope?",
+        "answer": "Databases can be categorized by the number of users and the organizational scope they support: 1. **Personal Database:** Designed to support a single user, typically on a personal computer (e.g., a contacts database). 2. **Workgroup Database:** Supports a small team of users (usually fewer than 25). 3. **Department Database:** Supports the major functions of a single department within an organization (e.g., HR, Marketing). 4. **Enterprise Database:** Supports the organization-wide operations and decision-making of an entire company. It spans multiple departments and is often very complex. 5. **Internet/Web Database:** Accessible to anyone via the internet or an intranet/extranet, supporting global user bases (e.g., Amazon.com, Google Search)."
+    },
+    {
+        "id": 165,
+        "question": "What is the difference between an intranet and an extranet?",
+        "answer": "Both are private networks, but their access differs: *   **Intranet:** A private network that uses internet technologies (like web servers and browsers) to serve the internal needs of an organization. It is accessible only to the organization's employees, members, or others with internal authorization. It is behind a firewall. *   **Extranet:** An extension of an organization's intranet that provides controlled access to external parties, such as partners, vendors, suppliers, or specific customers. It allows for secure collaboration and business-to-business (B2B) transactions over the internet. An extranet is a semi-private network."
+    },
+    {
+        "id": 166,
+        "question": "What are the five components of an Information Systems Architecture?",
+        "answer": "The Zachman Framework outlines these five fundamental components that must be aligned for a successful system: 1. **Data (What):** The entities and information the business uses and needs. 2. **Function (How):** The business processes and functions that transform the data. 3. **Network (Where):** The geographical distribution of the business and its systems. 4. **People (Who):** The people involved—the organizational units and actors. 5. **Time (When):** The timing and business cycles that trigger events and processes. 6. **Motivation (Why):** The business goals, strategies, and rules that govern the other components. (Note: Some versions list 6, including Motivation.)"
+    },
+    {
+        "id": 167,
+        "question": "What is the Systems Development Life Cycle (SDLC)?",
+        "answer": "The SDLC is a structured, phased process for planning, creating, testing, and deploying an information system. It provides a framework for managing the complexity of system development. The traditional phases are: 1. **Planning:** Defining the system's scope, goals, and feasibility. 2. **Analysis:** Determining business requirements. 3. **Design:** Designing the system architecture, databases, and interfaces. 4. **Implementation:** Building, testing, and installing the system. 5. **Maintenance:** Fixing issues, making enhancements, and adapting to new requirements. While often depicted as a waterfall, modern approaches use iterative and agile variations of the SDLC."
+    },
+    {
+        "id": 168,
+        "question": "What are the two main types of packaged data models?",
+        "answer": "Packaged data models are pre-built, generic data models that can be purchased and customized: 1. **Universal Data Models:** Very generic models that represent common business functions found in almost every organization, such as 'Party' (people and organizations), 'Product', 'Order', 'Invoice', and 'Shipment'. They provide a robust starting point. 2. **Industry-Specific Data Models:** Models tailored to the specific needs, terminology, and processes of a particular industry, such as telecommunications, healthcare, insurance, or retail. They incorporate the industry's standard best practices and regulatory requirements."
+    },
+    {
+        "id": 169,
+        "question": "Who are the key members of a systems or database development team?",
+        "answer": "A successful project requires a team with diverse skills: 1. **Systems Analyst:** Acts as a liaison between stakeholders and the technical team, gathering and translating business requirements. 2. **Database Designer (Data Architect):** Focuses on designing the database structure, including data models, schemas, and integrity constraints. 3. **Application Programmers:** Write the application code that interacts with the database. 4. **Database Administrator (DBA):** Implements and manages the database environment, ensuring performance, security, and availability. 5. **End Users:** The ultimate consumers of the system, who provide crucial input on requirements and test the final product. 6. **Project Manager:** Oversees the project's budget, schedule, and scope."
+    },
+    {
+        "id": 170,
+        "question": "What are the key database activities within the SDLC?",
+        "answer": "Database development activities run in parallel with the general SDLC phases: 1. **Enterprise Modeling (Planning):** Analyzing the current data processing environment. 2. **Conceptual Data Modeling (Analysis):** Creating an ERD to identify entities, relationships, and attributes based on business requirements. 3. **Logical Database Design (Design):** Transforming the conceptual model into a logical schema (e.g., relational tables), normalizing the design, and defining integrity rules. 4. **Physical Database Design (Design):** Mapping the logical design to a specific DBMS, defining storage structures, indexing, and partitioning for performance. 5. **Database Implementation (Implementation):** Creating the database, loading data, and implementing application programs. 6. **Database Maintenance (Maintenance):** Tuning performance, fixing bugs, and adapting the schema to new requirements."
+    },
+    {
+        "id": 171,
+        "question": "What is an Entity-Relationship Diagram (ERD)?",
+        "answer": "An Entity-Relationship Diagram (ERD) is a visual graphical representation of the logical structure of a database. It is a conceptual data model that uses standardized symbols to depict: *   **Entities:** Represented as rectangles. These are the 'things' (e.g., Customer, Order). *   **Attributes:** Represented as ovals or within the entity rectangle. These are the properties of entities (e.g., CustomerName, OrderDate). *   **Relationships:** Represented as diamonds or lines connecting entities. These show how entities are associated (e.g., a Customer 'places' an Order). ERDs are a crucial communication tool between stakeholders and database designers in the early stages of the SDLC."
+    },
+    {
+        "id": 172,
+        "question": "What are the characteristics of a good data definition?",
+        "answer": "A good data definition, often stored in a data dictionary, is clear, precise, and comprehensive. It should include: 1. **A clear, concise name and description** of the data element. 2. **The data type and length** (e.g., VARCHAR(50), DATE). 3. **The allowable values or range** (e.g., 'Y'/'N', 1-100). 4. **Its nullability** (whether it is required or optional). 5. **The source** of the data. 6. **Ownership** (who is responsible for the data). 7. **Examples** of valid data. 8. **Security and privacy classifications.** This ensures everyone in the organization has a shared understanding of the data's meaning and usage rules."
+    },
+    {
+        "id": 173,
+        "question": "What do minimum and maximum cardinality represent in a relationship?",
+        "answer": "Cardinality defines the numerical attributes of the relationship between two entities. *   **Minimum Cardinality:** Specifies whether the relationship is mandatory or optional. A minimum of 0 means participation is optional for an entity. A minimum of 1 means participation is mandatory. (e.g., An `Order` *must* be placed by a `Customer` -> min cardinality for Customer is 1). *   **Maximum Cardinality:** Specifies the maximum number of entity instances that can be involved in the relationship. This defines the relationship type: 1 (one) or N (many). (e.g., One `Customer` can place many `Orders` -> max cardinality for Order is N). Together, they are often written as (min, max) - e.g., (1, N)."
+    },
+    {
+        "id": 174,
+        "question": "What are the best practices for naming relationships in an ERD?",
+        "answer": "Relationship names should be meaningful action verbs or verb phrases that accurately describe the nature of the association between entities. Best practices include: 1. **Use a Verb Phrase:** The name should indicate the action (e.g., 'places', 'is assigned to', 'contains'). 2. **Be Specific:** Avoid vague names like 'has' or 'is related to'. Use 'manages', 'submits', 'belongs to'. 3. **Readable in Both Directions:** The relationship should make sense when read from either entity. For example: `Customer` *places* `Order` / `Order` *is placed by* `Customer`. 4. **Use Present Tense:** This makes the model feel current and active."
+    },
+    {
+        "id": 175,
+        "question": "Why is it important to model time-dependent data with time stamps?",
+        "answer": "Modeling time-dependent data with time stamps (e.g., `StartDate`, `EndDate`, `LastModifiedDate`) is crucial for maintaining a historical record and understanding the state of data over time. Without it, you can only see the current state, losing all history. This is important for: 1. **Historical Reporting and Auditing:** Tracking changes for compliance and understanding past states. 2. **Temporal Queries:** Answering questions like 'What was the price of this product on January 1st?' or 'Who was the manager of this department in 2020?'. 3. **Correcting Errors:** Allowing you to roll back to a previous valid state if an error is made. This concept is central to temporal databases and slowly changing dimensions in data warehousing."
+    },
+    {
+        "id": 176,
+        "question": "What is the difference between total and partial specialization in a supertype/subtype relationship?",
+        "answer": "This concept defines whether all instances of a supertype must also be an instance of a subtype. *   **Total Specialization ( completeness constraint):** Every instance of the supertype *must* be an instance of at least one subtype. In an ERD, this is represented by a double line connecting the supertype to the circle. (e.g., Every `Vehicle` in the database MUST be either a `Car` or a `Truck`). *   **Partial Specialization:** An instance of the supertype *can* be an instance of a subtype, but it is not mandatory. It is represented by a single line. (e.g., An `Employee` could be a `Manager` or a `Engineer`, but some employees might not be classified into either subtype)."
+    },
+    {
+        "id": 177,
+        "question": "What is the difference between an ERD and an EERD?",
+        "answer": "An ERD (Entity-Relationship Diagram) represents the basic concepts of entities, attributes, and relationships. An EERD (Enhanced Entity-Relationship Diagram) extends the classical ER model with additional semantic concepts to represent more complex real-world situations. The key enhancements in an EERD are: 1. **Subtyping and Inheritance:** The ability to model supertype/subtype relationships (generalization/specialization hierarchies), where subtypes inherit attributes and relationships from their supertype. 2. **Union (Category):** Modeling a subtype that can inherit from different supertypes. 3. **More Detailed Constraints:** Expressing disjointness and completeness constraints on subtypes more explicitly."
+    },
+    {
+        "id": 178,
+        "question": "What is the difference between the disjoint and overlap rules in subtyping?",
+        "answer": "These rules constrain whether an instance of a supertype can be an instance of more than one subtype. *   **Disjoint Rule:** An instance of the supertype can be an instance of *only one* of the subtypes. The subtypes are mutually exclusive. (e.g., A `Person` is either a `Male` or a `Female` - represented by a 'd' in the circle on the EERD). *   **Overlap Rule:** An instance of the supertype can be an instance of *more than one* subtype. The subtypes are not mutually exclusive. (e.g., A `Staff` member at a university could be both a `Teacher` and a `Researcher` - represented by an 'o' in the circle)."
+    },
+    {
+        "id": 179,
+        "question": "What are the three main types of business rules?",
+        "answer": "Business rules are precise statements that define or constrain some aspect of a business. They are categorized as: 1. **Derivations:** Rules that define how knowledge is derived from other knowledge. They are often formulas or calculations. (e.g., `employee_bonus = yearly_sales * 0.05`). 2. **Structural Assertions (Terms and Facts):** Rules that express static structure and definitions. They are the 'nouns' and 'verbs' of the business. (e.g., 'A customer may place many orders', 'An order must have a valid customer'). 3. **Action Assertions (Constraints):** Rules that constrain the actions of the business, often with conditions. (e.g., 'An employee's salary cannot be decreased', 'A loan application must be approved by a manager if the amount is over $10,000')."
+    },
+    {
+        "id": 180,
+        "question": "How is a scenario used to define business rules?",
+        "answer": "A scenario is a concise, narrative description of a specific sequence of events or actions within a business process. It is used as a tool to discover, validate, and document business rules. By walking through a realistic 'story' (e.g., 'A customer returns a purchased item to a store'), analysts can identify the constraints, derivations, and structural facts that govern that process. The scenario helps to ask the right questions: 'What data is needed?', 'What checks must be performed?', 'What are the possible outcomes?'. The answers to these questions are formalized into the business rules that the database and application must enforce."
+    }
+]

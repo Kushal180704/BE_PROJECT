@@ -1,0 +1,102 @@
+[
+  {
+    "id": 236,
+    "question": "What is the Relational Data Model and who introduced it?",
+    "answer": "The relational data model was introduced by E. F. Codd in 1970. It describes the world as 'a collection of inter-related relations (or tables)' and has provided the basis for research on data theory, numerous database design methodologies, the SQL standard, and almost all modern commercial database management systems."
+  },
+  {
+    "id": 237,
+    "question": "What are the key components of the relational data model?",
+    "answer": "The key components are: 1) Relation/Table - a subset of the Cartesian product of domains, 2) Tuple/Row - a group of related data values, 3) Attribute/Column/Field - defines the record characteristics, 4) Domain - a set of acceptable values for a column, and 5) Degree - the number of attributes in a table."
+  },
+  {
+    "id": 238,
+    "question": "What are the properties of a table in the relational model?",
+    "answer": "Properties include: 1) Distinct table name, 2) No duplicate rows, 3) Atomic entries in columns (no repeating groups), 4) Entries from same domain based on data type, 5) No operations combining different data types, 6) Distinct attribute names, 7) Insignificant column sequence, and 8) Insignificant row sequence."
+  },
+  {
+    "id": 239,
+    "question": "What is an Entity-Relationship (ER) data model?",
+    "answer": "The ER data model is well-suited for database modeling because it is fairly abstract and easy to discuss. It is based on two concepts: entities (tables holding specific information) and relationships (associations between entities). ER models are represented by ER diagrams and are readily translated to relations."
+  },
+  {
+    "id": 240,
+    "question": "What are the different types of entities in ER modeling?",
+    "answer": "Entity types include: 1) Independent entities (kernels) - backbone of database with primary keys not being foreign keys, 2) Dependent entities - depend on other tables for meaning and connect kernels together, and 3) Characteristic entities - provide more information about another table and represent multivalued attributes."
+  },
+  {
+    "id": 241,
+    "question": "What are the different types of attributes in ER modeling?",
+    "answer": "Attribute types include: 1) Simple attributes - drawn from atomic value domains (single-valued), 2) Composite attributes - consist of a hierarchy of attributes, 3) Multivalued attributes - have a set of values for each entity, and 4) Derived attributes - contain values calculated from other attributes."
+  },
+  {
+    "id": 242,
+    "question": "What are the different types of keys in database systems?",
+    "answer": "Key types include: 1) Candidate key - unique and minimal identifier, 2) Primary key - selected candidate key for identifying tuples, 3) Composite key - composed of two or more attributes, 4) Secondary key - used strictly for retrieval, 5) Alternate key - candidate keys not chosen as primary key, and 6) Foreign key - references primary key in another table."
+  },
+  {
+    "id": 243,
+    "question": "What are the main types of relationships in ER modeling?",
+    "answer": "Relationship types include: 1) One-to-many (1:M) - should be the norm in relational databases, 2) One-to-one (1:1) - should be rare and may indicate entities belong in same table, 3) Many-to-many (M:N) - implemented through composite entities and broken into two 1:M relationships, and 4) Unary/recursive - relationship between occurrences of the same entity set."
+  },
+  {
+    "id": 244,
+    "question": "What is relational algebra and what are its fundamental operations?",
+    "answer": "Relational algebra is a procedural query language that provides a set of operations to manipulate relations. Fundamental operations include: 1) Selection (σ) - selects rows satisfying a predicate, 2) Projection (π) - selects specific columns, 3) Union (∪) - combines tuples from two relations, 4) Set difference (−) - finds tuples in one relation not in another, 5) Cartesian product (×) - combines all tuples from two relations, and 6) Rename (ρ) - renames relations or attributes."
+  },
+  {
+    "id": 245,
+    "question": "What are the additional relational algebra operations derived from fundamental ones?",
+    "answer": "Additional operations include: 1) Join (⨝) - combines tuples from two relations based on matching condition (derived from selection and Cartesian product), 2) Natural join - equijoin that automatically matches columns with same names, 3) Outer joins (left, right, full) - preserve tuples with no matching counterparts, 4) Division (÷) - finds all values of one relation that are associated with all values of another, and 5) Intersection (∩) - finds common tuples between two relations."
+  },
+  {
+    "id": 246,
+    "question": "What is concurrency control and why is it important in database systems?",
+    "answer": "Concurrency control manages simultaneous access to the database by multiple users while maintaining data consistency. It is crucial because without proper control, concurrent transactions can lead to problems like: 1) Lost updates - one transaction overwrites another's changes, 2) Dirty reads - reading uncommitted data, 3) Non-repeatable reads - different values read in same transaction, and 4) Phantom reads - new rows appearing during transaction."
+  },
+  {
+    "id": 247,
+    "question": "What are the main concurrency control protocols?",
+    "answer": "Main protocols include: 1) Lock-based protocols - use shared and exclusive locks to control access, 2) Two-phase locking (2PL) - growing phase (acquiring locks) and shrinking phase (releasing locks), 3) Timestamp-based protocols - order transactions based on timestamps, 4) Multi-version concurrency control (MVCC) - maintain multiple versions of data items, and 5) Optimistic concurrency control - assume conflicts are rare and check at commit time."
+  },
+  {
+    "id": 248,
+    "question": "What are database transactions and what are the ACID properties?",
+    "answer": "A transaction is a logical unit of work that contains one or more SQL statements. ACID properties ensure transaction reliability: 1) Atomicity - all or nothing execution, 2) Consistency - preserves database constraints, 3) Isolation - concurrent transactions don't interfere, and 4) Durability - committed changes persist despite failures."
+  },
+  {
+    "id": 249,
+    "question": "What is transaction scheduling and what are conflict serializability and view serializability?",
+    "answer": "Transaction scheduling determines the order of operation execution. Conflict serializability requires that conflicting operations (read-write, write-read, write-write) of different transactions appear in the same order. View serializability is less strict and allows schedules where transactions see the same data views as some serial execution, even if conflict orders differ."
+  },
+  {
+    "id": 250,
+    "question": "What are the different transaction isolation levels in SQL?",
+    "answer": "SQL isolation levels include: 1) Read Uncommitted - allows dirty reads, 2) Read Committed - prevents dirty reads but allows non-repeatable reads, 3) Repeatable Read - prevents dirty and non-repeatable reads but allows phantom reads, and 4) Serializable - prevents all concurrency problems but reduces performance. Each level offers different trade-offs between consistency and concurrency."
+  },
+  {
+    "id": 251,
+    "question": "What is database recovery and what techniques are used?",
+    "answer": "Database recovery restores the database to a consistent state after failures. Techniques include: 1) Log-based recovery - maintains audit trail of changes, 2) Write-ahead logging (WAL) - log records must be written before actual data updates, 3) Checkpoints - periodic saving of database state, 4) Shadow paging - maintains two page tables during transactions, and 5) ARIES algorithm - widely used recovery algorithm that uses log analysis and redo/undo phases."
+  },
+  {
+    "id": 252,
+    "question": "What are deadlocks in database systems and how are they handled?",
+    "answer": "Deadlocks occur when two or more transactions are waiting for each other to release locks, creating a circular wait. Handling methods include: 1) Prevention - ensuring deadlocks cannot occur through ordering or timeout mechanisms, 2) Avoidance - using resource allocation graphs and banker's algorithm, 3) Detection - using wait-for graphs to identify cycles, and 4) Recovery - aborting one or more transactions to break the deadlock, with victim selection based on factors like transaction age or work completed."
+  },
+  {
+    "id": 253,
+    "question": "What is query optimization and what are the main approaches?",
+    "answer": "Query optimization is the process of selecting the most efficient execution strategy for a query. Main approaches include: 1) Rule-based optimization - uses heuristic rules to transform queries, 2) Cost-based optimization - estimates costs of different execution plans using statistics, 3) Semantic optimization - uses constraints and semantics to simplify queries, and 4) Physical optimization - considers storage structures and access methods. The optimizer considers factors like join order, index usage, and access methods."
+  },
+  {
+    "id": 254,
+    "question": "What are database indices and what types exist?",
+    "answer": "Indices are data structures that improve data retrieval speed. Types include: 1) B-tree indices - balanced tree structure for range queries, 2) Hash indices - for equality queries using hash functions, 3) Bitmap indices - for columns with few distinct values, 4) Clustered indices - determine physical storage order of data, 5) Non-clustered indices - separate structure from data storage, and 6) Composite indices - on multiple columns. Indices trade off query performance against update overhead and storage space."
+  },
+  {
+    "id": 255,
+    "question": "What is normalization and what are the normal forms?",
+    "answer": "Normalization is the process of organizing data to reduce redundancy and improve data integrity. The normal forms are: 1) 1NF - eliminate repeating groups, ensure atomic values, 2) 2NF - remove partial dependencies (all non-key attributes fully dependent on PK), 3) 3NF - remove transitive dependencies (no non-key attribute dependent on another non-key attribute), 4) BCNF - every determinant is a candidate key, 5) 4NF - remove multi-valued dependencies, and 6) 5NF - remove join dependencies. Each normal form addresses specific types of redundancy and update anomalies."
+  }
+]
