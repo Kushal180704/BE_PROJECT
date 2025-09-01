@@ -1,37 +1,53 @@
 {
-  "topics": [
-    {
-      "name": "DBMS",
-      "subtopics": [
-        "Normal Forms",
-        "ER Modeling",
-        "Entities & Keys",
-        "Joins",
-        "DDL",
-        "DML",
-        "Aggregations",
-        "Indexing",
-        "ACID",
-        "Isolation Levels",
-        "Locks",
-        "Logging & Recovery",
-        "Query Optimization",
-        "Distributed Databases",
-        "NoSQL"
-      ]
-    },
-    {
-      "name": "OOPs",
-      "subtopics": [
-        "Fundamentals",
-        "Encapsulation",
-        "Inheritance",
-        "Polymorphism",
-        "Abstraction",
-        "Design Patterns",
-        "Virtual Functions",
-        "Object Relationships"
-      ]
-    }
-  ]
+    "topics": [
+        {
+            "name": "DBMS",
+            "subtopics": [
+                "Normal Forms",
+                "ER Modeling", 
+                "Entities & Keys",
+                "Joins",
+                "DDL",
+                "DML",
+                "Aggregations",
+                "Indexing",
+                "ACID",
+                "Isolation Levels",
+                "Locks",
+                "Logging & Recovery",
+                "Query Optimization",
+                "Distributed Databases",
+                "NoSQL"
+            ]
+        },
+        {
+            "name": "OOPs",
+            "subtopics": [
+                "Fundamentals",
+                "Encapsulation",
+                "Inheritance", 
+                "Polymorphism",
+                "Abstraction",
+                "Design Patterns",
+                "Virtual Functions",
+                "Object Relationships"
+            ]
+        },
+        {
+            "name": "OS", 
+            "subtopics": [
+                "General OS Concepts",
+                "Process Management",
+                "Memory Management", 
+                "Synchronization",
+                "File Systems",
+                "I/O Management",
+                "System Calls",
+                "Networking",
+                "Storage Systems",
+                "Security"
+            ]
+        }
+    ]
 }
+

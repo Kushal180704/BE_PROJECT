@@ -1272,8 +1272,8 @@
     "id": "142",
     "question": "What are the three types of ODBC data sources?",
     "answer": "An ODBC data source is a stored configuration that defines how to connect to a specific database. The three types are: 1. **User DSN:** The data source information is stored in the Windows registry and is visible only to the user who created it. 2. **System DSN:** The data source information is stored in the Windows registry and is visible to all users on the machine, including Windows services. This is the most common type for server applications. 3. **File DSN:** The data source information is stored in a text file (with a .dsn extension) on the disk. This file can be shared with other users who have the same ODBC driver installed, making it portable.",
-    "topic": "Uncategorized",
-    "subtopic": null,
+    "topic": "OS",
+    "subtopic": "File Systems",
     "difficulty": "Beginner",
     "source": null
   },
@@ -1407,8 +1407,8 @@
     "id": "157",
     "question": "What is RFM analysis?",
     "answer": "RFM analysis is a customer segmentation technique used in marketing and business intelligence to rank customers based on their past purchasing behavior. The acronym stands for: * **Recency (R):** How recently did the customer make a purchase? (Customers who bought more recently are more likely to respond to promotions.) * **Frequency (F):** How often do they purchase? (Frequent purchasers are more engaged.) * **Monetary Value (M):** How much money do they spend? (High-spending customers are more valuable.) Customers are scored on each dimension (e.g., on a scale of 1-5, with 5 being best). An RFM score like '5-1-3' represents a customer who bought very recently (5), buys infrequently (1), but spends a good amount when they do (3).",
-    "topic": "Uncategorized",
-    "subtopic": null,
+    "topic": "OS",
+    "subtopic": "Memory Management",
     "difficulty": "Beginner",
     "source": null
   },
@@ -1416,8 +1416,8 @@
     "id": "158",
     "question": "What are the core functions of a BI reporting system?",
     "answer": "A Business Intelligence (BI) reporting system has three primary functional areas: 1. **Report Authoring:** Allows users to create reports by connecting to data sources, defining the report structure (queries, groupings, filters), and formatting the layout and style. 2. **Report Management:** Handles the 'what, who, when, and how' of report delivery. It involves defining schedules, user subscriptions, security permissions, and delivery channels (e.g., email, portal). 3. **Report Delivery:** Executes the management plan. It is the engine that generates the report based on the authoring definition and delivers it to the intended recipients at the scheduled time, either by 'pushing' it to them or making it available for them to 'pull' (view on demand).",
-    "topic": "Uncategorized",
-    "subtopic": null,
+    "topic": "OS",
+    "subtopic": "System Calls",
     "difficulty": "Intermediate",
     "source": null
   },
@@ -1866,8 +1866,8 @@
     "id": "208",
     "question": "What are Web Services?",
     "answer": "Web Services are a standardized way for different software applications, running on a variety of platforms and frameworks, to communicate and exchange data over a network (typically the internet). They use open standards: * **XML** to tag the data. * **SOAP** (or REST) to define the message format. * **WSDL** to describe the service available. * **UDDI** to list what services are available. The key idea is **interoperability**. A Java application on a Linux server can call a web service provided by a .NET application on a Windows server to request data or trigger a process, without needing to know the internal details of the other system.",
-    "topic": "Uncategorized",
-    "subtopic": null,
+    "topic": "OS",
+    "subtopic": "Process Management",
     "difficulty": "Beginner",
     "source": null
   },
@@ -1875,8 +1875,8 @@
     "id": "209",
     "question": "Can you provide an overview of XML and its role?",
     "answer": "XML (eXtensible Markup Language) is a meta-markup language that provides a flexible, self-describing way to structure and store data. Its key roles are: 1. **Data Transport:** It is the fundamental language for transmitting data between heterogeneous systems, especially in web services. 2. **Data Storage:** It can be used to store configuration files and complex, hierarchical data. 3. **Separation of Concerns:** It strictly separates data content from its presentation, unlike HTML which mixes them. 4. **Interoperability:** As a text-based, platform-independent standard, it enables data exchange between vastly different applications. XML uses custom tags (e.g., ` 29.99 `) that describe the meaning of the data, making it both human and machine-readable.",
-    "topic": "Uncategorized",
-    "subtopic": null,
+    "topic": "OS",
+    "subtopic": "File Systems",
     "difficulty": "Intermediate",
     "source": null
   },
@@ -2037,8 +2037,8 @@
     "id": "227",
     "question": "What is the database approach and how does it differ from file-based systems?",
     "answer": "The database approach is a method of managing large amounts of organizational information that was developed to address the difficulties arising from using file-based systems. Unlike file-based systems where each application manages its own data files, the database approach provides a shared collection of related data that supports the activities of a particular organization. Key differences include: concurrency management allowing multiple users access to the same record, reduced data redundancy, improved data integrity, better security controls, and centralized data management.",
-    "topic": "Uncategorized",
-    "subtopic": null,
+    "topic": "OS",
+    "subtopic": "File Systems",
     "difficulty": "Beginner",
     "source": null
   },
@@ -2820,8 +2820,8 @@
     "id": "59",
     "question": "When and why would you use Design by Contract?",
     "answer": "Use design by contract to improve design quality: Specify preconditions, postconditions, and invariants. Enforce with validations, assertions, and tests; document in code and API contracts.\nIt reduces defects by clarifying responsibilities and contracts.",
-    "topic": "Uncategorized",
-    "subtopic": null,
+    "topic": "OS",
+    "subtopic": "System Calls",
     "difficulty": "Intermediate",
     "source": null
   },
@@ -2829,8 +2829,8 @@
     "id": "60",
     "question": "What are common pitfalls or misconceptions about Design by Contract?",
     "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade-offs. Remember: Specify preconditions, postconditions, and invariants. Enforce with validations, assertions, and tests; document in code and API contracts.",
-    "topic": "Uncategorized",
-    "subtopic": null,
+    "topic": "OS",
+    "subtopic": "System Calls",
     "difficulty": "Intermediate",
     "source": null
   },
@@ -3486,8 +3486,8 @@
     "id": "133",
     "question": "What is Exception Safety (C++) in OOP?",
     "answer": "Provide strong/basic/no-throw guarantees. Use RAII, copy-and-swap, and avoid resource leaks under exceptions.\n\nPython:\n\nJava:\n\nC++:",
-    "topic": "Uncategorized",
-    "subtopic": null,
+    "topic": "OS",
+    "subtopic": "Memory Management",
     "difficulty": "Intermediate",
     "source": null
   },
@@ -3495,8 +3495,8 @@
     "id": "134",
     "question": "When and why would you use Exception Safety (C++)?",
     "answer": "Use exception safety (c++) to improve design quality: Provide strong/basic/no-throw guarantees. Use RAII, copy-and-swap, and avoid resource leaks under exceptions.\nIt reduces defects by clarifying responsibilities and contracts.",
-    "topic": "Uncategorized",
-    "subtopic": null,
+    "topic": "OS",
+    "subtopic": "Memory Management",
     "difficulty": "Intermediate",
     "source": null
   },
@@ -3504,8 +3504,8 @@
     "id": "135",
     "question": "What are common pitfalls or misconceptions about Exception Safety (C++)?",
     "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade-offs. Remember: Provide strong/basic/no-throw guarantees. Use RAII, copy-and-swap, and avoid resource leaks under exceptions.",
-    "topic": "Uncategorized",
-    "subtopic": null,
+    "topic": "OS",
+    "subtopic": "Memory Management",
     "difficulty": "Intermediate",
     "source": null
   },
@@ -4281,6 +4281,906 @@
     "topic": "OOPs",
     "subtopic": "Fundamentals",
     "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "1",
+    "question": "What is an operating system?",
+    "answer": "An operating system is software that manages computer hardware and software resources and provides common services for computer programs.",
+    "topic": "OS",
+    "subtopic": "General OS Concepts",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "2",
+    "question": "What are the primary components of an operating system?",
+    "answer": "Process management, memory management, device management, storage management, and user interface.",
+    "topic": "OOPs",
+    "subtopic": "Abstraction",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "3",
+    "question": "What is a process?",
+    "answer": "A process is an instance of a program in execution.",
+    "topic": "OOPs",
+    "subtopic": "Fundamentals",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "4",
+    "question": "What are the states of a process?",
+    "answer": "New, Ready, Running, Waiting, and Terminated.",
+    "topic": "DBMS",
+    "subtopic": "Aggregations",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "5",
+    "question": "Explain process scheduling.",
+    "answer": "Process scheduling is the method by which an OS decides which process gets to use the CPU.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "6",
+    "question": "What is a thread?",
+    "answer": "A thread is the smallest unit of execution within a process.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "7",
+    "question": "What is the difference between a process and a thread?",
+    "answer": "A process is an independent program in execution while a thread is a smaller sequence of programmed instructions within a process.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "8",
+    "question": "What is virtual memory?",
+    "answer": "Virtual memory is a memory management capability that uses hardware and software to allow a computer to compensate for physical memory shortages.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "9",
+    "question": "What is paging?",
+    "answer": "Paging is a memory management scheme that eliminates the need for contiguous allocation by dividing memory into fixed-size pages.",
+    "topic": "DBMS",
+    "subtopic": "Aggregations",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "10",
+    "question": "What is segmentation?",
+    "answer": "Segmentation divides a program's memory into logically related segments.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "11",
+    "question": "Explain deadlock.",
+    "answer": "A deadlock is a situation where a set of processes is blocked because each process is holding a resource and waiting for another resource held by some other process.",
+    "topic": "DBMS",
+    "subtopic": "Locks",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "12",
+    "question": "What are the necessary conditions for deadlock?",
+    "answer": "Mutual exclusion, hold and wait, no preemption, and circular wait.",
+    "topic": "DBMS",
+    "subtopic": "Locks",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "13",
+    "question": "What is a semaphore?",
+    "answer": "A semaphore is a synchronization tool used to control access to shared resources.",
+    "topic": "OS",
+    "subtopic": "Synchronization",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "14",
+    "question": "What is a race condition?",
+    "answer": "A race condition occurs when multiple processes access shared data concurrently leading to unexpected results.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "15",
+    "question": "What is a file system?",
+    "answer": "A file system manages how data is stored and retrieved.",
+    "topic": "OS",
+    "subtopic": "File Systems",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "16",
+    "question": "What is demand paging?",
+    "answer": "Demand paging is a process where pages are loaded into memory only when needed.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "17",
+    "question": "What is an interrupt?",
+    "answer": "An interrupt is a signal to the processor to temporarily halt current operations and execute a high priority task.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "18",
+    "question": "What is a device driver?",
+    "answer": "A device driver is software that controls a hardware device.",
+    "topic": "OS",
+    "subtopic": "I/O Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "19",
+    "question": "Explain round robin scheduling.",
+    "answer": "A CPU scheduling algorithm where each process gets a small unit of CPU time cyclically.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "20",
+    "question": "What is thrashing?",
+    "answer": "Thrashing occurs when excessive paging operations degrade system performance.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "21",
+    "question": "What is a critical section?",
+    "answer": "Portion of code where shared resources are accessed that require mutual exclusion.",
+    "topic": "OS",
+    "subtopic": "Synchronization",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "22",
+    "question": "What is mutual exclusion?",
+    "answer": "A property that ensures that only one process accesses the critical section at a time.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "23",
+    "question": "What is the difference between preemptive and non-preemptive scheduling?",
+    "answer": "Preemptive can interrupt a running process while non-preemptive runs to completion.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "24",
+    "question": "Explain multiprogramming.",
+    "answer": "Technique to keep multiple processes in main memory for better CPU utilization.",
+    "topic": "DBMS",
+    "subtopic": "Aggregations",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "25",
+    "question": "What is paging replacement algorithm?",
+    "answer": "Algorithm deciding which memory page to replace when a page fault occurs.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "26",
+    "question": "Define cache memory.",
+    "answer": "Small, fast memory located close to the CPU to speed up memory access.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "27",
+    "question": "What is a bootloader?",
+    "answer": "A program that loads the operating system into memory during booting.",
+    "topic": "OS",
+    "subtopic": "General OS Concepts",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "28",
+    "question": "Explain file descriptors.",
+    "answer": "An abstract indicator used to access files or I/O resources.",
+    "topic": "OS",
+    "subtopic": "File Systems",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "29",
+    "question": "What is memory management?",
+    "answer": "The function of managing computer memory allocation and deallocation.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "30",
+    "question": "Explain the difference between hard link and soft link.",
+    "answer": "Hard link references the actual file data; soft link references the file name.",
+    "topic": "OS",
+    "subtopic": "File Systems",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "31",
+    "question": "What is the difference between multiprogramming and multitasking?",
+    "answer": "Multiprogramming allows multiple programs in memory simultaneously; multitasking is a type of multiprogramming where CPU switches between tasks rapidly.",
+    "topic": "DBMS",
+    "subtopic": "Aggregations",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "32",
+    "question": "Explain the concept of a process control block (PCB).",
+    "answer": "PCB is a data structure used by the OS to store information about a process, including process state, program counter, CPU registers, and memory limits.",
+    "topic": "DBMS",
+    "subtopic": "Aggregations",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "33",
+    "question": "What is the role of the scheduler in an OS?",
+    "answer": "Scheduler decides which process runs next on the CPU to ensure efficient processor use.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "34",
+    "question": "What are the different types of schedulers?",
+    "answer": "Long-term, Short-term, and Medium-term schedulers managing process admission, CPU allocation, and swapping respectively.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "35",
+    "question": "What is a page table?",
+    "answer": "Page table maps virtual addresses to physical memory addresses in paging.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "36",
+    "question": "What is the difference between internal and external fragmentation?",
+    "answer": "Internal fragmentation is wasted space inside allocated memory blocks; external fragmentation is scattered free memory outside allocated blocks.",
+    "topic": "DBMS",
+    "subtopic": "Locks",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "37",
+    "question": "What is the use of a translation lookaside buffer (TLB)?",
+    "answer": "TLB caches recent virtual-to-physical memory translations to speed up address translation.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "38",
+    "question": "What is the benefit of a microkernel over a monolithic kernel?",
+    "answer": "Microkernels are more modular, secure, and easier to maintain, with less code running in kernel mode.",
+    "topic": "OS",
+    "subtopic": "General OS Concepts",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "39",
+    "question": "What is the banker's algorithm?",
+    "answer": "A deadlock avoidance algorithm that tests for safe resource allocation states.",
+    "topic": "DBMS",
+    "subtopic": "Locks",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "40",
+    "question": "What is a monitor in OS?",
+    "answer": "Monitors are high-level synchronization constructs that allow safe access to shared data through automatic mutual exclusion.",
+    "topic": "OS",
+    "subtopic": "Synchronization",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "41",
+    "question": "What is a critical race in concurrent programming?",
+    "answer": "A critical race occurs when multiple processes or threads access shared data simultaneously and the outcome depends on the sequence of access.",
+    "topic": "DBMS",
+    "subtopic": "Aggregations",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "42",
+    "question": "Explain the difference between a soft real-time and hard real-time operating system.",
+    "answer": "Soft real-time systems allow some deadline misses, whereas hard real-time systems require strict deadline adherence.",
+    "topic": "OS",
+    "subtopic": "General OS Concepts",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "43",
+    "question": "What is the difference between cooperative and preemptive multitasking?",
+    "answer": "In cooperative multitasking, processes voluntarily yield control; in preemptive, OS forcibly switches processes.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "44",
+    "question": "What are the main functions of an I/O subsystem?",
+    "answer": "Device communication management, buffering, scheduling, device drivers, and error handling.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "45",
+    "question": "Explain the concept of a file descriptor.",
+    "answer": "A file descriptor is an integer handle used by a process to access files or I/O resources.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "46",
+    "question": "What is a swap space?",
+    "answer": "Swap space is disk space used to extend virtual memory by swapping pages in and out of physical memory.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "47",
+    "question": "What is the difference between blocking and non-blocking I/O?",
+    "answer": "Blocking I/O waits for completion before proceeding; non-blocking I/O allows continuing operations without waiting.",
+    "topic": "DBMS",
+    "subtopic": "Locks",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "48",
+    "question": "What is a signal in UNIX/Linux?",
+    "answer": "Signals are software interrupts sent to a process to notify it of events.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "49",
+    "question": "What is the difference between a process and a job?",
+    "answer": "A job is a unit of work in batch processing, possibly containing multiple processes.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "50",
+    "question": "What is file locking?",
+    "answer": "File locking restricts access to a file for synchronization among multiple processes.",
+    "topic": "DBMS",
+    "subtopic": "Locks",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "51",
+    "question": "Explain the main purpose of an operating system.",
+    "answer": "An operating system ensures a computer system performs well by managing computational activities and provides an environment for the development and execution of programs.",
+    "topic": "OS",
+    "subtopic": "General OS Concepts",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "52",
+    "question": "What is demand paging?",
+    "answer": "Demand paging is a system where areas of memory not currently used are swapped to disk to make room for an application's needs.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "53",
+    "question": "What are the advantages of a multiprocessor system?",
+    "answer": "Multiprocessor systems increase throughput, provide resource sharing for cost savings, and enhance overall reliability.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "54",
+    "question": "What is kernel?",
+    "answer": "The kernel is the core of an operating system, connecting applications to data processing and managing communication between software and hardware.",
+    "topic": "OS",
+    "subtopic": "General OS Concepts",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "55",
+    "question": "What are real-time systems?",
+    "answer": "Real-time systems are used when rigid time requirements are placed on processor operations and have well-defined, fixed time constraints.",
+    "topic": "OS",
+    "subtopic": "General OS Concepts",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "56",
+    "question": "What is virtual memory?",
+    "answer": "Virtual memory is a memory management technique that allows processes to execute outside of physical memory, useful if a program can't fit entirely into physical memory.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "57",
+    "question": "Describe the objective of multiprogramming.",
+    "answer": "Multiprogramming aims to have processes running at all times, maximizing CPU utilization.",
+    "topic": "DBMS",
+    "subtopic": "Aggregations",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "58",
+    "question": "What are time sharing systems?",
+    "answer": "Time sharing systems let the CPU execute multiple jobs by switching among them rapidly, so users can interact with programs while they run.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "59",
+    "question": "What is SMP?",
+    "answer": "SMP stands for Symmetric MultiProcessing; each processor runs an identical OS copy and communicates as needed.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "60",
+    "question": "How are server systems classified?",
+    "answer": "Server systems are classified as computer-server systems, which handle client action requests, or file server systems, which allow file creation, access, and updating.",
+    "topic": "OOPs",
+    "subtopic": "Fundamentals",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "61",
+    "question": "What is asymmetric clustering?",
+    "answer": "In asymmetric clustering, a standby machine monitors the active server and takes over its role if the server fails.",
+    "topic": "OS",
+    "subtopic": "Synchronization",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "62",
+    "question": "What is a thread?",
+    "answer": "A thread is a basic CPU utilization unit, consisting of a thread ID, program counter, register set, and stack.",
+    "topic": "DBMS",
+    "subtopic": "Aggregations",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "63",
+    "question": "Give some benefits of multithreaded programming.",
+    "answer": "Multithreaded programming provides increased responsiveness, resource sharing, economic efficiency, and supports multiprocessing architecture.",
+    "topic": "DBMS",
+    "subtopic": "Aggregations",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "64",
+    "question": "Briefly explain FCFS.",
+    "answer": "FCFS (First-come, first-served) is a CPU scheduling algorithm where the first process requesting the CPU gets it, managed by a FIFO queue.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "65",
+    "question": "What is RR scheduling algorithm?",
+    "answer": "RR (Round Robin) scheduling uses a circular queue, allocating CPU to each process for a set time interval, common in time-sharing systems.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "66",
+    "question": "What necessary conditions can lead to a deadlock situation in a system?",
+    "answer": "Deadlock occurs when mutual exclusion, hold and wait, no preemption, and circular wait conditions exist simultaneously.",
+    "topic": "DBMS",
+    "subtopic": "Locks",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "67",
+    "question": "Enumerate the different RAID levels.",
+    "answer": "RAID 0: Non-redundant striping; RAID 1: Mirrored Disks; RAID 2: Error-correcting codes; RAID 3: Bit-interleaved Parity; RAID 4: Block-interleaved Parity; RAID 5: Block-interleaved distributed parity; RAID 6: P+Q Redundancy.",
+    "topic": "DBMS",
+    "subtopic": "Locks",
+    "difficulty": "Advanced",
+    "source": null
+  },
+  {
+    "id": "68",
+    "question": "Describe Banker's algorithm.",
+    "answer": "Banker's algorithm is a deadlock-avoidance method that ensures a system never allocates resources in a way that prevents satisfying all clients' needs.",
+    "topic": "DBMS",
+    "subtopic": "Locks",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "69",
+    "question": "What factors determine whether a detection-algorithm must be utilized in a deadlock avoidance system?",
+    "answer": "The likelihood and frequency of deadlock and the number of processes affected determine if a deadlock detection algorithm should be used.",
+    "topic": "DBMS",
+    "subtopic": "Aggregations",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "70",
+    "question": "Differentiate logical from physical address space.",
+    "answer": "A logical address is generated by the CPU; a physical address is seen by the memory unit.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "71",
+    "question": "How does dynamic loading aid in better memory space utilization?",
+    "answer": "With dynamic loading, routines are loaded only when called, which is useful for handling large code needed infrequently, thus saving memory.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "72",
+    "question": "What are overlays?",
+    "answer": "Overlays allow a process to be larger than its allocated memory by keeping only needed instructions and data in memory at a time.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "73",
+    "question": "What is the basic function of paging?",
+    "answer": "Paging enables a process's physical-address space to be noncontiguous and helps fit various memory chunk sizes onto the backing store.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "74",
+    "question": "What is fragmentation?",
+    "answer": "Fragmentation is wasted memory; internal fragmentation occurs with fixed-size allocation units, external with variable-sized units.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "75",
+    "question": "How does swapping result in better memory management?",
+    "answer": "Swapping allows processes to be copied in and out of memory, enabling more processes to run than the memory could otherwise hold.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "76",
+    "question": "Give an example of a Process State.",
+    "answer": "Process states are: New (being created), Running (executing), Waiting (waiting for event), Ready (waiting for processor), Terminate (finished).",
+    "topic": "DBMS",
+    "subtopic": "Aggregations",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "77",
+    "question": "What is a socket?",
+    "answer": "A socket provides a connection between two applications, with each communication endpoint being a socket.",
+    "topic": "OS",
+    "subtopic": "Networking",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "78",
+    "question": "What is Direct Access Method?",
+    "answer": "Direct Access treats files as numbered blocks or records, allowing arbitrary blocks to be read/written--useful for large data access.",
+    "topic": "DBMS",
+    "subtopic": "Locks",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "79",
+    "question": "When does trashing occur?",
+    "answer": "Trashing occurs during high paging activity, when more time is spent paging than executing.",
+    "topic": "OS",
+    "subtopic": "Memory Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "80",
+    "question": "What is the best page size when designing an operating system?",
+    "answer": "There is no universally best page size; factors like page table size, paging time, and efficiency should be considered for each system.",
+    "topic": "OS",
+    "subtopic": "General OS Concepts",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "81",
+    "question": "When designing the file structure for an operating system, what attributes are considered?",
+    "answer": "Attributes include file naming, identifiers, supported file types, location, size, and protection levels.",
+    "topic": "DBMS",
+    "subtopic": "ER Modeling",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "82",
+    "question": "What is root partition?",
+    "answer": "The root partition stores the OS kernel and important system files mounted at boot time.",
+    "topic": "OS",
+    "subtopic": "General OS Concepts",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "83",
+    "question": "What are device drivers?",
+    "answer": "Device drivers provide a standard way to represent I/O devices from different manufacturers, preventing conflicts during integration.",
+    "topic": "OS",
+    "subtopic": "I/O Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "84",
+    "question": "What are the primary functions of VFS?",
+    "answer": "The Virtual File System (VFS) defines a clean interface to separate generic file operations from specific implementations and supports network file systems via vnode structures.",
+    "topic": "OOPs",
+    "subtopic": "Abstraction",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "85",
+    "question": "What are the different types of CPU registers in a typical operating system design?",
+    "answer": "Types include Accumulators, Index Registers, Stack Pointer, and General Purpose Registers.",
+    "topic": "DBMS",
+    "subtopic": "Indexing",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "86",
+    "question": "What is the purpose of I/O status information?",
+    "answer": "I/O status information details which I/O devices are allocated to a process, opened files, and the state of I/O devices.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "87",
+    "question": "What is multitasking?",
+    "answer": "Multitasking allows several applications to run at once, though only one is actively interacted with, and others may run in the background.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "88",
+    "question": "What are some pros and cons of a command line interface?",
+    "answer": "Pros: immediate results and speed for experienced users; Cons: requires familiarity with commands, which is hard for users who dislike memorization.",
+    "topic": "OOPs",
+    "subtopic": "Abstraction",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "89",
+    "question": "What is caching?",
+    "answer": "Caching uses fast memory to store limited data and processes, greatly improving access speeds.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "90",
+    "question": "What is spooling?",
+    "answer": "Spooling queues print jobs from multiple applications on disk, sending them to the printer one at a time.",
+    "topic": "OS",
+    "subtopic": "File Systems",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "91",
+    "question": "What is an Assembler?",
+    "answer": "An assembler translates low-level assembly code written in mnemonics into machine language.",
+    "topic": "OS",
+    "subtopic": "System Calls",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "92",
+    "question": "What are interrupts?",
+    "answer": "Interrupts are hardware signals notifying the CPU to take action, received and processed by an interrupt handler.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "93",
+    "question": "What is GUI?",
+    "answer": "GUI (Graphical User Interface) lets users interact with computers through icons and graphical symbols, making interaction easier than typing commands.",
+    "topic": "DBMS",
+    "subtopic": "NoSQL",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "94",
+    "question": "What is preemptive multitasking?",
+    "answer": "Preemptive multitasking lets the OS switch between programs, so multiple run without one program monopolizing the processor.",
+    "topic": "OS",
+    "subtopic": "Process Management",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "95",
+    "question": "Why is partitioning and formatting a prerequisite to installing an operating system?",
+    "answer": "Partitioning and formatting set up the drive environment, allocate space, set drive names, and create the file system required for installation.",
+    "topic": "OS",
+    "subtopic": "General OS Concepts",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "96",
+    "question": "What is plumbing / piping?",
+    "answer": "Piping sends the output of one program as input to another, such as redirecting folder listings to files or printers.",
+    "topic": "OS",
+    "subtopic": "File Systems",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "97",
+    "question": "What is NOS?",
+    "answer": "NOS (Network Operating System) is specialized software enabling computers to communicate, share files or folders, over a network.",
+    "topic": "OS",
+    "subtopic": "General OS Concepts",
+    "difficulty": "Beginner",
+    "source": null
+  },
+  {
+    "id": "98",
+    "question": "Differentiate internal commands from external commands.",
+    "answer": "Internal commands are built-in to the OS, while external commands are separate programs stored outside the OS.",
+    "topic": "Uncategorized",
+    "subtopic": null,
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "99",
+    "question": "Under DOS, what command will you type when you want to list down the files in a directory, and at the same time pause after every screen output?",
+    "answer": "dir /w /p",
+    "topic": "OS",
+    "subtopic": "File Systems",
+    "difficulty": "Intermediate",
+    "source": null
+  },
+  {
+    "id": "100",
+    "question": "How would a file named EXAMPLEFILE.TXT appear when viewed under the DOS command console operating in Windows 98?",
+    "answer": "It would appear as EXAMPL~1.TXT, due to the 8-character filename restriction in DOS environments.",
+    "topic": "OS",
+    "subtopic": "File Systems",
+    "difficulty": "Intermediate",
     "source": null
   }
 ]

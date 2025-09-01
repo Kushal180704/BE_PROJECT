@@ -32,7 +32,7 @@ def get_relevant_chunks(query, index, metas, model, k=5):
     """
     query_embedding = model.encode([query])
     _, I = index.search(query_embedding, k)
-    
+
     chunks = [metas[i] for i in I[0]]
     return chunks
 
@@ -42,26 +42,24 @@ def generate_rag_response(query, context, model_name="gemini-1.5-flash-latest"):
     """
     genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
     model = genai.GenerativeModel(model_name=model_name)
-    
+
     # Construct the final prompt with the query and context
     system_prompt = (
-        "You are an expert in computer science, specifically in the domains of DBMS and OOPs. "
+        "You are an expert in computer science, specifically in the domains of DBMS, OOPs, and Operating Systems (OS). "
         "Answer the user's question based on the provided context. "
         "If the context does not contain the answer, state that you cannot answer from the given information. "
         "The context is from a knowledge base of questions and answers. Be concise and helpful."
     )
-    
+
     full_prompt = (
         f"Context:\n{context}\n\n"
         f"Question:\n{query}\n\n"
         "Answer:"
     )
-    
+
     try:
-        response = model.generate_content(
-            full_prompt,
-            system_instruction=system_prompt
-        )
+        # Only pass the prompt, do NOT use system_instruction
+        response = model.generate_content(full_prompt)
         return response.text
     except Exception as e:
         return f"An error occurred: {e}"
@@ -110,7 +108,7 @@ def main(user_query):
     # Print the result
     print("\n--- RAG Response ---")
     print(response_text)
-    
+
     print("\n--- Source Chunks (for debugging) ---")
     for chunk in relevant_chunks:
         print(f"Source ID: {chunk['id']}")
