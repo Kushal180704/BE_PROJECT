@@ -84,10 +84,13 @@ def difficulty_heuristic(q: str, a: str) -> str:
     t = f"{q} {a}".lower()
     hard_hits = any(x in t for x in [
         "serializable", "2pl", "mvcc", "query optimization", "distributed", "cap", "sharding",
-        "write-ahead logging", "recovery", "b+ tree", "isolation level"
+        "write-ahead logging", "recovery", "b+ tree", "isolation level",
+        "multiple inheritance", "mro", "smart pointers", "raii", "virtual functions",
+        "pimpl", "copy elision", "serialization", "thread safety"
     ])
     easy_hits = any(x in t for x in [
-        "define", "what is", "basic", "1nf", "primary key"
+        "define", "what is", "basic", "1nf", "primary key",
+        "object", "class", "encapsulation", "inheritance", "polymorphism", "abstraction"
     ])
     if hard_hits and not easy_hits:
         return "Advanced"

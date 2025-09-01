@@ -2,50 +2,75 @@ import json
 from pathlib import Path
 import numpy as np
 import faiss
-import google.generativeai as genai
-from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer
 import os
 
-load_dotenv()
-API_KEY = os.getenv("GOOGLE_API_KEY")
-if not API_KEY:
-    raise RuntimeError("GOOGLE_API_KEY missing in .env")
-genai.configure(api_key=API_KEY)
+def load_json(file_path):
+    """Loads a JSON file from a given file path."""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
-CHUNKS_PATH = Path("data/processed/kb_chunks.jsonl")
-OUT_DIR = Path("data/processed/faiss_gemini")
-OUT_DIR.mkdir(parents=True, exist_ok=True)
+def create_chunks_and_metas(data):
+    """
+    Creates text chunks and metadata from the loaded data.
+    Each item in the data is treated as a single chunk.
+    """
+    chunks = []
+    metas = []
+    for item in data:
+        # Combine the question and answer into a single text chunk
+        text_chunk = f"Question: {item['question']}\nAnswer: {item['answer']}"
+        chunks.append(text_chunk)
+        
+        # Store metadata associated with the chunk, including its original ID
+        metas.append({
+            'id': item['id'],
+            'text': text_chunk
+        })
+    return chunks, metas
 
-EMBED_MODEL = "models/embedding-001"
-
-def embed_text(text):
-    resp = genai.embed_content(model=EMBED_MODEL, content=text)
-    return resp["embedding"]
+def build_faiss_index(chunks, metas, output_dir):
+    """
+    Builds a FAISS index from text chunks and saves it along with metadata.
+    """
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+    print("Generating embeddings...")
+    embeddings = model.encode(chunks, show_progress_bar=True)
+    
+    # Ensure the output directory exists
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Build the FAISS index
+    dimension = embeddings.shape[1]
+    index = faiss.IndexFlatL2(dimension)
+    index.add(np.array(embeddings).astype('float32'))
+    
+    # Save the index and metadata
+    index_path = os.path.join(output_dir, 'faiss_index_gemini.idx')
+    metas_path = os.path.join(output_dir, 'metas.json')
+    
+    faiss.write_index(index, index_path)
+    with open(metas_path, 'w', encoding='utf-8') as f:
+        json.dump(metas, f, indent=2)
+    
+    print(f"FAISS index built and saved to {index_path}")
+    print(f"Metadata saved to {metas_path}")
 
 def main():
-    chunks = []
-    with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
-        for line in f:
-            chunks.append(json.loads(line))
+    """Main function to build the FAISS index."""
+    processed_dir = 'data/processed'
+    kb_clean_path = os.path.join(processed_dir, 'kb_clean.json')
+    
+    try:
+        data = load_json(kb_clean_path)
+    except FileNotFoundError:
+        print(f"Error: {kb_clean_path} not found. Please run `prepare_kb.py` first.")
+        return
 
-    texts = [c["text"] for c in chunks]
-    ids = [str(c["id"]) for c in chunks]
-    metas = [c.get("metadata", {}) for c in chunks]
+    chunks, metas = create_chunks_and_metas(data)
+    
+    faiss_output_dir = os.path.join(processed_dir, 'faiss_gemini')
+    build_faiss_index(chunks, metas, faiss_output_dir)
 
-    vectors = [embed_text(t) for t in texts]
-    vectors = np.array(vectors, dtype="float32")
-
-    dim = vectors.shape[1]
-    print("Embedding dimension:", dim)
-
-    index = faiss.IndexFlatL2(dim)
-    index.add(vectors)
-    print("Added vectors:", index.ntotal)
-
-    faiss.write_index(index, str(OUT_DIR / "faiss_index_gemini.idx"))
-    (OUT_DIR / "ids.json").write_text(json.dumps(ids, ensure_ascii=False), encoding="utf-8")
-    (OUT_DIR / "metas.json").write_text(json.dumps(metas, ensure_ascii=False), encoding="utf-8")
-    print("Saved Gemini FAISS index to", OUT_DIR)
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

@@ -1,17 +1,232 @@
 [
-  {"keywords": ["normalization", "1nf", "2nf", "3nf", "bcnf", "functional dependency"], "topic": "Design", "subtopic": "Normal Forms"},
-  {"keywords": ["er model", "entity", "relationship", "attribute", "cardinality"], "topic": "Basics", "subtopic": "ER Modeling"},
-  {"keywords": ["primary key", "foreign key", "candidate key", "superkey"], "topic": "Basics", "subtopic": "Entities & Keys"},
-  {"keywords": ["join", "inner join", "left join", "right join", "full join"], "topic": "SQL", "subtopic": "Joins"},
-  {"keywords": ["ddl", "create table", "alter table", "drop table"], "topic": "SQL", "subtopic": "DDL"},
-  {"keywords": ["select", "insert", "update", "delete"], "topic": "SQL", "subtopic": "DML"},
-  {"keywords": ["group by", "having", "aggregate", "count", "sum", "avg", "min", "max"], "topic": "SQL", "subtopic": "Aggregations"},
-  {"keywords": ["index", "b+ tree", "hash index"], "topic": "Performance", "subtopic": "Indexing"},
-  {"keywords": ["transaction", "acid", "atomicity", "consistency", "isolation", "durability"], "topic": "Transactions", "subtopic": "ACID"},
-  {"keywords": ["isolation level", "read committed", "repeatable read", "serializable", "phenomena"], "topic": "Transactions", "subtopic": "Isolation Levels"},
-  {"keywords": ["lock", "two phase locking", "2pl", "deadlock", "wait-for graph"], "topic": "Transactions", "subtopic": "Locks"},
-  {"keywords": ["recovery", "write-ahead logging", "wal", "checkpoint", "undo", "redo"], "topic": "Transactions", "subtopic": "Logging & Recovery"},
-  {"keywords": ["optimizer", "query plan", "cost-based", "execution plan"], "topic": "Performance", "subtopic": "Query Optimization"},
-  {"keywords": ["distributed", "replication", "sharding", "cap theorem", "consistency", "availability", "partition tolerance"], "topic": "Advanced", "subtopic": "Distributed Databases"},
-  {"keywords": ["nosql", "document store", "key value", "column family", "graph"], "topic": "Advanced", "subtopic": "NoSQL"}
+  {
+    "keywords": [
+      "normalization",
+      "1nf",
+      "2nf",
+      "3nf",
+      "bcnf",
+      "functional dependency"
+    ],
+    "topic": "DBMS",
+    "subtopic": "Normal Forms"
+  },
+  {
+    "keywords": [
+      "er model",
+      "entity",
+      "relationship",
+      "attribute",
+      "cardinality"
+    ],
+    "topic": "DBMS",
+    "subtopic": "ER Modeling"
+  },
+  {
+    "keywords": ["primary key", "foreign key", "candidate key", "superkey"],
+    "topic": "DBMS",
+    "subtopic": "Entities & Keys"
+  },
+  {
+    "keywords": ["join", "inner join", "left join", "right join", "full join"],
+    "topic": "DBMS",
+    "subtopic": "Joins"
+  },
+  {
+    "keywords": ["ddl", "create table", "alter table", "drop table"],
+    "topic": "DBMS",
+    "subtopic": "DDL"
+  },
+  {
+    "keywords": ["select", "insert", "update", "delete"],
+    "topic": "DBMS",
+    "subtopic": "DML"
+  },
+  {
+    "keywords": [
+      "group by",
+      "having",
+      "aggregate",
+      "count",
+      "sum",
+      "avg",
+      "min",
+      "max"
+    ],
+    "topic": "DBMS",
+    "subtopic": "Aggregations"
+  },
+  {
+    "keywords": ["index", "b+ tree", "hash index"],
+    "topic": "DBMS",
+    "subtopic": "Indexing"
+  },
+  {
+    "keywords": [
+      "transaction",
+      "acid",
+      "atomicity",
+      "consistency",
+      "isolation",
+      "durability"
+    ],
+    "topic": "DBMS",
+    "subtopic": "ACID"
+  },
+  {
+    "keywords": [
+      "isolation level",
+      "read committed",
+      "repeatable read",
+      "serializable",
+      "phenomena"
+    ],
+    "topic": "DBMS",
+    "subtopic": "Isolation Levels"
+  },
+  {
+    "keywords": [
+      "lock",
+      "two phase locking",
+      "2pl",
+      "deadlock",
+      "wait-for graph"
+    ],
+    "topic": "DBMS",
+    "subtopic": "Locks"
+  },
+  {
+    "keywords": [
+      "recovery",
+      "write-ahead logging",
+      "wal",
+      "checkpoint",
+      "undo",
+      "redo"
+    ],
+    "topic": "DBMS",
+    "subtopic": "Logging & Recovery"
+  },
+  {
+    "keywords": ["optimizer", "query plan", "cost-based", "execution plan"],
+    "topic": "DBMS",
+    "subtopic": "Query Optimization"
+  },
+  {
+    "keywords": [
+      "distributed",
+      "replication",
+      "sharding",
+      "cap theorem",
+      "consistency",
+      "availability",
+      "partition tolerance"
+    ],
+    "topic": "DBMS",
+    "subtopic": "Distributed Databases"
+  },
+  {
+    "keywords": [
+      "nosql",
+      "document store",
+      "key value",
+      "column family",
+      "graph"
+    ],
+    "topic": "DBMS",
+    "subtopic": "NoSQL"
+  },
+  {
+    "keywords": [
+      "oops",
+      "object oriented programming",
+      "class",
+      "object",
+      "instance",
+      "constructor",
+      "destructor"
+    ],
+    "topic": "OOPs",
+    "subtopic": "Fundamentals"
+  },
+  {
+    "keywords": [
+      "encapsulation",
+      "data hiding",
+      "access specifiers",
+      "getters",
+      "setters"
+    ],
+    "topic": "OOPs",
+    "subtopic": "Encapsulation"
+  },
+  {
+    "keywords": [
+      "inheritance",
+      "super class",
+      "sub class",
+      "extends",
+      "is-a relationship",
+      "multiple inheritance"
+    ],
+    "topic": "OOPs",
+    "subtopic": "Inheritance"
+  },
+  {
+    "keywords": [
+      "polymorphism",
+      "overloading",
+      "overriding",
+      "dynamic binding",
+      "static binding"
+    ],
+    "topic": "OOPs",
+    "subtopic": "Polymorphism"
+  },
+  {
+    "keywords": [
+      "abstraction",
+      "abstract class",
+      "interface",
+      "abstract method",
+      "pure virtual function"
+    ],
+    "topic": "OOPs",
+    "subtopic": "Abstraction"
+  },
+  {
+    "keywords": [
+      "design patterns",
+      "singleton",
+      "factory",
+      "observer",
+      "strategy",
+      "creational",
+      "structural",
+      "behavioral"
+    ],
+    "topic": "OOPs",
+    "subtopic": "Design Patterns"
+  },
+  {
+    "keywords": [
+      "virtual functions",
+      "dynamic polymorphism",
+      "vtable",
+      "pure virtual"
+    ],
+    "topic": "OOPs",
+    "subtopic": "Virtual Functions"
+  },
+  {
+    "keywords": [
+      "association",
+      "aggregation",
+      "composition",
+      "dependency",
+      "has-a relationship"
+    ],
+    "topic": "OOPs",
+    "subtopic": "Object Relationships"
+  }
 ]

@@ -1,117 +1,121 @@
-import os
-from dotenv import load_dotenv
 import json
-import numpy as np
+import os
 import faiss
-from pathlib import Path
 from sentence_transformers import SentenceTransformer
 import google.generativeai as genai
 
-load_dotenv()
+# Load configuration and data
+def load_json(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
-# Get API key safely
-API_KEY = os.getenv("GOOGLE_API_KEY")
-if not API_KEY:
-    raise RuntimeError("❌ GOOGLE_API_KEY not found in .env file")
+def load_index_and_metas(index_path, metas_path):
+    index = faiss.read_index(index_path)
+    with open(metas_path, 'r', encoding='utf-8') as f:
+        metas = json.load(f)
+    return index, metas
 
-# Configure Gemini
-genai.configure(api_key=API_KEY)
+def get_topic_and_subtopic_from_query(query, topic_rules):
+    """
+    Finds the matching topic and subtopic for a given query based on keywords.
+    """
+    query_lower = query.lower()
+    for rule in topic_rules:
+        for keyword in rule['keywords']:
+            if keyword in query_lower:
+                return rule['topic'], rule['subtopic']
+    return None, None
 
-# CONFIG
-USE_GEMINI_FOR_EMBEDDING = True   # True = Gemini embeddings, False = local model
-FAISS_DIR = Path("data/processed/faiss_gemini")  # since we built with local SBERT
-TOP_K = 4
+def get_relevant_chunks(query, index, metas, model, k=5):
+    """
+    Finds the most relevant text chunks from the knowledge base using FAISS.
+    """
+    query_embedding = model.encode([query])
+    _, I = index.search(query_embedding, k)
+    
+    chunks = [metas[i] for i in I[0]]
+    return chunks
 
-# Gemini models
-EMBED_MODEL = "models/embedding-001"
-CHAT_MODEL = "gemini-1.5-flash"   # or "gemini-1.5-pro"
-
-# Load FAISS + metadata
-index = faiss.read_index(str(FAISS_DIR / "faiss_index_gemini.idx"))
-ids = json.loads((FAISS_DIR / "ids.json").read_text(encoding="utf-8"))
-metas = json.loads((FAISS_DIR / "metas.json").read_text(encoding="utf-8"))
-
-def embed_query_gemini(text):
-    resp = genai.embed_content(model=EMBED_MODEL, content=text)
-    return np.array(resp["embedding"], dtype="float32")
-
-def embed_query_local(model, text):
-    vec = model.encode([text], convert_to_numpy=True)[0]
-    return np.array(vec, dtype="float32")
-
-def retrieve(query_vec, k=TOP_K):
-    q = query_vec.reshape(1, -1)
-    distances, indices = index.search(q, k)
-    inds = indices[0].tolist()
-    ds = distances[0].tolist()
-    results = []
-    for i, d in zip(inds, ds):
-        if i < 0 or i >= len(ids):
-            continue
-        results.append({
-            "id": ids[i],
-            "score": float(d),
-            "metadata": metas[i],
-        })
-    return results, inds
-
-def load_chunk_texts():
-    chunk_file = Path("data/processed/kb_chunks.jsonl")
-    by_id = {}
-    with open(chunk_file, "r", encoding="utf-8") as f:
-        for line in f:
-            o = json.loads(line)
-            by_id[str(o["id"])] = o
-    return by_id
-
-def make_prompt(user_question, retrieved_chunks):
-    ctx_parts = []
-    for c in retrieved_chunks:
-        ctx_parts.append(f"---\n{c['text']}\n")
-    context = "\n".join(ctx_parts)
-    prompt = (
-        "You are an expert DBMS tutor. Use the provided knowledge snippets to answer the user's question clearly and step-by-step. "
-        "If there is conflicting or insufficient information, mention it and give best-practice guidance.\n\n"
-        f"Knowledge snippets:\n{context}\n\n"
-        f"User question: {user_question}\n\n"
-        "Answer concisely but thoroughly, include examples if helpful, and label sections (Explanation, Example, Key Points).\n"
+def generate_rag_response(query, context, model_name="gemini-1.5-flash-latest"):
+    """
+    Generates a response using the Gemini model with retrieved context.
+    """
+    genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+    model = genai.GenerativeModel(model_name=model_name)
+    
+    # Construct the final prompt with the query and context
+    system_prompt = (
+        "You are an expert in computer science, specifically in the domains of DBMS and OOPs. "
+        "Answer the user's question based on the provided context. "
+        "If the context does not contain the answer, state that you cannot answer from the given information. "
+        "The context is from a knowledge base of questions and answers. Be concise and helpful."
     )
-    return prompt
+    
+    full_prompt = (
+        f"Context:\n{context}\n\n"
+        f"Question:\n{query}\n\n"
+        "Answer:"
+    )
+    
+    try:
+        response = model.generate_content(
+            full_prompt,
+            system_instruction=system_prompt
+        )
+        return response.text
+    except Exception as e:
+        return f"An error occurred: {e}"
 
-def call_gemini_chat(prompt):
-    model = genai.GenerativeModel(CHAT_MODEL)
-    resp = model.generate_content(prompt)
-    return resp.text
+def main(user_query):
+    """Main function to perform the RAG query."""
+    # Define paths
+    faiss_dir = 'data/processed/faiss_gemini'
+    topic_rules_path = 'config/topic_rules.json'
 
-def main():
-    user_q = input("Ask a DBMS question: ").strip()
-    if USE_GEMINI_FOR_EMBEDDING:
-        qvec = embed_query_gemini(user_q)
+    # Load topic rules
+    topic_rules = load_json(topic_rules_path)
+
+    # Determine topic and subtopic from the query
+    topic, subtopic = get_topic_and_subtopic_from_query(user_query, topic_rules)
+
+    if topic:
+        print(f"Detected Topic: {topic}, Subtopic: {subtopic}")
     else:
-        local_model = SentenceTransformer("all-MiniLM-L6-v2")
-        qvec = embed_query_local(local_model, user_q)
+        print("No specific topic detected, performing a general search.")
 
-    results, inds = retrieve(qvec, k=TOP_K)
-    by_id = load_chunk_texts()
-    retrieved_chunks = []
-    for r, i in zip(results, inds):
-        cid = r["id"]
-        if str(cid) in by_id:
-            retrieved_chunks.append(by_id[str(cid)])
-        else:
-            retrieved_chunks.append({
-                "id": cid,
-                "text": f"(missing chunk text for id {cid})",
-                "metadata": r["metadata"]
-            })
+    # Load the FAISS index and metadata
+    try:
+        index_path = os.path.join(faiss_dir, 'faiss_index_gemini.idx')
+        metas_path = os.path.join(faiss_dir, 'metas.json')
+        index, metas = load_index_and_metas(index_path, metas_path)
+    except FileNotFoundError:
+        return "Error: FAISS index files not found. Please run `build_faiss_gemini.py` first."
 
-    prompt = make_prompt(user_q, retrieved_chunks)
-    print("\n--- Prompt sent to Gemini (truncated) ---\n")
-    print(prompt[:2000])
+    # Initialize the Sentence Transformer model
+    model = SentenceTransformer('all-MiniLM-L6-v2')
 
-    answer = call_gemini_chat(prompt)
-    print("\n--- Gemini Answer ---\n")
-    print(answer)
+    # Add topic/subtopic information to the query for better search results
+    if topic and subtopic:
+        augmented_query = f"Question about {subtopic} in {topic}: {user_query}"
+    else:
+        augmented_query = user_query
 
-if __name__ == "__main__":
-    main()
+    # Get relevant chunks
+    relevant_chunks = get_relevant_chunks(augmented_query, index, metas, model)
+    context_text = "\n\n".join([chunk['text'] for chunk in relevant_chunks])
+
+    # Generate the response
+    response_text = generate_rag_response(user_query, context_text)
+
+    # Print the result
+    print("\n--- RAG Response ---")
+    print(response_text)
+    
+    print("\n--- Source Chunks (for debugging) ---")
+    for chunk in relevant_chunks:
+        print(f"Source ID: {chunk['id']}")
+        print(f"Text: {chunk['text']}\n")
+
+if __name__ == '__main__':
+    user_question = input("Enter your question: ")
+    main(user_question)

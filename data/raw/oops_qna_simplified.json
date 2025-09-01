@@ -1,0 +1,1107 @@
+[
+  {
+    "id": 1,
+    "question": "What is Object vs Class in OOP?",
+    "answer": "An object is a runtime instance with state and behavior; a class is the blueprint that defines that state (fields) and behavior (methods). Many objects can be created from one class.\n\nPython:\nclass Car: pass\nc = Car()  # c is an object (instance) of class Car\n\nJava:\nclass Car {}\nCar c = new Car(); // object from class Car\n\nC++:\nstruct Car {};\nCar c; // c is an object (instance)"
+  },
+  {
+    "id": 2,
+    "question": "When and why would you use Object vs Class?",
+    "answer": "Use object vs class to improve design quality: An object is a runtime instance with state and behavior; a class is the blueprint that defines that state (fields) and behavior (methods). Many objects can be created from one class.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 3,
+    "question": "What are common pitfalls or misconceptions about Object vs Class?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: An object is a runtime instance with state and behavior; a class is the blueprint that defines that state (fields) and behavior (methods). Many objects can be created from one class."
+  },
+  {
+    "id": 4,
+    "question": "What is Encapsulation in OOP?",
+    "answer": "Encapsulation bundles data and the methods that operate on that data, and restricts direct access to some components using access modifiers or conventions. It protects invariants and supports information hiding.\n\nPython:\nclass Bank:\n    def __init__(self): self._balance = 0  # '_' signals internal\n    def deposit(self, amt):\n        if amt <= 0: raise ValueError('positive')\n        self._balance += amt\n    @property\n    def balance(self): return self._balance\n\nJava:\nclass Bank { private int balance=0; public void deposit(int a){ if(a<=0) throw new IllegalArgumentException(); balance+=a;} public int getBalance(){return balance;} }\n\nC++:\nclass Bank { int balance{0}; public: void deposit(int a){ if(a<=0) throw std::invalid_argument(\"+\"); balance+=a;} int getBalance() const { return balance; } };"
+  },
+  {
+    "id": 5,
+    "question": "When and why would you use Encapsulation?",
+    "answer": "Use encapsulation to improve design quality: Encapsulation bundles data and the methods that operate on that data, and restricts direct access to some components using access modifiers or conventions. It protects invariants and supports information hiding.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 6,
+    "question": "What are common pitfalls or misconceptions about Encapsulation?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Encapsulation bundles data and the methods that operate on that data, and restricts direct access to some components using access modifiers or conventions. It protects invariants and supports information hiding."
+  },
+  {
+    "id": 7,
+    "question": "What is Abstraction in OOP?",
+    "answer": "Abstraction exposes essential behavior while hiding unnecessary details. It’s achieved via abstract classes, interfaces, and well‑designed APIs.\n\nPython:\nfrom abc import ABC, abstractmethod\nclass Notifier(ABC):\n    @abstractmethod\n    def send(self, msg): ...\n\nJava:\ninterface Notifier { void send(String msg); }\n\nC++:\nstruct Notifier { virtual void send(const std::string&)=0; virtual ~Notifier()=default; };"
+  },
+  {
+    "id": 8,
+    "question": "When and why would you use Abstraction?",
+    "answer": "Use abstraction to improve design quality: Abstraction exposes essential behavior while hiding unnecessary details. It’s achieved via abstract classes, interfaces, and well‑designed APIs.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 9,
+    "question": "What are common pitfalls or misconceptions about Abstraction?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Abstraction exposes essential behavior while hiding unnecessary details. It’s achieved via abstract classes, interfaces, and well‑designed APIs."
+  },
+  {
+    "id": 10,
+    "question": "What is Inheritance in OOP?",
+    "answer": "Inheritance lets a class acquire behavior and state from a parent (base) class. Prefer composition when inheritance does not model an 'is‑a' relationship or would increase coupling.\n\nPython:\nclass Animal: pass\nclass Dog(Animal): pass\n\nJava:\nclass Animal {}\nclass Dog extends Animal {}\n\nC++:\nstruct Animal{}; struct Dog: Animal {};"
+  },
+  {
+    "id": 11,
+    "question": "When and why would you use Inheritance?",
+    "answer": "Use inheritance to improve design quality: Inheritance lets a class acquire behavior and state from a parent (base) class. Prefer composition when inheritance does not model an 'is‑a' relationship or would increase coupling.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 12,
+    "question": "What are common pitfalls or misconceptions about Inheritance?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Inheritance lets a class acquire behavior and state from a parent (base) class. Prefer composition when inheritance does not model an 'is‑a' relationship or would increase coupling."
+  },
+  {
+    "id": 13,
+    "question": "What is Polymorphism in OOP?",
+    "answer": "Polymorphism lets code use objects of different types through a common interface. Subtype (runtime) polymorphism dispatches based on the object's dynamic type; parametric polymorphism is via generics/templates; ad‑hoc via overloading.\n\nPython:\ndef area(shape): return shape.area()  # duck typing\n\nJava:\nShape s = new Circle(); s.area(); // dynamic dispatch\n\nC++:\nstruct Shape{ virtual double area() const=0; virtual ~Shape()=default; }; struct Circle: Shape{ double r; double area() const override {return 3.14*r*r;} };"
+  },
+  {
+    "id": 14,
+    "question": "When and why would you use Polymorphism?",
+    "answer": "Use polymorphism to improve design quality: Polymorphism lets code use objects of different types through a common interface. Subtype (runtime) polymorphism dispatches based on the object's dynamic type; parametric polymorphism is via generics/templates; ad‑hoc via overloading.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 15,
+    "question": "What are common pitfalls or misconceptions about Polymorphism?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Polymorphism lets code use objects of different types through a common interface. Subtype (runtime) polymorphism dispatches based on the object's dynamic type; parametric polymorphism is via generics/templates; ad‑hoc via overloading."
+  },
+  {
+    "id": 16,
+    "question": "What is Composition over Inheritance in OOP?",
+    "answer": "Favor composition to assemble behaviors at runtime instead of deep inheritance hierarchies. Composition reduces coupling and avoids fragile base class problems.\n\nPython:\nclass Car:\n    def __init__(self, engine): self.engine=engine\n    def drive(self): self.engine.run()\n\nJava:\nclass Car { private Engine engine; Car(Engine e){this.engine=e;} void drive(){engine.run();} }\n\nC++:\nstruct Car{ Engine engine; void drive(){ engine.run(); } };"
+  },
+  {
+    "id": 17,
+    "question": "When and why would you use Composition over Inheritance?",
+    "answer": "Use composition over inheritance to improve design quality: Favor composition to assemble behaviors at runtime instead of deep inheritance hierarchies. Composition reduces coupling and avoids fragile base class problems.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 18,
+    "question": "What are common pitfalls or misconceptions about Composition over Inheritance?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Favor composition to assemble behaviors at runtime instead of deep inheritance hierarchies. Composition reduces coupling and avoids fragile base class problems."
+  },
+  {
+    "id": 19,
+    "question": "What is Interfaces vs Abstract Classes in OOP?",
+    "answer": "Interfaces specify contracts without state; abstract classes can hold state and default behavior. Use an interface for capability, an abstract base when sharing partial implementation.\n\nPython:\nfrom abc import ABC, abstractmethod\nclass Repo(ABC): @abstractmethod\n    def get(self,id): ...  # ABC is Python's 'interface'\n\nJava:\ninterface Repo { Item get(int id); }\nabstract class BaseRepo implements Repo { protected Logger log; }\n\nC++:\nstruct Repo{ virtual Item get(int)=0; virtual ~Repo()=default; }; // pure abstract base"
+  },
+  {
+    "id": 20,
+    "question": "When and why would you use Interfaces vs Abstract Classes?",
+    "answer": "Use interfaces vs abstract classes to improve design quality: Interfaces specify contracts without state; abstract classes can hold state and default behavior. Use an interface for capability, an abstract base when sharing partial implementation.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 21,
+    "question": "What are common pitfalls or misconceptions about Interfaces vs Abstract Classes?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Interfaces specify contracts without state; abstract classes can hold state and default behavior. Use an interface for capability, an abstract base when sharing partial implementation."
+  },
+  {
+    "id": 22,
+    "question": "What is Method Overloading vs Overriding in OOP?",
+    "answer": "Overloading: same name, different parameters in the same class (resolved at compile time). Overriding: subclass provides its own implementation of a base method with the same signature (resolved at runtime via dynamic dispatch).\n\nPython:\nPython has no traditional overloading; use *args or singledispatch. Overriding happens by redefining methods in subclasses.\n\nJava:\n@Override ensures overriding; overloading uses different parameter lists.\n\nC++:\nUse 'override' for overriding; overloading requires different signatures; beware hiding with using-declarations."
+  },
+  {
+    "id": 23,
+    "question": "When and why would you use Method Overloading vs Overriding?",
+    "answer": "Use method overloading vs overriding to improve design quality: Overloading: same name, different parameters in the same class (resolved at compile time). Overriding: subclass provides its own implementation of a base method with the same signature (resolved at runtime via dynamic dispatch).\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 24,
+    "question": "What are common pitfalls or misconceptions about Method Overloading vs Overriding?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Overloading: same name, different parameters in the same class (resolved at compile time). Overriding: subclass provides its own implementation of a base method with the same signature (resolved at runtime via dynamic dispatch)."
+  },
+  {
+    "id": 25,
+    "question": "What is Access Modifiers in OOP?",
+    "answer": "Modifiers control visibility. Public is everywhere; protected is subclass (and package in Java); private is within the class. Python uses naming conventions (_protected, __mangled).\n\nPython:\nclass A: def __init__(self): self.public=1; self._internal=2; self.__mangled=3\n\nJava:\npublic / protected / (package-private) / private\n\nC++:\npublic / protected / private sections in class"
+  },
+  {
+    "id": 26,
+    "question": "When and why would you use Access Modifiers?",
+    "answer": "Use access modifiers to improve design quality: Modifiers control visibility. Public is everywhere; protected is subclass (and package in Java); private is within the class. Python uses naming conventions (_protected, __mangled).\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 27,
+    "question": "What are common pitfalls or misconceptions about Access Modifiers?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Modifiers control visibility. Public is everywhere; protected is subclass (and package in Java); private is within the class. Python uses naming conventions (_protected, __mangled)."
+  },
+  {
+    "id": 28,
+    "question": "What is Constructors & Destructors in OOP?",
+    "answer": "Constructors initialize new objects. Destructors (C++) release resources deterministically (RAII). In Java/Python, use try-with-resources / context managers for timely cleanup.\n\nPython:\nclass File: def __enter__(self):...; def __exit__(self,*exc):...\n\nJava:\ntry (var in = Files.newInputStream(p)) { ... }\n\nC++:\nstruct F{ F(){/*open*/} ~F(){/*close*/} }; // RAII"
+  },
+  {
+    "id": 29,
+    "question": "When and why would you use Constructors & Destructors?",
+    "answer": "Use constructors & destructors to improve design quality: Constructors initialize new objects. Destructors (C++) release resources deterministically (RAII). In Java/Python, use try-with-resources / context managers for timely cleanup.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 30,
+    "question": "What are common pitfalls or misconceptions about Constructors & Destructors?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Constructors initialize new objects. Destructors (C++) release resources deterministically (RAII). In Java/Python, use try-with-resources / context managers for timely cleanup."
+  },
+  {
+    "id": 31,
+    "question": "What is Deep vs Shallow Copy in OOP?",
+    "answer": "Shallow copy duplicates the top-level object and shares nested references; deep copy duplicates the entire object graph. Choose based on ownership semantics.\n\nPython:\nimport copy; shallow = copy.copy(obj); deep = copy.deepcopy(obj)\n\nJava:\nImplement Cloneable carefully; prefer copy constructors/immutability.\n\nC++:\nDefine copy ctor/assign for deep copy; use smart pointers to encode ownership."
+  },
+  {
+    "id": 32,
+    "question": "When and why would you use Deep vs Shallow Copy?",
+    "answer": "Use deep vs shallow copy to improve design quality: Shallow copy duplicates the top-level object and shares nested references; deep copy duplicates the entire object graph. Choose based on ownership semantics.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 33,
+    "question": "What are common pitfalls or misconceptions about Deep vs Shallow Copy?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Shallow copy duplicates the top-level object and shares nested references; deep copy duplicates the entire object graph. Choose based on ownership semantics."
+  },
+  {
+    "id": 34,
+    "question": "What is Equality: structural vs referential in OOP?",
+    "answer": "Referential equality checks identity (same object). Structural equality compares state. Ensure equals/hashCode consistency in Java and __eq__/__hash__ in Python.\n\nPython:\nclass V: def __eq__(self,o): return isinstance(o,V) and self.x==o.x\n\nJava:\nOverride equals() and hashCode() consistently.\n\nC++:\nDefine operator== and optionally operator<=>."
+  },
+  {
+    "id": 35,
+    "question": "When and why would you use Equality: structural vs referential?",
+    "answer": "Use equality: structural vs referential to improve design quality: Referential equality checks identity (same object). Structural equality compares state. Ensure equals/hashCode consistency in Java and __eq__/__hash__ in Python.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 36,
+    "question": "What are common pitfalls or misconceptions about Equality: structural vs referential?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Referential equality checks identity (same object). Structural equality compares state. Ensure equals/hashCode consistency in Java and __eq__/__hash__ in Python."
+  },
+  {
+    "id": 37,
+    "question": "What is Static vs Instance members in OOP?",
+    "answer": "Static members belong to the class, not instances; instance members are per-object. Static methods cannot access instance state unless an instance is provided.\n\nPython:\nclass A: @staticmethod\n    def util(): ...\n    @classmethod\n    def from_x(cls,x): return cls()\n\nJava:\nstatic int count; static void util(){}\n\nC++:\nstruct A{ static int count; }; int A::count=0;"
+  },
+  {
+    "id": 38,
+    "question": "When and why would you use Static vs Instance members?",
+    "answer": "Use static vs instance members to improve design quality: Static members belong to the class, not instances; instance members are per-object. Static methods cannot access instance state unless an instance is provided.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 39,
+    "question": "What are common pitfalls or misconceptions about Static vs Instance members?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Static members belong to the class, not instances; instance members are per-object. Static methods cannot access instance state unless an instance is provided."
+  },
+  {
+    "id": 40,
+    "question": "What is UML Basics in OOP?",
+    "answer": "Class diagrams show classes, members, and relationships (association, aggregation, composition, inheritance, dependency). Solid diamonds mean composition; open diamonds aggregation.\n\nPython:\n—\n\nJava:\n—\n\nC++:\n—"
+  },
+  {
+    "id": 41,
+    "question": "When and why would you use UML Basics?",
+    "answer": "Use uml basics to improve design quality: Class diagrams show classes, members, and relationships (association, aggregation, composition, inheritance, dependency). Solid diamonds mean composition; open diamonds aggregation.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 42,
+    "question": "What are common pitfalls or misconceptions about UML Basics?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Class diagrams show classes, members, and relationships (association, aggregation, composition, inheritance, dependency). Solid diamonds mean composition; open diamonds aggregation."
+  },
+  {
+    "id": 43,
+    "question": "What is SOLID: SRP in OOP?",
+    "answer": "Single Responsibility Principle: a class should have one reason to change—encapsulating a single responsibility or axis of change.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 44,
+    "question": "When and why would you use SOLID: SRP?",
+    "answer": "Use solid: srp to improve design quality: Single Responsibility Principle: a class should have one reason to change—encapsulating a single responsibility or axis of change.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 45,
+    "question": "What are common pitfalls or misconceptions about SOLID: SRP?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Single Responsibility Principle: a class should have one reason to change—encapsulating a single responsibility or axis of change."
+  },
+  {
+    "id": 46,
+    "question": "What is SOLID: OCP in OOP?",
+    "answer": "Open/Closed Principle: software entities should be open for extension but closed for modification—achieved via interfaces, strategies, and composition.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 47,
+    "question": "When and why would you use SOLID: OCP?",
+    "answer": "Use solid: ocp to improve design quality: Open/Closed Principle: software entities should be open for extension but closed for modification—achieved via interfaces, strategies, and composition.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 48,
+    "question": "What are common pitfalls or misconceptions about SOLID: OCP?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Open/Closed Principle: software entities should be open for extension but closed for modification—achieved via interfaces, strategies, and composition."
+  },
+  {
+    "id": 49,
+    "question": "What is SOLID: LSP in OOP?",
+    "answer": "Liskov Substitution Principle: objects of a superclass should be replaceable with objects of a subclass without breaking correctness. Strengthen postconditions? OK. Weaken preconditions? OK. Don't violate invariants.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 50,
+    "question": "When and why would you use SOLID: LSP?",
+    "answer": "Use solid: lsp to improve design quality: Liskov Substitution Principle: objects of a superclass should be replaceable with objects of a subclass without breaking correctness. Strengthen postconditions? OK. Weaken preconditions? OK. Don't violate invariants.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 51,
+    "question": "What are common pitfalls or misconceptions about SOLID: LSP?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Liskov Substitution Principle: objects of a superclass should be replaceable with objects of a subclass without breaking correctness. Strengthen postconditions? OK. Weaken preconditions? OK. Don't violate invariants."
+  },
+  {
+    "id": 52,
+    "question": "What is SOLID: ISP in OOP?",
+    "answer": "Interface Segregation Principle: prefer many small, client‑specific interfaces over one large general‑purpose interface.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 53,
+    "question": "When and why would you use SOLID: ISP?",
+    "answer": "Use solid: isp to improve design quality: Interface Segregation Principle: prefer many small, client‑specific interfaces over one large general‑purpose interface.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 54,
+    "question": "What are common pitfalls or misconceptions about SOLID: ISP?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Interface Segregation Principle: prefer many small, client‑specific interfaces over one large general‑purpose interface."
+  },
+  {
+    "id": 55,
+    "question": "What is SOLID: DIP in OOP?",
+    "answer": "Dependency Inversion Principle: high‑level modules depend on abstractions, not concretes. Inject dependencies via constructors/factories.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 56,
+    "question": "When and why would you use SOLID: DIP?",
+    "answer": "Use solid: dip to improve design quality: Dependency Inversion Principle: high‑level modules depend on abstractions, not concretes. Inject dependencies via constructors/factories.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 57,
+    "question": "What are common pitfalls or misconceptions about SOLID: DIP?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Dependency Inversion Principle: high‑level modules depend on abstractions, not concretes. Inject dependencies via constructors/factories."
+  },
+  {
+    "id": 58,
+    "question": "What is Design by Contract in OOP?",
+    "answer": "Specify preconditions, postconditions, and invariants. Enforce with validations, assertions, and tests; document in code and API contracts.\n\nPython:\nassert n>0, 'n must be positive'\n\nJava:\nObjects.requireNonNull(x)\n\nC++:\nassert(n>0);"
+  },
+  {
+    "id": 59,
+    "question": "When and why would you use Design by Contract?",
+    "answer": "Use design by contract to improve design quality: Specify preconditions, postconditions, and invariants. Enforce with validations, assertions, and tests; document in code and API contracts.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 60,
+    "question": "What are common pitfalls or misconceptions about Design by Contract?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Specify preconditions, postconditions, and invariants. Enforce with validations, assertions, and tests; document in code and API contracts."
+  },
+  {
+    "id": 61,
+    "question": "What is Immutability in OOP?",
+    "answer": "Immutable objects can't change after construction. They are inherently thread‑safe, cacheable, and simpler to reason about. Build via constructors/builders and defensive copies.\n\nPython:\nfrom dataclasses import dataclass\n@dataclass(frozen=True)\nclass Money: amount:int; currency:str\n\nJava:\nrecord Money(int amount, String currency) {}\n\nC++:\nPrefer const, avoid exposing mutators; consider value types."
+  },
+  {
+    "id": 62,
+    "question": "When and why would you use Immutability?",
+    "answer": "Use immutability to improve design quality: Immutable objects can't change after construction. They are inherently thread‑safe, cacheable, and simpler to reason about. Build via constructors/builders and defensive copies.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 63,
+    "question": "What are common pitfalls or misconceptions about Immutability?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Immutable objects can't change after construction. They are inherently thread‑safe, cacheable, and simpler to reason about. Build via constructors/builders and defensive copies."
+  },
+  {
+    "id": 64,
+    "question": "What is Multiple Inheritance & Diamond in OOP?",
+    "answer": "Multiple inheritance allows a class to inherit from multiple bases. Diamonds can cause ambiguity; C++ uses virtual inheritance; Java disallows MI of classes, allows multiple interfaces; Python uses MRO (C3 linearization).\n\nPython:\nclass D(B1,B2): ...  # resolved by MRO\n\nJava:\nclass D implements I1, I2 {} // methods must be unambiguous\n\nC++:\nstruct A{}; struct B1: virtual A{}; struct B2: virtual A{}; struct D: B1,B2{};"
+  },
+  {
+    "id": 65,
+    "question": "When and why would you use Multiple Inheritance & Diamond?",
+    "answer": "Use multiple inheritance & diamond to improve design quality: Multiple inheritance allows a class to inherit from multiple bases. Diamonds can cause ambiguity; C++ uses virtual inheritance; Java disallows MI of classes, allows multiple interfaces; Python uses MRO (C3 linearization).\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 66,
+    "question": "What are common pitfalls or misconceptions about Multiple Inheritance & Diamond?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Multiple inheritance allows a class to inherit from multiple bases. Diamonds can cause ambiguity; C++ uses virtual inheritance; Java disallows MI of classes, allows multiple interfaces; Python uses MRO (C3 linearization)."
+  },
+  {
+    "id": 67,
+    "question": "What is MRO & super() in Python in OOP?",
+    "answer": "Python’s Method Resolution Order (C3) defines how attributes are looked up in MI. super() follows MRO, enabling cooperative multiple inheritance.\n\nPython:\nclass A: pass\nclass B(A): pass\nclass C(A): pass\nclass D(B,C): pass\nD.__mro__\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 68,
+    "question": "When and why would you use MRO & super() in Python?",
+    "answer": "Use mro & super() in python to improve design quality: Python’s Method Resolution Order (C3) defines how attributes are looked up in MI. super() follows MRO, enabling cooperative multiple inheritance.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 69,
+    "question": "What are common pitfalls or misconceptions about MRO & super() in Python?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Python’s Method Resolution Order (C3) defines how attributes are looked up in MI. super() follows MRO, enabling cooperative multiple inheritance."
+  },
+  {
+    "id": 70,
+    "question": "What is Virtual functions & vtables in OOP?",
+    "answer": "In C++, virtual functions enable runtime polymorphism via vtables. A call through a base pointer invokes the overridden method at runtime. Mark overrides with 'override' and ensure a virtual destructor for bases.\n\nPython:\n\n\nJava:\n\n\nC++:\nstruct Base{ virtual ~Base()=default; virtual void f(); }; struct Der: Base{ void f() override; };"
+  },
+  {
+    "id": 71,
+    "question": "When and why would you use Virtual functions & vtables?",
+    "answer": "Use virtual functions & vtables to improve design quality: In C++, virtual functions enable runtime polymorphism via vtables. A call through a base pointer invokes the overridden method at runtime. Mark overrides with 'override' and ensure a virtual destructor for bases.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 72,
+    "question": "What are common pitfalls or misconceptions about Virtual functions & vtables?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: In C++, virtual functions enable runtime polymorphism via vtables. A call through a base pointer invokes the overridden method at runtime. Mark overrides with 'override' and ensure a virtual destructor for bases."
+  },
+  {
+    "id": 73,
+    "question": "What is Rule of 3/5/0 (C++) in OOP?",
+    "answer": "If a class manages resources, define (at least) destructor, copy ctor, copy assignment (Rule of 3). With C++11+, also move ctor/assignment (Rule of 5). If no resources, rely on defaults (Rule of 0).\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 74,
+    "question": "When and why would you use Rule of 3/5/0 (C++)?",
+    "answer": "Use rule of 3/5/0 (c++) to improve design quality: If a class manages resources, define (at least) destructor, copy ctor, copy assignment (Rule of 3). With C++11+, also move ctor/assignment (Rule of 5). If no resources, rely on defaults (Rule of 0).\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 75,
+    "question": "What are common pitfalls or misconceptions about Rule of 3/5/0 (C++)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: If a class manages resources, define (at least) destructor, copy ctor, copy assignment (Rule of 3). With C++11+, also move ctor/assignment (Rule of 5). If no resources, rely on defaults (Rule of 0)."
+  },
+  {
+    "id": 76,
+    "question": "What is RAII (C++) in OOP?",
+    "answer": "Resource Acquisition Is Initialization binds resource lifetime to object lifetime. Acquire in constructor, release in destructor; use unique_ptr/shared_ptr and std containers.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 77,
+    "question": "When and why would you use RAII (C++)?",
+    "answer": "Use raii (c++) to improve design quality: Resource Acquisition Is Initialization binds resource lifetime to object lifetime. Acquire in constructor, release in destructor; use unique_ptr/shared_ptr and std containers.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 78,
+    "question": "What are common pitfalls or misconceptions about RAII (C++)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Resource Acquisition Is Initialization binds resource lifetime to object lifetime. Acquire in constructor, release in destructor; use unique_ptr/shared_ptr and std containers."
+  },
+  {
+    "id": 79,
+    "question": "What is Smart Pointers (C++) in OOP?",
+    "answer": "unique_ptr expresses exclusive ownership; shared_ptr shared ownership; weak_ptr breaks cycles. Prefer make_unique/make_shared.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 80,
+    "question": "When and why would you use Smart Pointers (C++)?",
+    "answer": "Use smart pointers (c++) to improve design quality: unique_ptr expresses exclusive ownership; shared_ptr shared ownership; weak_ptr breaks cycles. Prefer make_unique/make_shared.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 81,
+    "question": "What are common pitfalls or misconceptions about Smart Pointers (C++)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: unique_ptr expresses exclusive ownership; shared_ptr shared ownership; weak_ptr breaks cycles. Prefer make_unique/make_shared."
+  },
+  {
+    "id": 82,
+    "question": "What is Generics/Templates/Covariance in OOP?",
+    "answer": "Generics (Java), templates (C++) and duck typing/generics (Python) enable parametric polymorphism. Arrays are covariant in Java (unsafe); generics are invariant (use ? extends/? super). C++ templates are compile‑time and T is unconstrained unless concepts used.\n\nPython:\nfrom typing import Protocol\nclass Notifier(Protocol):\n    def send(self, msg:str) -> None: ...\n\nJava:\nList<? extends Number> r; List<? super Integer> w;\n\nC++:\ntemplate<class T> void sort(std::vector<T>& v);"
+  },
+  {
+    "id": 83,
+    "question": "When and why would you use Generics/Templates/Covariance?",
+    "answer": "Use generics/templates/covariance to improve design quality: Generics (Java), templates (C++) and duck typing/generics (Python) enable parametric polymorphism. Arrays are covariant in Java (unsafe); generics are invariant (use ? extends/? super). C++ templates are compile‑time and T is unconstrained unless concepts used.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 84,
+    "question": "What are common pitfalls or misconceptions about Generics/Templates/Covariance?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Generics (Java), templates (C++) and duck typing/generics (Python) enable parametric polymorphism. Arrays are covariant in Java (unsafe); generics are invariant (use ? extends/? super). C++ templates are compile‑time and T is unconstrained unless concepts used."
+  },
+  {
+    "id": 85,
+    "question": "What is Casting & RTTI in OOP?",
+    "answer": "Downcasting narrows to a subtype; use safely (instanceof / dynamic_cast). Avoid unnecessary casting by designing with interfaces. RTTI queries an object's dynamic type at runtime.\n\nPython:\nisinstance(x, Foo)\n\nJava:\nif (obj instanceof Foo f) { f.bar(); }\n\nC++:\nif (auto p = dynamic_cast<Foo*>(base)) { p->bar(); }"
+  },
+  {
+    "id": 86,
+    "question": "When and why would you use Casting & RTTI?",
+    "answer": "Use casting & rtti to improve design quality: Downcasting narrows to a subtype; use safely (instanceof / dynamic_cast). Avoid unnecessary casting by designing with interfaces. RTTI queries an object's dynamic type at runtime.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 87,
+    "question": "What are common pitfalls or misconceptions about Casting & RTTI?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Downcasting narrows to a subtype; use safely (instanceof / dynamic_cast). Avoid unnecessary casting by designing with interfaces. RTTI queries an object's dynamic type at runtime."
+  },
+  {
+    "id": 88,
+    "question": "What is Operator Overloading (C++) in OOP?",
+    "answer": "Overload operators to match domain semantics while preserving expectations (e.g., + should be associative/side‑effect free). Prefer non‑member friend for symmetric operators.\n\nPython:\n\n\nJava:\n\n\nC++:\nstruct Vec{ double x,y; };\ninline Vec operator+(Vec a, Vec b){ return {a.x+b.x,a.y+b.y}; }"
+  },
+  {
+    "id": 89,
+    "question": "When and why would you use Operator Overloading (C++)?",
+    "answer": "Use operator overloading (c++) to improve design quality: Overload operators to match domain semantics while preserving expectations (e.g., + should be associative/side‑effect free). Prefer non‑member friend for symmetric operators.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 90,
+    "question": "What are common pitfalls or misconceptions about Operator Overloading (C++)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Overload operators to match domain semantics while preserving expectations (e.g., + should be associative/side‑effect free). Prefer non‑member friend for symmetric operators."
+  },
+  {
+    "id": 91,
+    "question": "What is Design Patterns: Strategy in OOP?",
+    "answer": "Encapsulate interchangeable algorithms behind a common interface; choose at runtime.\n\nPython:\nclass Strategy: def calc(self,x): ...\n\nJava:\ninterface Strategy { int calc(int x); }\n\nC++:\nstruct Strategy{ virtual int calc(int)=0; virtual ~Strategy()=default; };"
+  },
+  {
+    "id": 92,
+    "question": "When and why would you use Design Patterns: Strategy?",
+    "answer": "Use design patterns: strategy to improve design quality: Encapsulate interchangeable algorithms behind a common interface; choose at runtime.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 93,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Strategy?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Encapsulate interchangeable algorithms behind a common interface; choose at runtime."
+  },
+  {
+    "id": 94,
+    "question": "What is Design Patterns: Factory in OOP?",
+    "answer": "Centralize object creation; abstract callers from concrete classes; return interface types.\n\nPython:\ndef make_repo(env): return SqlRepo() if env=='prod' else MemoryRepo()\n\nJava:\nclass RepoFactory{ static Repo make(Env e){...} }\n\nC++:\nstd::unique_ptr<Repo> make_repo(Env e);"
+  },
+  {
+    "id": 95,
+    "question": "When and why would you use Design Patterns: Factory?",
+    "answer": "Use design patterns: factory to improve design quality: Centralize object creation; abstract callers from concrete classes; return interface types.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 96,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Factory?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Centralize object creation; abstract callers from concrete classes; return interface types."
+  },
+  {
+    "id": 97,
+    "question": "What is Design Patterns: Singleton (with caveats) in OOP?",
+    "answer": "Ensures a single instance. Often overused; prefer DI. If used, make it lazy, thread‑safe, and testable.\n\nPython:\nclass Singleton: _inst=None\n    def __new__(cls,*a,**k):\n        if not cls._inst: cls._inst=super().__new__(cls)\n        return cls._inst\n\nJava:\nenum Singleton { INSTANCE }\n\nC++:\nT& instance(){ static T inst; return inst; }"
+  },
+  {
+    "id": 98,
+    "question": "When and why would you use Design Patterns: Singleton (with caveats)?",
+    "answer": "Use design patterns: singleton (with caveats) to improve design quality: Ensures a single instance. Often overused; prefer DI. If used, make it lazy, thread‑safe, and testable.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 99,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Singleton (with caveats)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Ensures a single instance. Often overused; prefer DI. If used, make it lazy, thread‑safe, and testable."
+  },
+  {
+    "id": 100,
+    "question": "What is Design Patterns: Adapter/Decorator/Proxy in OOP?",
+    "answer": "Adapter converts one interface to another; Decorator adds behavior without subclassing; Proxy controls access (lazy, remote, protection).\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 101,
+    "question": "When and why would you use Design Patterns: Adapter/Decorator/Proxy?",
+    "answer": "Use design patterns: adapter/decorator/proxy to improve design quality: Adapter converts one interface to another; Decorator adds behavior without subclassing; Proxy controls access (lazy, remote, protection).\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 102,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Adapter/Decorator/Proxy?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Adapter converts one interface to another; Decorator adds behavior without subclassing; Proxy controls access (lazy, remote, protection)."
+  },
+  {
+    "id": 103,
+    "question": "What is Design Patterns: Composite in OOP?",
+    "answer": "Treat part‑whole hierarchies uniformly. Clients use the same interface for leaves and composites.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 104,
+    "question": "When and why would you use Design Patterns: Composite?",
+    "answer": "Use design patterns: composite to improve design quality: Treat part‑whole hierarchies uniformly. Clients use the same interface for leaves and composites.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 105,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Composite?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Treat part‑whole hierarchies uniformly. Clients use the same interface for leaves and composites."
+  },
+  {
+    "id": 106,
+    "question": "What is Design Patterns: Observer in OOP?",
+    "answer": "Define a one‑to‑many dependency so that observers are notified of subject changes. Useful for GUIs, event systems.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 107,
+    "question": "When and why would you use Design Patterns: Observer?",
+    "answer": "Use design patterns: observer to improve design quality: Define a one‑to‑many dependency so that observers are notified of subject changes. Useful for GUIs, event systems.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 108,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Observer?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Define a one‑to‑many dependency so that observers are notified of subject changes. Useful for GUIs, event systems."
+  },
+  {
+    "id": 109,
+    "question": "What is Design Patterns: Command in OOP?",
+    "answer": "Encapsulate a request as an object—supports undo/redo, queuing, logging.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 110,
+    "question": "When and why would you use Design Patterns: Command?",
+    "answer": "Use design patterns: command to improve design quality: Encapsulate a request as an object—supports undo/redo, queuing, logging.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 111,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Command?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Encapsulate a request as an object—supports undo/redo, queuing, logging."
+  },
+  {
+    "id": 112,
+    "question": "What is Design Patterns: State in OOP?",
+    "answer": "Allow an object to change its behavior when its internal state changes—appears to change class.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 113,
+    "question": "When and why would you use Design Patterns: State?",
+    "answer": "Use design patterns: state to improve design quality: Allow an object to change its behavior when its internal state changes—appears to change class.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 114,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: State?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Allow an object to change its behavior when its internal state changes—appears to change class."
+  },
+  {
+    "id": 115,
+    "question": "What is Design Patterns: Template Method in OOP?",
+    "answer": "Define the skeleton of an algorithm in a base class and let subclasses override steps.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 116,
+    "question": "When and why would you use Design Patterns: Template Method?",
+    "answer": "Use design patterns: template method to improve design quality: Define the skeleton of an algorithm in a base class and let subclasses override steps.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 117,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Template Method?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Define the skeleton of an algorithm in a base class and let subclasses override steps."
+  },
+  {
+    "id": 118,
+    "question": "What is Design Patterns: Builder in OOP?",
+    "answer": "Construct complex objects step by step. Helps with readability and immutability.\n\nPython:\n\n\nJava:\nnew Person.Builder().name(\"A\").age(3).build();\n\nC++:"
+  },
+  {
+    "id": 119,
+    "question": "When and why would you use Design Patterns: Builder?",
+    "answer": "Use design patterns: builder to improve design quality: Construct complex objects step by step. Helps with readability and immutability.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 120,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Builder?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Construct complex objects step by step. Helps with readability and immutability."
+  },
+  {
+    "id": 121,
+    "question": "What is Design Patterns: Facade in OOP?",
+    "answer": "Provide a simple unified interface to a complex subsystem.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 122,
+    "question": "When and why would you use Design Patterns: Facade?",
+    "answer": "Use design patterns: facade to improve design quality: Provide a simple unified interface to a complex subsystem.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 123,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Facade?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Provide a simple unified interface to a complex subsystem."
+  },
+  {
+    "id": 124,
+    "question": "What is Design Patterns: Flyweight in OOP?",
+    "answer": "Share intrinsic state to support large numbers of fine‑grained objects efficiently.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 125,
+    "question": "When and why would you use Design Patterns: Flyweight?",
+    "answer": "Use design patterns: flyweight to improve design quality: Share intrinsic state to support large numbers of fine‑grained objects efficiently.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 126,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Flyweight?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Share intrinsic state to support large numbers of fine‑grained objects efficiently."
+  },
+  {
+    "id": 127,
+    "question": "What is Design Patterns: Bridge in OOP?",
+    "answer": "Decouple abstraction from implementation so the two can vary independently.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 128,
+    "question": "When and why would you use Design Patterns: Bridge?",
+    "answer": "Use design patterns: bridge to improve design quality: Decouple abstraction from implementation so the two can vary independently.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 129,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Bridge?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Decouple abstraction from implementation so the two can vary independently."
+  },
+  {
+    "id": 130,
+    "question": "What is Design Patterns: Prototype in OOP?",
+    "answer": "Create new objects by cloning a prototype. Useful when instantiation is expensive or complex.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 131,
+    "question": "When and why would you use Design Patterns: Prototype?",
+    "answer": "Use design patterns: prototype to improve design quality: Create new objects by cloning a prototype. Useful when instantiation is expensive or complex.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 132,
+    "question": "What are common pitfalls or misconceptions about Design Patterns: Prototype?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Create new objects by cloning a prototype. Useful when instantiation is expensive or complex."
+  },
+  {
+    "id": 133,
+    "question": "What is Exception Safety (C++) in OOP?",
+    "answer": "Provide strong/basic/no‑throw guarantees. Use RAII, copy‑and‑swap, and avoid resource leaks under exceptions.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 134,
+    "question": "When and why would you use Exception Safety (C++)?",
+    "answer": "Use exception safety (c++) to improve design quality: Provide strong/basic/no‑throw guarantees. Use RAII, copy‑and‑swap, and avoid resource leaks under exceptions.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 135,
+    "question": "What are common pitfalls or misconceptions about Exception Safety (C++)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Provide strong/basic/no‑throw guarantees. Use RAII, copy‑and‑swap, and avoid resource leaks under exceptions."
+  },
+  {
+    "id": 136,
+    "question": "What is PIMPL (C++) in OOP?",
+    "answer": "Pointer to IMPL hides implementation details, reduces compile times, and preserves ABI stability.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 137,
+    "question": "When and why would you use PIMPL (C++)?",
+    "answer": "Use pimpl (c++) to improve design quality: Pointer to IMPL hides implementation details, reduces compile times, and preserves ABI stability.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 138,
+    "question": "What are common pitfalls or misconceptions about PIMPL (C++)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Pointer to IMPL hides implementation details, reduces compile times, and preserves ABI stability."
+  },
+  {
+    "id": 139,
+    "question": "What is Law of Demeter in OOP?",
+    "answer": "Only talk to your immediate friends: a method should call methods of itself, its fields, method parameters, or objects it creates—reduces coupling ('don't chain train wrecks').\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 140,
+    "question": "When and why would you use Law of Demeter?",
+    "answer": "Use law of demeter to improve design quality: Only talk to your immediate friends: a method should call methods of itself, its fields, method parameters, or objects it creates—reduces coupling ('don't chain train wrecks').\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 141,
+    "question": "What are common pitfalls or misconceptions about Law of Demeter?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Only talk to your immediate friends: a method should call methods of itself, its fields, method parameters, or objects it creates—reduces coupling ('don't chain train wrecks')."
+  },
+  {
+    "id": 142,
+    "question": "What is Tell, Don't Ask in OOP?",
+    "answer": "Tell objects what to do, don't ask for data and make decisions externally—push behavior to the objects that own the data.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 143,
+    "question": "When and why would you use Tell, Don't Ask?",
+    "answer": "Use tell, don't ask to improve design quality: Tell objects what to do, don't ask for data and make decisions externally—push behavior to the objects that own the data.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 144,
+    "question": "What are common pitfalls or misconceptions about Tell, Don't Ask?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Tell objects what to do, don't ask for data and make decisions externally—push behavior to the objects that own the data."
+  },
+  {
+    "id": 145,
+    "question": "What is Value vs Reference semantics in OOP?",
+    "answer": "C++ value types copy by value (cheap with move/NRVO); Java/Python variables hold references to objects. Understand aliasing and copying costs.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 146,
+    "question": "When and why would you use Value vs Reference semantics?",
+    "answer": "Use value vs reference semantics to improve design quality: C++ value types copy by value (cheap with move/NRVO); Java/Python variables hold references to objects. Understand aliasing and copying costs.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 147,
+    "question": "What are common pitfalls or misconceptions about Value vs Reference semantics?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: C++ value types copy by value (cheap with move/NRVO); Java/Python variables hold references to objects. Understand aliasing and copying costs."
+  },
+  {
+    "id": 148,
+    "question": "What is Sealed Classes / Algebraic Hierarchies in OOP?",
+    "answer": "Constrain subclassing to a known set (Java sealed classes). Improves exhaustiveness and pattern matching with polymorphism.\n\nPython:\n\n\nJava:\nsealed interface Shape permits Circle, Rect {}\n\nC++:"
+  },
+  {
+    "id": 149,
+    "question": "When and why would you use Sealed Classes / Algebraic Hierarchies?",
+    "answer": "Use sealed classes / algebraic hierarchies to improve design quality: Constrain subclassing to a known set (Java sealed classes). Improves exhaustiveness and pattern matching with polymorphism.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 150,
+    "question": "What are common pitfalls or misconceptions about Sealed Classes / Algebraic Hierarchies?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Constrain subclassing to a known set (Java sealed classes). Improves exhaustiveness and pattern matching with polymorphism."
+  },
+  {
+    "id": 151,
+    "question": "What is Mixins & Traits in OOP?",
+    "answer": "Reuse behavior via mixins (Python) or traits (some languages). Keep them small and orthogonal; avoid stateful mixins.\n\nPython:\nclass JSONMixin: def to_json(self): ...\n\nJava:\n\n\nC++:\ntemplate<class T> struct Comparable { bool operator<(const T&) const; };"
+  },
+  {
+    "id": 152,
+    "question": "When and why would you use Mixins & Traits?",
+    "answer": "Use mixins & traits to improve design quality: Reuse behavior via mixins (Python) or traits (some languages). Keep them small and orthogonal; avoid stateful mixins.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 153,
+    "question": "What are common pitfalls or misconceptions about Mixins & Traits?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Reuse behavior via mixins (Python) or traits (some languages). Keep them small and orthogonal; avoid stateful mixins."
+  },
+  {
+    "id": 154,
+    "question": "What is Duck Typing vs Nominal Typing in OOP?",
+    "answer": "Duck typing (Python) cares about behavior, not declared types; nominal typing (Java/C++) relies on declared types and hierarchies.\n\nPython:\ndef quack(x): x.quack()  # works if object has quack()\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 155,
+    "question": "When and why would you use Duck Typing vs Nominal Typing?",
+    "answer": "Use duck typing vs nominal typing to improve design quality: Duck typing (Python) cares about behavior, not declared types; nominal typing (Java/C++) relies on declared types and hierarchies.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 156,
+    "question": "What are common pitfalls or misconceptions about Duck Typing vs Nominal Typing?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Duck typing (Python) cares about behavior, not declared types; nominal typing (Java/C++) relies on declared types and hierarchies."
+  },
+  {
+    "id": 157,
+    "question": "What is abc/Protocol (Python) in OOP?",
+    "answer": "abc.ABC defines nominal abstract bases; typing.Protocol defines structural interfaces checked by type checkers (PEP 544).\n\nPython:\nclass Sized(Protocol):\n    def __len__(self) -> int: ...\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 158,
+    "question": "When and why would you use abc/Protocol (Python)?",
+    "answer": "Use abc/protocol (python) to improve design quality: abc.ABC defines nominal abstract bases; typing.Protocol defines structural interfaces checked by type checkers (PEP 544).\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 159,
+    "question": "What are common pitfalls or misconceptions about abc/Protocol (Python)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: abc.ABC defines nominal abstract bases; typing.Protocol defines structural interfaces checked by type checkers (PEP 544)."
+  },
+  {
+    "id": 160,
+    "question": "What is Data classes (Python/Java) in OOP?",
+    "answer": "Generate boilerplate (equals/hash, toString, etc.). Python dataclasses and Java records make value objects concise.\n\nPython:\n@dataclass\nclass Point: x:int; y:int\n\nJava:\nrecord Point(int x, int y) {}\n\nC++:"
+  },
+  {
+    "id": 161,
+    "question": "When and why would you use Data classes (Python/Java)?",
+    "answer": "Use data classes (python/java) to improve design quality: Generate boilerplate (equals/hash, toString, etc.). Python dataclasses and Java records make value objects concise.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 162,
+    "question": "What are common pitfalls or misconceptions about Data classes (Python/Java)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Generate boilerplate (equals/hash, toString, etc.). Python dataclasses and Java records make value objects concise."
+  },
+  {
+    "id": 163,
+    "question": "What is Copy elision & moves (C++) in OOP?",
+    "answer": "Compilers can elide copies (NRVO). Moves transfer resources cheaply. Design types to be movable when possible.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 164,
+    "question": "When and why would you use Copy elision & moves (C++)?",
+    "answer": "Use copy elision & moves (c++) to improve design quality: Compilers can elide copies (NRVO). Moves transfer resources cheaply. Design types to be movable when possible.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 165,
+    "question": "What are common pitfalls or misconceptions about Copy elision & moves (C++)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Compilers can elide copies (NRVO). Moves transfer resources cheaply. Design types to be movable when possible."
+  },
+  {
+    "id": 166,
+    "question": "What is super vs overrides (Java/Python) in OOP?",
+    "answer": "Use super to call base behavior; ensure cooperative multiple inheritance in Python; in Java, super.method() explicitly calls parent implementation.\n\nPython:\nclass B(A):\n    def f(self): super().f(); ...\n\nJava:\nclass B extends A { void f(){ super.f(); ... } }\n\nC++:"
+  },
+  {
+    "id": 167,
+    "question": "When and why would you use super vs overrides (Java/Python)?",
+    "answer": "Use super vs overrides (java/python) to improve design quality: Use super to call base behavior; ensure cooperative multiple inheritance in Python; in Java, super.method() explicitly calls parent implementation.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 168,
+    "question": "What are common pitfalls or misconceptions about super vs overrides (Java/Python)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Use super to call base behavior; ensure cooperative multiple inheritance in Python; in Java, super.method() explicitly calls parent implementation."
+  },
+  {
+    "id": 169,
+    "question": "What is Final/sealed methods in OOP?",
+    "answer": "Final methods/classes can’t be overridden/subclassed. Use to lock down invariants or for security/performance.\n\nPython:\n\n\nJava:\nfinal class Util {} // cannot extend\n\nC++:\nstruct A{ virtual void f() final; };"
+  },
+  {
+    "id": 170,
+    "question": "When and why would you use Final/sealed methods?",
+    "answer": "Use final/sealed methods to improve design quality: Final methods/classes can’t be overridden/subclassed. Use to lock down invariants or for security/performance.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 171,
+    "question": "What are common pitfalls or misconceptions about Final/sealed methods?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Final methods/classes can’t be overridden/subclassed. Use to lock down invariants or for security/performance."
+  },
+  {
+    "id": 172,
+    "question": "What is Serialization & versioning in OOP?",
+    "answer": "Be explicit about serialized forms; add versioning; prefer explicit DTOs over exposing domain entities.\n\nPython:\ndataclasses.asdict(obj)  # custom encoders\n\nJava:\nimplements Serializable with serialVersionUID\n\nC++:\nUse non‑intrusive serializers (e.g., cereal)"
+  },
+  {
+    "id": 173,
+    "question": "When and why would you use Serialization & versioning?",
+    "answer": "Use serialization & versioning to improve design quality: Be explicit about serialized forms; add versioning; prefer explicit DTOs over exposing domain entities.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 174,
+    "question": "What are common pitfalls or misconceptions about Serialization & versioning?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Be explicit about serialized forms; add versioning; prefer explicit DTOs over exposing domain entities."
+  },
+  {
+    "id": 175,
+    "question": "What is Thread safety & confinement in OOP?",
+    "answer": "Prefer immutability, confinement (thread‑local ownership), and thread‑safe designs. Guard shared mutable state with synchronization or lock‑free structures.\n\nPython:\nUse queues, GIL still needs care with I/O and C extensions\n\nJava:\nsynchronized/locks/atomics, immutable objects\n\nC++:\nstd::mutex, atomic, const‑correctness"
+  },
+  {
+    "id": 176,
+    "question": "When and why would you use Thread safety & confinement?",
+    "answer": "Use thread safety & confinement to improve design quality: Prefer immutability, confinement (thread‑local ownership), and thread‑safe designs. Guard shared mutable state with synchronization or lock‑free structures.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 177,
+    "question": "What are common pitfalls or misconceptions about Thread safety & confinement?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Prefer immutability, confinement (thread‑local ownership), and thread‑safe designs. Guard shared mutable state with synchronization or lock‑free structures."
+  },
+  {
+    "id": 178,
+    "question": "What is Cohesion & Coupling in OOP?",
+    "answer": "Aim for high cohesion (related responsibilities in one place) and low coupling (few, stable dependencies).\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 179,
+    "question": "When and why would you use Cohesion & Coupling?",
+    "answer": "Use cohesion & coupling to improve design quality: Aim for high cohesion (related responsibilities in one place) and low coupling (few, stable dependencies).\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 180,
+    "question": "What are common pitfalls or misconceptions about Cohesion & Coupling?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Aim for high cohesion (related responsibilities in one place) and low coupling (few, stable dependencies)."
+  },
+  {
+    "id": 181,
+    "question": "What is Code Smells vs Refactorings in OOP?",
+    "answer": "Long class, feature envy, shotgun surgery, god object, message chains. Refactor via extract class, move method, introduce interface, replace inheritance with delegation.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 182,
+    "question": "When and why would you use Code Smells vs Refactorings?",
+    "answer": "Use code smells vs refactorings to improve design quality: Long class, feature envy, shotgun surgery, god object, message chains. Refactor via extract class, move method, introduce interface, replace inheritance with delegation.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 183,
+    "question": "What are common pitfalls or misconceptions about Code Smells vs Refactorings?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Long class, feature envy, shotgun surgery, god object, message chains. Refactor via extract class, move method, introduce interface, replace inheritance with delegation."
+  },
+  {
+    "id": 184,
+    "question": "What is Testing OO code in OOP?",
+    "answer": "Prefer testing behavior via public interfaces. Use fakes/stubs over mocks where possible; mock external boundaries. Design for testability with DI.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 185,
+    "question": "When and why would you use Testing OO code?",
+    "answer": "Use testing oo code to improve design quality: Prefer testing behavior via public interfaces. Use fakes/stubs over mocks where possible; mock external boundaries. Design for testability with DI.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 186,
+    "question": "What are common pitfalls or misconceptions about Testing OO code?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Prefer testing behavior via public interfaces. Use fakes/stubs over mocks where possible; mock external boundaries. Design for testability with DI."
+  },
+  {
+    "id": 187,
+    "question": "What is Open Recursion & Self in OOP?",
+    "answer": "Methods are late‑bound (open recursion); 'self/this' is passed implicitly enabling overriding to affect internal calls. Beware calling overridable methods from constructors.\n\nPython:\n\n\nJava:\nAvoid calling overridable methods in constructors.\n\nC++:"
+  },
+  {
+    "id": 188,
+    "question": "When and why would you use Open Recursion & Self?",
+    "answer": "Use open recursion & self to improve design quality: Methods are late‑bound (open recursion); 'self/this' is passed implicitly enabling overriding to affect internal calls. Beware calling overridable methods from constructors.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 189,
+    "question": "What are common pitfalls or misconceptions about Open Recursion & Self?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Methods are late‑bound (open recursion); 'self/this' is passed implicitly enabling overriding to affect internal calls. Beware calling overridable methods from constructors."
+  },
+  {
+    "id": 190,
+    "question": "What is Invariant & Representation exposure in OOP?",
+    "answer": "Keep invariants consistent; avoid exposing internal representation (defensive copies, unmodifiable views).\n\nPython:\n\n\nJava:\nCollections.unmodifiableList(list)\n\nC++:"
+  },
+  {
+    "id": 191,
+    "question": "When and why would you use Invariant & Representation exposure?",
+    "answer": "Use invariant & representation exposure to improve design quality: Keep invariants consistent; avoid exposing internal representation (defensive copies, unmodifiable views).\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 192,
+    "question": "What are common pitfalls or misconceptions about Invariant & Representation exposure?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Keep invariants consistent; avoid exposing internal representation (defensive copies, unmodifiable views)."
+  },
+  {
+    "id": 193,
+    "question": "What is Value Objects vs Entities in OOP?",
+    "answer": "Value objects are defined by their attributes and are immutable; entities have identity that persists through changes. Treat value objects as replace-not-mutate.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 194,
+    "question": "When and why would you use Value Objects vs Entities?",
+    "answer": "Use value objects vs entities to improve design quality: Value objects are defined by their attributes and are immutable; entities have identity that persists through changes. Treat value objects as replace-not-mutate.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 195,
+    "question": "What are common pitfalls or misconceptions about Value Objects vs Entities?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Value objects are defined by their attributes and are immutable; entities have identity that persists through changes. Treat value objects as replace-not-mutate."
+  },
+  {
+    "id": 196,
+    "question": "What is Aggregate/Bounded Context (OO & DDD) in OOP?",
+    "answer": "Aggregate enforces invariants across a cluster of objects with a root controlling access; keep references from outside only to the root.\n\nPython:\n\n\nJava:\n\n\nC++:"
+  },
+  {
+    "id": 197,
+    "question": "When and why would you use Aggregate/Bounded Context (OO & DDD)?",
+    "answer": "Use aggregate/bounded context (oo & ddd) to improve design quality: Aggregate enforces invariants across a cluster of objects with a root controlling access; keep references from outside only to the root.\nIt reduces defects by clarifying responsibilities and contracts."
+  },
+  {
+    "id": 198,
+    "question": "What are common pitfalls or misconceptions about Aggregate/Bounded Context (OO & DDD)?",
+    "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade‑offs. Remember: Aggregate enforces invariants across a cluster of objects with a root controlling access; keep references from outside only to the root."
+  },
+  {
+    "id": 199,
+    "question": "What is the Observer pattern and when would you use it?",
+    "answer": "Define a one‑to‑many dependency so observers are notified on state changes. Implement subscribe/notify; avoid memory leaks by weak references or clear detach APIs."
+  },
+  {
+    "id": 200,
+    "question": "What is the Decorator pattern and when would you use it?",
+    "answer": "Attach additional responsibilities to an object dynamically; provides a flexible alternative to subclassing for extending behavior."
+  },
+  {
+    "id": 201,
+    "question": "What is the Adapter pattern and when would you use it?",
+    "answer": "Convert one interface to another expected by clients without changing the underlying class."
+  },
+  {
+    "id": 202,
+    "question": "What is the Proxy pattern and when would you use it?",
+    "answer": "Provide a surrogate for another object to control access or add behavior like caching or remote access."
+  },
+  {
+    "id": 203,
+    "question": "What is the Composite pattern and when would you use it?",
+    "answer": "Compose objects into tree structures to represent part‑whole hierarchies and let clients treat individual and composite objects uniformly."
+  },
+  {
+    "id": 204,
+    "question": "What is the Command pattern and when would you use it?",
+    "answer": "Encapsulate a request as an object, allowing parameterization, queuing, logging, and undo/redo."
+  },
+  {
+    "id": 205,
+    "question": "What is the State pattern and when would you use it?",
+    "answer": "Allow an object to alter its behavior when its internal state changes; each state is a separate class."
+  },
+  {
+    "id": 206,
+    "question": "What is the Strategy pattern and when would you use it?",
+    "answer": "Define a family of algorithms and make them interchangeable; the algorithm varies independently from clients."
+  },
+  {
+    "id": 207,
+    "question": "What is the Template Method pattern and when would you use it?",
+    "answer": "Define the skeleton of an algorithm and defer some steps to subclasses."
+  },
+  {
+    "id": 208,
+    "question": "What is the Builder pattern and when would you use it?",
+    "answer": "Separate construction of a complex object from its representation so the same construction can create different representations."
+  },
+  {
+    "id": 209,
+    "question": "What is the Facade pattern and when would you use it?",
+    "answer": "Provide a unified, simplified interface to a set of interfaces in a subsystem."
+  },
+  {
+    "id": 210,
+    "question": "What is the Flyweight pattern and when would you use it?",
+    "answer": "Use sharing to support large numbers of fine‑grained objects efficiently; separate intrinsic and extrinsic state."
+  },
+  {
+    "id": 211,
+    "question": "What is the Bridge pattern and when would you use it?",
+    "answer": "Decouple an abstraction from its implementation so they can vary independently."
+  },
+  {
+    "id": 212,
+    "question": "What is the Prototype pattern and when would you use it?",
+    "answer": "Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype."
+  },
+  {
+    "id": 213,
+    "question": "What is the difference between @staticmethod and @classmethod in Python OOP?",
+    "answer": "@staticmethod is a namespaced function that does not receive the class or instance. @classmethod receives the class (cls) and is useful for alternate constructors or class‑level behavior. Neither can access instance state unless given an instance."
+  },
+  {
+    "id": 214,
+    "question": "How does Python support encapsulation without true private fields?",
+    "answer": "Python uses naming conventions: _single for internal use and __double for name‑mangling to avoid accidental override. True privacy relies on convention; enforce via properties and modules, not only names."
+  },
+  {
+    "id": 215,
+    "question": "Explain Python's dataclasses and how they help OO design.",
+    "answer": "dataclasses auto‑generate __init__, __repr__, __eq__, and more for simple data holders; with frozen=True they become immutable value objects. They reduce boilerplate and clarify intent."
+  },
+  {
+    "id": 216,
+    "question": "Why should equals and hashCode be overridden together in Java?",
+    "answer": "Because the general contract of hash‑based collections requires that equal objects have equal hash codes. Violating this breaks lookups in HashMap/HashSet and leads to subtle bugs."
+  },
+  {
+    "id": 217,
+    "question": "What are sealed classes in Java and why use them?",
+    "answer": "Sealed classes/interfaces limit which classes can extend or implement them, improving exhaustiveness and enabling safer polymorphic handling (e.g., switch expressions)."
+  },
+  {
+    "id": 218,
+    "question": "What is the difference between interface default methods and abstract classes?",
+    "answer": "Default methods add behavior to interfaces, but interfaces can't hold state (beyond constants). Abstract classes can hold state and constructors. Favor interfaces for capabilities; abstract classes for shared partial implementation."
+  },
+  {
+    "id": 219,
+    "question": "Why must base classes in C++ have virtual destructors?",
+    "answer": "Deleting a derived object through a base pointer without a virtual destructor is undefined behavior. A virtual destructor ensures the derived destructor runs and resources are released."
+  },
+  {
+    "id": 220,
+    "question": "Explain the Rule of Five and when to use it.",
+    "answer": "If a type manages resources, define or delete: destructor, copy ctor, copy assignment, move ctor, move assignment. If default semantics suffice, prefer Rule of Zero."
+  },
+  {
+    "id": 221,
+    "question": "What is slicing in C++ OOP and how to avoid it?",
+    "answer": "Object slicing occurs when a derived object is copied into a base object by value, losing derived state. Avoid by using references/pointers to base or making types non‑copyable."
+  }
+]
