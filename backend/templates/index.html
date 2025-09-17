@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Interview Assistant | RAG-Powered Q&A</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <h1>CS Interview Assistant</h1>
+                </div>
+                <div class="header-info">
+                    <span class="status-indicator" id="status-indicator">
+                        <i class="fas fa-circle"></i> Ready
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <h3><i class="fas fa-tags"></i> Topics</h3>
+                    <div class="topics-list" id="topics-list">
+                        <div class="topic-card" data-topic="DBMS">
+                            <div class="topic-header">
+                                <i class="fas fa-database"></i>
+                                <span>Database Management Systems</span>
+                            </div>
+                            <div class="subtopics">
+                                <span class="subtopic">Normal Forms</span>
+                                <span class="subtopic">ER Modeling</span>
+                                <span class="subtopic">Joins</span>
+                                <span class="subtopic">ACID Properties</span>
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card" data-topic="OOPs">
+                            <div class="topic-header">
+                                <i class="fas fa-code"></i>
+                                <span>Object-Oriented Programming</span>
+                            </div>
+                            <div class="subtopics">
+                                <span class="subtopic">Inheritance</span>
+                                <span class="subtopic">Polymorphism</span>
+                                <span class="subtopic">Encapsulation</span>
+                                <span class="subtopic">Abstraction</span>
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card" data-topic="OS">
+                            <div class="topic-header">
+                                <i class="fas fa-cogs"></i>
+                                <span>Operating Systems</span>
+                            </div>
+                            <div class="subtopics">
+                                <span class="subtopic">Process Management</span>
+                                <span class="subtopic">Memory Management</span>
+                                <span class="subtopic">Synchronization</span>
+                                <span class="subtopic">File Systems</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-questions">
+                        <h4><i class="fas fa-lightbulb"></i> Quick Questions</h4>
+                        <div class="question-suggestions">
+                            <button class="suggestion-btn" data-question="What is normalization in DBMS?">
+                                What is normalization?
+                            </button>
+                            <button class="suggestion-btn" data-question="Explain polymorphism in OOP">
+                                Explain polymorphism
+                            </button>
+                            <button class="suggestion-btn" data-question="What is deadlock in operating systems?">
+                                What is deadlock?
+                            </button>
+                            <button class="suggestion-btn" data-question="Difference between process and thread">
+                                Process vs Thread
+                            </button>
+                            <button class="suggestion-btn" data-question="What are ACID properties in DBMS?">
+                                ACID Properties
+                            </button>
+                            <button class="suggestion-btn" data-question="What is virtual memory?">
+                                Virtual Memory
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Area -->
+            <section class="chat-section">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="welcome-message">
+                            <div class="welcome-content">
+                                <i class="fas fa-robot"></i>
+                                <h2>Welcome to CS Interview Assistant!</h2>
+                                <p>Ask me anything about Database Management Systems (DBMS), Object-Oriented Programming (OOPs), or Operating Systems (OS).</p>
+                                <div class="features">
+                                    <span class="feature"><i class="fas fa-check"></i> AI-Powered Responses</span>
+                                    <span class="feature"><i class="fas fa-check"></i> Topic Detection</span>
+                                    <span class="feature"><i class="fas fa-check"></i> Source References</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <div class="chat-input-wrapper">
+                            <input type="text" 
+                                   id="question-input" 
+                                   placeholder="Ask a question about DBMS, OOPs, or OS..."
+                                   autocomplete="off">
+                            <button id="send-button" class="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="input-info">
+                            <span class="typing-indicator" id="typing-indicator" style="display: none;">
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                <i class="fas fa-circle"></i>
+                                AI is thinking...
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Processing your question...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

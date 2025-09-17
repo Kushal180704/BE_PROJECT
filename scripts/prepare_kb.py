@@ -42,17 +42,17 @@ def load_json_files() -> List[Dict[str, Any]]:
     for fp in RAW_DIR.glob("*.json"):
         with open(fp, "r", encoding="utf-8") as f:
             data = json.load(f)
-            if isinstance(data, dict):
-                # in case the file is a dict with a key holding the array
-                # try to find first list value
-                for v in data.values():
-                    if isinstance(v, list):
-                        data = v
-                        break
-            if not isinstance(data, list):
-                raise ValueError(f"{fp.name} must be a JSON array")
-            for obj in data:
-                items.append(obj)
+        if isinstance(data, dict):
+            # in case the file is a dict with a key holding the array
+            # try to find first list value
+            for v in data.values():
+                if isinstance(v, list):
+                    data = v
+                    break
+        if not isinstance(data, list):
+            raise ValueError(f"{fp.name} must be a JSON array")
+        for obj in data:
+            items.append(obj)
     return items
 
 def load_or_default_taxonomy() -> Dict[str, Any]:
@@ -86,11 +86,14 @@ def difficulty_heuristic(q: str, a: str) -> str:
         "serializable", "2pl", "mvcc", "query optimization", "distributed", "cap", "sharding",
         "write-ahead logging", "recovery", "b+ tree", "isolation level",
         "multiple inheritance", "mro", "smart pointers", "raii", "virtual functions",
-        "pimpl", "copy elision", "serialization", "thread safety"
+        "pimpl", "copy elision", "serialization", "thread safety",
+        "deadlock avoidance", "banker's algorithm", "context switching", "virtual memory",
+        "page replacement", "synchronization primitives", "race conditions", "critical sections"
     ])
     easy_hits = any(x in t for x in [
         "define", "what is", "basic", "1nf", "primary key",
-        "object", "class", "encapsulation", "inheritance", "polymorphism", "abstraction"
+        "object", "class", "encapsulation", "inheritance", "polymorphism", "abstraction",
+        "operating system", "process", "thread", "file system", "memory", "cpu scheduling"
     ])
     if hard_hits and not easy_hits:
         return "Advanced"
@@ -175,7 +178,7 @@ def main():
     with OUT_KG_EDGES_CSV.open("w", encoding="utf-8") as f:
         f.write("child,parent,relation\n")
         for child, parent, rel in edges:
-            f.write(f"\"{child}\",\"{parent}\",\"{rel}\"\n")
+            f.write(f'"{child}","{parent}","{rel}"\n')
 
     print(f"✅ Cleaned Q&A: {OUT_CLEAN_JSON}")
     print(f"✅ Chunks for embedding: {OUT_CHUNKS_JSONL}")
