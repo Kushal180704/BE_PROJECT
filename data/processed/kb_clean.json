@@ -32,7 +32,7 @@
     "answer": "DBMS offers significant advantages over file processing systems: 1. **Reduced Data Redundancy:** Data is stored in one place, minimizing duplication. 2. **Improved Data Integrity:** Rules and constraints ensure data is accurate and consistent. 3. **Enhanced Data Sharing and Security:** Multiple users can access data concurrently with controlled permissions. 4. **Data Independence:** Application programs are insulated from changes in how the data is stored. 5. **Powerful Data Retrieval:** SQL provides a efficient, standardized language for complex queries. 6. **Backup and Recovery:** Built-in mechanisms protect data from system failures.",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Advanced",
+    "difficulty": "Intermediate",
     "source": null
   },
   {
@@ -41,7 +41,7 @@
     "answer": "File processing systems suffered from several critical flaws: 1. **Data Redundancy and Inconsistency:** The same data was often stored in multiple files, leading to wasted space and potential inconsistencies. 2. **Difficulty in Accessing Data:** Writing new queries to extract specific data was often complex and required deep knowledge of the file structure. 3. **Data Isolation:** Data was scattered across various files in different formats, making it hard to get a unified view. 4. **Integrity Problems:** It was hard to apply and enforce business rules (e.g., 'account balance > 0') across the entire system. 5. **Atomicity Problems:** Difficulty ensuring operations like bank transfers completed entirely or not at all. 6. **Concurrent Access Anomalies:** Uncontrolled simultaneous access could lead to incorrect data updates.",
     "topic": "DBMS",
     "subtopic": "DML",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -536,7 +536,7 @@
     "answer": "After a system crash, the DBMS goes through a recovery process with distinct phases: 1. **Analysis Phase:** The transaction log is scanned to identify the state of all transactions at the time of the crash. It determines which transactions need to be redone (committed) and which need to be undone (not committed). 2. **Redo Phase:** This phase reapplies all the updates of committed transactions. It starts from the oldest log record of a transaction that was not yet written to disk at the time of the crash and moves forward, ensuring all committed changes are durable. 3. **Undo Phase:** This phase rolls back (reverses) the updates of any transactions that were active but not committed at the time of the crash, restoring the database to a consistent state.",
     "topic": "DBMS",
     "subtopic": "DML",
-    "difficulty": "Advanced",
+    "difficulty": "Intermediate",
     "source": null
   },
   {
@@ -617,7 +617,7 @@
     "answer": "A full-featured RDBMS is composed of several integrated subsystems that work together: 1. **Query Processor:** Handles parsing, optimization, and execution of queries. 2. **Storage Manager:** Manages disk space, data files, and data structures like indexes. 3. **Transaction Manager:** Ensures ACID properties (Atomicity, Consistency, Isolation, Durability). 4. **Buffer Manager:** Handles the transfer of data between disk and main memory. 5. **Lock Manager:** Controls concurrent access to data items. 6. **Log Manager:** Records all changes for recovery and auditing. 7. **Security and Authorization Subsystem:** Manages users, roles, and permissions. 8. **Network Communication Subsystem:** Handles communication with database clients.",
     "topic": "DBMS",
     "subtopic": "Indexing",
-    "difficulty": "Advanced",
+    "difficulty": "Intermediate",
     "source": null
   },
   {
@@ -626,7 +626,7 @@
     "answer": "The data dictionary is exclusively managed and maintained by the RDBMS kernel itself. It is stored as a set of special system tables within the database. The kernel is the only software component with the privilege to directly modify these tables. When a user issues a DDL statement (like `CREATE TABLE`), the kernel's DDL interpreter processes the command and updates the corresponding metadata entries in the data dictionary tables. All other components of the RDBMS and all user queries constantly read from the data dictionary to function correctly.",
     "topic": "DBMS",
     "subtopic": "DDL",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -644,7 +644,7 @@
     "answer": "The primary and standard method to communicate with an RDBMS is through the Structured Query Language (SQL). Applications and users send SQL statements to the DBMS. These statements can be sent through: 1. **Command-Line Interfaces:** Tools like `mysql` or `psql`. 2. **Graphical User Interfaces (GUIs):** Applications like MySQL Workbench or DBeaver. 3. **Application Programming Interfaces (APIs):** Code in languages like Python, Java, or PHP uses drivers (e.g., JDBC, ODBC) to connect to the database and send SQL commands. The DBMS receives the SQL, processes it, and returns the result.",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -653,7 +653,7 @@
     "answer": "SQL is a declarative language, whereas conventional languages like Java or Python are imperative (procedural). This is the key difference: * **SQL (Declarative):** You specify *what* data you want, but not *how* to get it. You describe the desired result set, and the DBMS's query optimizer figures out the most efficient algorithm, execution plan, and steps to retrieve it. * **Conventional Languages (Imperative):** You provide explicit, step-by-step instructions for the computer to follow to achieve a result. You control the flow and logic (loops, conditionals) in detail. SQL is also set-oriented, processing groups of records, while procedural languages typically process one record at a time.",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1085,7 +1085,7 @@
     "answer": "Database redesign is a critical maintenance activity driven by two primary factors: 1. **Correcting Initial Design Flaws:** Mistakes, oversights, or misunderstandings of requirements during the initial design phase are often discovered only after the system is in use. Redesign is needed to fix these issues, such as poor performance due to lack of indexes or data anomalies from insufficient normalization. 2. **Adapting to Evolving Requirements:** Businesses and their processes change over time. New features, regulations, or business models can necessitate changes to the database structure to store new data or support new types of queries. A database must evolve to remain useful and relevant.",
     "topic": "DBMS",
     "subtopic": "Normal Forms",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1175,7 +1175,7 @@
     "answer": "There are three primary methods to create an Oracle database: 1. **Using the Database Configuration Assistant (DBCA):** This is a graphical user interface (GUI) tool that guides the DBA through the creation process with easy-to-follow steps. It is the simplest and most common method. 2. **Using Oracle-Managed Scripts:** This involves running prepared SQL scripts provided by Oracle. It offers more control than DBCA but is more complex. 3. **Manual Creation with the CREATE DATABASE Statement:** This is an advanced method where the DBA manually issues SQL commands to create the database. It provides the ultimate level of control but requires deep knowledge of the Oracle architecture and is error-prone.",
     "topic": "DBMS",
     "subtopic": "NoSQL",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1256,7 +1256,7 @@
     "answer": "SQL Server supports two main types of triggers based on their timing and purpose: 1. **AFTER Triggers (FOR Triggers):** These fire *after* the triggering DML action (`INSERT`, `UPDATE`, `DELETE`) has been processed. They are used for auditing, enforcing business rules, or creating follow-up actions. A table can have multiple AFTER triggers for each action. 2. **INSTEAD OF Triggers:** These fire *in place of* the triggering action. The original DML operation is not performed; instead, the code within the INSTEAD OF trigger is executed. They are often used to allow updates to complex views that would otherwise be non-updatable. A view or table can have at most one INSTEAD OF trigger per triggering action. SQL Server does not have built-in BEFORE triggers.",
     "topic": "DBMS",
     "subtopic": "DML",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1454,7 +1454,7 @@
     "answer": "Understanding the limitations of traditional file processing systems is crucial for two reasons: 1. **Legacy Systems:** Many businesses still rely on legacy applications built on file processing systems. DBAs and developers need to understand them to maintain, interface with, or migrate these systems. 2. **Appreciating DBMS Benefits:** Studying the problems of file processing (data redundancy, inconsistency, program-data dependence) provides a deep appreciation for the features and benefits of modern DBMS. It answers the 'why' behind database principles like data independence, data integrity, and non-redundancy, reinforcing their importance in good design.",
     "topic": "DBMS",
     "subtopic": "ACID",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1463,7 +1463,7 @@
     "answer": "File processing systems suffer from several critical drawbacks: 1. **Data Redundancy and Inconsistency:** The same data is often stored in multiple files, leading to duplication, wasted storage, and potential inconsistencies. 2. **Difficulty in Accessing Data:** Writing ad-hoc queries is hard; new programs need to be written for each new task. 3. **Data Isolation:** Data is scattered in various files, making it difficult to get a unified view. 4. **Integrity Problems:** It is hard to apply consistency constraints (e.g., account balance > 0) across multiple files. 5. **Atomicity Problems:** Ensuring a transaction (like a fund transfer) completes entirely or not at all is difficult to program. 6. **Concurrent Access Anomalies:** Uncontrolled multi-user access can lead to incorrect data.",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1490,7 +1490,7 @@
     "answer": "The Zachman Framework outlines these five fundamental components that must be aligned for a successful system: 1. **Data (What):** The entities and information the business uses and needs. 2. **Function (How):** The business processes and functions that transform the data. 3. **Network (Where):** The geographical distribution of the business and its systems. 4. **People (Who):** The people involved--the organizational units and actors. 5. **Time (When):** The timing and business cycles that trigger events and processes. 6. **Motivation (Why):** The business goals, strategies, and rules that govern the other components. (Note: Some versions list 6, including Motivation.)",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1508,7 +1508,7 @@
     "answer": "Packaged data models are pre-built, generic data models that can be purchased and customized: 1. **Universal Data Models:** Very generic models that represent common business functions found in almost every organization, such as 'Party' (people and organizations), 'Product', 'Order', 'Invoice', and 'Shipment'. They provide a robust starting point. 2. **Industry-Specific Data Models:** Models tailored to the specific needs, terminology, and processes of a particular industry, such as telecommunications, healthcare, insurance, or retail. They incorporate the industry's standard best practices and regulatory requirements.",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1526,7 +1526,7 @@
     "answer": "Database development activities run in parallel with the general SDLC phases: 1. **Enterprise Modeling (Planning):** Analyzing the current data processing environment. 2. **Conceptual Data Modeling (Analysis):** Creating an ERD to identify entities, relationships, and attributes based on business requirements. 3. **Logical Database Design (Design):** Transforming the conceptual model into a logical schema (e.g., relational tables), normalizing the design, and defining integrity rules. 4. **Physical Database Design (Design):** Mapping the logical design to a specific DBMS, defining storage structures, indexing, and partitioning for performance. 5. **Database Implementation (Implementation):** Creating the database, loading data, and implementing application programs. 6. **Database Maintenance (Maintenance):** Tuning performance, fixing bugs, and adapting the schema to new requirements.",
     "topic": "DBMS",
     "subtopic": "ER Modeling",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1724,7 +1724,7 @@
     "answer": "Database performance tuning involves multiple strategies: 1. **Query Optimization:** Rewriting application SQL to be more efficient (e.g., avoiding `SELECT *`, using joins instead of subqueries). 2. **Indexing:** Adding appropriate indexes on columns used in `WHERE`, `JOIN`, `ORDER BY`, and `GROUP BY` clauses. 3. **Database Design Adjustment:** Considering denormalization for critical, slow queries. 4. **Hardware Optimization:** Adding more RAM (for buffer cache), using faster disks (SSDs), or adding more CPUs. 5. **Configuration Tuning:** Adjusting DBMS configuration parameters (e.g., memory allocation, parallelism settings). 6. **Statistics Maintenance:** Ensuring the DBMS's optimizer has up-to-date statistics on table sizes and data distribution to choose the best execution plans.",
     "topic": "DBMS",
     "subtopic": "Normal Forms",
-    "difficulty": "Advanced",
+    "difficulty": "Intermediate",
     "source": null
   },
   {
@@ -1751,7 +1751,7 @@
     "answer": "While standardization is largely beneficial, it has some drawbacks: 1. **Complexity:** The SQL standard is vast and complex, making full compliance difficult for vendors and mastery difficult for developers. 2. **Vendor Extensions:** DBMS vendors often add proprietary extensions to standard SQL to provide additional functionality. This can hurt portability between different database systems. 3. **Pace of Innovation:** The formal standards process can be slow, sometimes lagging behind the innovative features introduced by individual vendors. 4. **'Lowest Common Denominator' Effect:** To ensure portability, developers might avoid using powerful vendor-specific features, potentially resulting in less efficient or more complex code.",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1886,7 +1886,7 @@
     "answer": "Website security involves protecting all components of a web application from threats. Primary concerns include: 1. **Unauthorized Data Access:** Preventing hackers from accessing sensitive data in the database (e.g., through SQL Injection attacks). 2. **Data Integrity:** Ensuring data cannot be maliciously altered. 3. **Availability:** Protecting against Denial-of-Service (DoS) attacks that make the site unavailable to users. 4. **Authentication & Authorization:** Ensuring users are who they claim to be (authentication) and can only access data and functions they are permitted to (authorization). 5. **Client-Side Attacks:** Protecting users from cross-site scripting (XSS) and other attacks launched from the website. Security must be addressed at every level: network, operating system, web server, application code, and database.",
     "topic": "DBMS",
     "subtopic": "Distributed Databases",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1904,7 +1904,7 @@
     "answer": "Operational systems (OLTP - Online Transaction Processing) and informational systems (OLAP - Online Analytical Processing) are separated because they have fundamentally different and conflicting purposes and characteristics: | Aspect | Operational System (OLTP) | Informational System (OLAP) |\n| :--- | :--- | :--- |\n| **Primary Purpose** | Run the day-to-day business. | Support decision-making and analysis. |\n| **Data Content** | Current, detailed data. | Historical, summarized, and consolidated data. |\n| **Data Model** | Highly normalized for integrity and update speed. | Denormalized (star/snowflake schema) for query speed. |\n| **Access Pattern** | Many small, quick read/write transactions. | Few, but complex and long-running, read-only queries. |\n| **Users** | Clerks, customers, administrators. | Managers, analysts, data scientists. |\n| Separating them prevents analytical queries from slowing down critical transaction processing and allows each system to be optimized for its specific workload.",
     "topic": "DBMS",
     "subtopic": "DML",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1922,7 +1922,7 @@
     "answer": "An information gap exists when decision-makers lack the timely, integrated, and relevant information they need. This gap is caused by two main factors: 1. **Data Silos:** Operational systems are typically built independently for specific functions (e.g., sales, inventory, HR). This leads to data being stored in isolated 'silos' with different structures and meanings, making it difficult to get a unified, enterprise-wide view. 2. **Differing Processing Needs:** The primary design goal of operational systems is to support high-volume transaction processing, not complex decision-support queries. Running analytical queries directly on operational systems would degrade their performance, creating a technical barrier to accessing information. Data warehouses and data marts are built specifically to bridge this gap.",
     "topic": "DBMS",
     "subtopic": "ACID",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -1976,7 +1976,7 @@
     "answer": "Database performance is influenced by factors across the entire system stack: 1. **Database Design:** Poorly designed schemas (lack of normalization, missing indexes, inefficient data types) are a primary cause of performance issues. 2. **Application Design:** Inefficient SQL queries (e.g., `SELECT *`, unnecessary loops, Cartesian products) and poor application logic place unnecessary load on the database. 3. **DBMS Configuration:** Improperly set memory allocation, cache sizes, and parallelism parameters can cripple performance. 4. **Hardware Resources:** Insufficient CPU power, RAM (leading to excessive disk I/O), and slow disk subsystems are common bottlenecks. 5. **Concurrency:** High levels of user contention for the same data can lead to locking and blocking, slowing down all transactions. Tuning requires a holistic approach addressing all these areas.",
     "topic": "DBMS",
     "subtopic": "Normal Forms",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -2066,7 +2066,7 @@
     "answer": "The main characteristics and benefits include: 1) Self-describing nature - contains both data and metadata, 2) Insulation between program and data (program-data independence), 3) Support for multiple views of data, 4) Sharing of data and multiuser system support, 5) Control of data redundancy, 6) Data sharing capabilities, 7) Enforcement of integrity constraints, 8) Restriction of unauthorized access, 9) Data independence, 10) Transaction processing capabilities, and 11) Backup and recovery facilities.",
     "topic": "DBMS",
     "subtopic": "ACID",
-    "difficulty": "Advanced",
+    "difficulty": "Intermediate",
     "source": null
   },
   {
@@ -3173,7 +3173,7 @@
     "answer": "Use design patterns: singleton (with caveats) to improve design quality: Ensures a single instance. Often overused; prefer DI. If used, make it lazy, thread-safe, and testable.\nIt reduces defects by clarifying responsibilities and contracts.",
     "topic": "OOPs",
     "subtopic": "Fundamentals",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -3182,7 +3182,7 @@
     "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade-offs. Remember: Ensures a single instance. Often overused; prefer DI. If used, make it lazy, thread-safe, and testable.",
     "topic": "OOPs",
     "subtopic": "Fundamentals",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -3875,7 +3875,7 @@
     "answer": "Use thread safety & confinement to improve design quality: Prefer immutability, confinement (thread-local ownership), and thread-safe designs. Guard shared mutable state with synchronization or lock-free structures.\nIt reduces defects by clarifying responsibilities and contracts.",
     "topic": "DBMS",
     "subtopic": "Locks",
-    "difficulty": "Advanced",
+    "difficulty": "Intermediate",
     "source": null
   },
   {
@@ -3884,7 +3884,7 @@
     "answer": "Common pitfalls: overuse, confusing it with unrelated concepts, and ignoring trade-offs. Remember: Prefer immutability, confinement (thread-local ownership), and thread-safe designs. Guard shared mutable state with synchronization or lock-free structures.",
     "topic": "DBMS",
     "subtopic": "Locks",
-    "difficulty": "Advanced",
+    "difficulty": "Intermediate",
     "source": null
   },
   {
@@ -4298,7 +4298,7 @@
     "answer": "Process management, memory management, device management, storage management, and user interface.",
     "topic": "OOPs",
     "subtopic": "Abstraction",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4316,7 +4316,7 @@
     "answer": "New, Ready, Running, Waiting, and Terminated.",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4325,7 +4325,7 @@
     "answer": "Process scheduling is the method by which an OS decides which process gets to use the CPU.",
     "topic": "OS",
     "subtopic": "Process Management",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4379,7 +4379,7 @@
     "answer": "A deadlock is a situation where a set of processes is blocked because each process is holding a resource and waiting for another resource held by some other process.",
     "topic": "DBMS",
     "subtopic": "Locks",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4451,7 +4451,7 @@
     "answer": "A CPU scheduling algorithm where each process gets a small unit of CPU time cyclically.",
     "topic": "OS",
     "subtopic": "Process Management",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4496,7 +4496,7 @@
     "answer": "Technique to keep multiple processes in main memory for better CPU utilization.",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4568,7 +4568,7 @@
     "answer": "PCB is a data structure used by the OS to store information about a process, including process state, program counter, CPU registers, and memory limits.",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4586,7 +4586,7 @@
     "answer": "Long-term, Short-term, and Medium-term schedulers managing process admission, CPU allocation, and swapping respectively.",
     "topic": "OS",
     "subtopic": "Process Management",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4631,7 +4631,7 @@
     "answer": "A deadlock avoidance algorithm that tests for safe resource allocation states.",
     "topic": "DBMS",
     "subtopic": "Locks",
-    "difficulty": "Beginner",
+    "difficulty": "Intermediate",
     "source": null
   },
   {
@@ -4658,7 +4658,7 @@
     "answer": "Soft real-time systems allow some deadline misses, whereas hard real-time systems require strict deadline adherence.",
     "topic": "OS",
     "subtopic": "General OS Concepts",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4685,7 +4685,7 @@
     "answer": "A file descriptor is an integer handle used by a process to access files or I/O resources.",
     "topic": "OS",
     "subtopic": "Process Management",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4694,7 +4694,7 @@
     "answer": "Swap space is disk space used to extend virtual memory by swapping pages in and out of physical memory.",
     "topic": "OS",
     "subtopic": "Memory Management",
-    "difficulty": "Beginner",
+    "difficulty": "Intermediate",
     "source": null
   },
   {
@@ -4739,7 +4739,7 @@
     "answer": "An operating system ensures a computer system performs well by managing computational activities and provides an environment for the development and execution of programs.",
     "topic": "OS",
     "subtopic": "General OS Concepts",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4757,7 +4757,7 @@
     "answer": "Multiprocessor systems increase throughput, provide resource sharing for cost savings, and enhance overall reliability.",
     "topic": "OS",
     "subtopic": "Process Management",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4784,7 +4784,7 @@
     "answer": "Virtual memory is a memory management technique that allows processes to execute outside of physical memory, useful if a program can't fit entirely into physical memory.",
     "topic": "OS",
     "subtopic": "Process Management",
-    "difficulty": "Beginner",
+    "difficulty": "Intermediate",
     "source": null
   },
   {
@@ -4847,7 +4847,7 @@
     "answer": "Multithreaded programming provides increased responsiveness, resource sharing, economic efficiency, and supports multiprocessing architecture.",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4856,7 +4856,7 @@
     "answer": "FCFS (First-come, first-served) is a CPU scheduling algorithm where the first process requesting the CPU gets it, managed by a FIFO queue.",
     "topic": "OS",
     "subtopic": "Process Management",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4892,7 +4892,7 @@
     "answer": "Banker's algorithm is a deadlock-avoidance method that ensures a system never allocates resources in a way that prevents satisfying all clients' needs.",
     "topic": "DBMS",
     "subtopic": "Locks",
-    "difficulty": "Intermediate",
+    "difficulty": "Advanced",
     "source": null
   },
   {
@@ -4910,7 +4910,7 @@
     "answer": "A logical address is generated by the CPU; a physical address is seen by the memory unit.",
     "topic": "OS",
     "subtopic": "Memory Management",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4919,7 +4919,7 @@
     "answer": "With dynamic loading, routines are loaded only when called, which is useful for handling large code needed infrequently, thus saving memory.",
     "topic": "OS",
     "subtopic": "Memory Management",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4928,7 +4928,7 @@
     "answer": "Overlays allow a process to be larger than its allocated memory by keeping only needed instructions and data in memory at a time.",
     "topic": "OS",
     "subtopic": "Process Management",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4955,7 +4955,7 @@
     "answer": "Swapping allows processes to be copied in and out of memory, enabling more processes to run than the memory could otherwise hold.",
     "topic": "OS",
     "subtopic": "Process Management",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -4964,7 +4964,7 @@
     "answer": "Process states are: New (being created), Running (executing), Waiting (waiting for event), Ready (waiting for processor), Terminate (finished).",
     "topic": "DBMS",
     "subtopic": "Aggregations",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -5009,7 +5009,7 @@
     "answer": "Attributes include file naming, identifiers, supported file types, location, size, and protection levels.",
     "topic": "DBMS",
     "subtopic": "ER Modeling",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -5045,7 +5045,7 @@
     "answer": "Types include Accumulators, Index Registers, Stack Pointer, and General Purpose Registers.",
     "topic": "DBMS",
     "subtopic": "Indexing",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -5108,7 +5108,7 @@
     "answer": "Interrupts are hardware signals notifying the CPU to take action, received and processed by an interrupt handler.",
     "topic": "OS",
     "subtopic": "Process Management",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {
@@ -5135,7 +5135,7 @@
     "answer": "Partitioning and formatting set up the drive environment, allocate space, set drive names, and create the file system required for installation.",
     "topic": "OS",
     "subtopic": "General OS Concepts",
-    "difficulty": "Intermediate",
+    "difficulty": "Beginner",
     "source": null
   },
   {

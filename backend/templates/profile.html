@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - CS Interview Assistant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .main-content {
+            padding: 2rem;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.3);
+        }
+
+        .profile-header h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-header p {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .profile-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #f39c12;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-title i {
+            color: #f39c12;
+        }
+
+        .edit-btn {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: #fff;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #f39c12;
+            box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+        }
+
+        .skills-container {
+            margin-top: 1rem;
+        }
+
+        .skills-input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .add-skill-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-skill-btn:hover {
+            background: #229954;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-remove {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .skill-remove:hover {
+            opacity: 1;
+        }
+
+        .info-display {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #f39c12;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            color: #2c3e50;
+            font-size: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-top: 3px solid #f39c12;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f39c12;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .profile-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .profile-header h2 {
+                font-size: 1.7rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-user-cog"></i>
+                <h1>Profile Management</h1>
+            </div>
+            <a href="/dashboard" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </header>
+
+        <main class="main-content">
+            <section class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2>{{ user.full_name or user.username }}</h2>
+                <p>Member since {{ user.created_at.strftime('%B %Y') }}</p>
+            </section>
+
+            <div id="message" class="message"></div>
+
+            <section class="profile-content">
+                <!-- Personal Information -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-user"></i>
+                            Personal Information
+                        </h3>
+                        <button class="edit-btn" id="edit-personal-btn">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                    </div>
+
+                    <div id="personal-display">
+                        <div class="info-item">
+                            <div class="info-label">Full Name</div>
+                            <div class="info-value">{{ user.full_name or 'Not provided' }}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Email</div>
+                            <div class="info-value">{{ user.email }}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Phone</div>
+                            <div class="info-value">{{ user.phone or 'Not provided' }}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Experience</div>
+                            <div class="info-value">{{ user.experience_years or 0 }} years</div>
+                        </div>
+                    </div>
+
+                    <div id="personal-form" style="display: none;">
+                        <div class="form-group">
+                            <label for="full_name">Full Name</label>
+                            <input type="text" id="full_name" class="form-input" value="{{ user.full_name or '' }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-input" value="{{ user.phone or '' }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="experience_years">Years of Experience</label>
+                            <input type="number" id="experience_years" class="form-input" 
+                                   value="{{ user.experience_years or 0 }}" min="0" max="50">
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn" id="save-personal-btn">
+                                <span id="save-personal-text">Save Changes</span>
+                                <span id="save-personal-loading" class="loading" style="display: none;"></span>
+                            </button>
+                            <button class="btn btn-secondary" id="cancel-personal-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills & Expertise -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-cogs"></i>
+                            Skills & Expertise
+                        </h3>
+                        <button class="edit-btn" id="edit-skills-btn">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                    </div>
+
+                    <div id="skills-display">
+                        <div class="skills-list" id="display-skills-list">
+                            {% if user.skills %}
+                                {% set skills = user.skills|from_json %}
+                            {% else %}
+                                {% set skills = [] %}
+                            {% endif %}
+                            {% if skills %}
+                                {% for skill in skills %}
+                                    <span class="skill-tag">{{ skill }}</span>
+                                {% endfor %}
+                            {% else %}
+                                <p style="color: #6c757d; font-style: italic;">No skills added yet. Upload your resume or add them manually.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div id="skills-form" style="display: none;">
+                        <div class="skills-input-group">
+                            <input type="text" id="new-skill-input" class="form-input" 
+                                   placeholder="Enter a skill (e.g., Python, React)">
+                            <button class="add-skill-btn" id="add-skill-btn">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                        <div class="skills-list" id="edit-skills-list"></div>
+                        <div class="form-actions">
+                            <button class="btn" id="save-skills-btn">
+                                <span id="save-skills-text">Save Skills</span>
+                                <span id="save-skills-loading" class="loading" style="display: none;"></span>
+                            </button>
+                            <button class="btn btn-secondary" id="cancel-skills-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="sessions-stat">0</div>
+                    <div class="stat-label">Practice Sessions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="resume-stat">{{ '✓' if user.resume_filename else '✗' }}</div>
+                    <div class="stat-label">Resume Uploaded</div>
+                </div>
+                <div class="stat-card">
+                    {% if user.skills %}
+                        {% set skills = user.skills|from_json %}
+                    {% else %}
+                        {% set skills = [] %}
+                    {% endif %}
+                    <div class="stat-number" id="skills-stat">{{ skills|length }}</div>
+                    <div class="stat-label">Skills Listed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="days-stat">1</div>
+                    <div class="stat-label">Days Active</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Assign skills data from Jinja2 to a JS variable using a script tag -->
+    <script id="initial-skills-data" type="application/json">
+        {{ (user.skills|from_json if user.skills else []) | tojson }}
+    </script>
+    <script>
+        const initialSkills = JSON.parse(document.getElementById('initial-skills-data').textContent);
+
+        class ProfileManager {
+            constructor() {
+                // Initialize skills from user data safely
+                this.skills = Array.isArray(initialSkills) ? initialSkills : [];
+                
+                this.bindEvents();
+                this.updateSkillsCount();
+            }
+
+            bindEvents() {
+                // Personal information editing
+                document.getElementById('edit-personal-btn').addEventListener('click', () => this.editPersonalInfo());
+                document.getElementById('save-personal-btn').addEventListener('click', () => this.savePersonalInfo());
+                document.getElementById('cancel-personal-btn').addEventListener('click', () => this.cancelPersonalEdit());
+
+                // Skills editing
+                document.getElementById('edit-skills-btn').addEventListener('click', () => this.editSkills());
+                document.getElementById('save-skills-btn').addEventListener('click', () => this.saveSkills());
+                document.getElementById('cancel-skills-btn').addEventListener('click', () => this.cancelSkillsEdit());
+                document.getElementById('add-skill-btn').addEventListener('click', () => this.addSkill());
+                
+                // Add skill on Enter key
+                document.getElementById('new-skill-input').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.addSkill();
+                    }
+                });
+            }
+
+            editPersonalInfo() {
+                document.getElementById('personal-display').style.display = 'none';
+                document.getElementById('personal-form').style.display = 'block';
+                document.getElementById('edit-personal-btn').style.display = 'none';
+            }
+
+            cancelPersonalEdit() {
+                document.getElementById('personal-display').style.display = 'block';
+                document.getElementById('personal-form').style.display = 'none';
+                document.getElementById('edit-personal-btn').style.display = 'inline-block';
+            }
+
+            async savePersonalInfo() {
+                const saveBtn = document.getElementById('save-personal-btn');
+                const saveText = document.getElementById('save-personal-text');
+                const saveLoading = document.getElementById('save-personal-loading');
+
+                // Show loading state
+                saveBtn.disabled = true;
+                saveText.style.display = 'none';
+                saveLoading.style.display = 'inline-block';
+
+                const data = {
+                    full_name: document.getElementById('full_name').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    experience_years: parseInt(document.getElementById('experience_years').value) || 0
+                };
+
+                try {
+                    const response = await fetch('/update_profile', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        this.showMessage('Profile updated successfully!', 'success');
+                        this.updatePersonalDisplay(data);
+                        this.cancelPersonalEdit();
+                    } else {
+                        this.showMessage(result.message || 'Failed to update profile', 'error');
+                    }
+                } catch (error) {
+                    this.showMessage('Connection error. Please try again.', 'error');
+                } finally {
+                    saveBtn.disabled = false;
+                    saveText.style.display = 'inline';
+                    saveLoading.style.display = 'none';
+                }
+            }
+
+            updatePersonalDisplay(data) {
+                // Update the display with new values
+                const items = document.querySelectorAll('#personal-display .info-value');
+                items[0].textContent = data.full_name || 'Not provided';
+                items[2].textContent = data.phone || 'Not provided';
+                items[3].textContent = `${data.experience_years} years`;
+            }
+
+            editSkills() {
+                document.getElementById('skills-display').style.display = 'none';
+                document.getElementById('skills-form').style.display = 'block';
+                document.getElementById('edit-skills-btn').style.display = 'none';
+                
+                // Populate skills form
+                this.renderSkillsForm();
+            }
+
+            cancelSkillsEdit() {
+                document.getElementById('skills-display').style.display = 'block';
+                document.getElementById('skills-form').style.display = 'none';
+                document.getElementById('edit-skills-btn').style.display = 'inline-block';
+                document.getElementById('new-skill-input').value = '';
+            }
+
+            renderSkillsForm() {
+                const container = document.getElementById('edit-skills-list');
+                container.innerHTML = '';
+                
+                this.skills.forEach((skill, index) => {
+                    const skillTag = document.createElement('span');
+                    skillTag.className = 'skill-tag';
+                    skillTag.innerHTML = `
+                        ${skill}
+                        <button class="skill-remove" onclick="profileManager.removeSkill(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    container.appendChild(skillTag);
+                });
+            }
+
+            addSkill() {
+                const input = document.getElementById('new-skill-input');
+                const skillName = input.value.trim();
+                
+                if (skillName && !this.skills.includes(skillName)) {
+                    this.skills.push(skillName);
+                    this.renderSkillsForm();
+                    input.value = '';
+                }
+            }
+
+            removeSkill(index) {
+                this.skills.splice(index, 1);
+                this.renderSkillsForm();
+            }
+
+            async saveSkills() {
+                const saveBtn = document.getElementById('save-skills-btn');
+                const saveText = document.getElementById('save-skills-text');
+                const saveLoading = document.getElementById('save-skills-loading');
+
+                // Show loading state
+                saveBtn.disabled = true;
+                saveText.style.display = 'none';
+                saveLoading.style.display = 'inline-block';
+
+                try {
+                    const response = await fetch('/update_profile', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ skills: this.skills })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        this.showMessage('Skills updated successfully!', 'success');
+                        this.updateSkillsDisplay();
+                        this.cancelSkillsEdit();
+                        this.updateSkillsCount();
+                    } else {
+                        this.showMessage(result.message || 'Failed to update skills', 'error');
+                    }
+                } catch (error) {
+                    this.showMessage('Connection error. Please try again.', 'error');
+                } finally {
+                    saveBtn.disabled = false;
+                    saveText.style.display = 'inline';
+                    saveLoading.style.display = 'none';
+                }
+            }
+
+            updateSkillsDisplay() {
+                const container = document.getElementById('display-skills-list');
+                container.innerHTML = '';
+                
+                if (this.skills.length === 0) {
+                    container.innerHTML = '<p style="color: #6c757d; font-style: italic;">No skills added yet.</p>';
+                } else {
+                    this.skills.forEach(skill => {
+                        const skillTag = document.createElement('span');
+                        skillTag.className = 'skill-tag';
+                        skillTag.textContent = skill;
+                        container.appendChild(skillTag);
+                    });
+                }
+            }
+
+            updateSkillsCount() {
+                document.getElementById('skills-stat').textContent = this.skills.length;
+            }
+
+            showMessage(text, type) {
+                const message = document.getElementById('message');
+                message.textContent = text;
+                message.className = `message ${type}`;
+                message.style.display = 'block';
+                
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Initialize profile manager
+        const profileManager = new ProfileManager();
+    </script>
+</body>
+</html>
