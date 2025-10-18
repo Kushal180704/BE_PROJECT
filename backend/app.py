@@ -445,6 +445,82 @@ def health_check():
         'rag_initialized': all([model is not None, index is not None, metas is not None, topic_rules is not None])
     })
 
+# ========== NEW ROUTES FOR HR INTERVIEW SESSION MANAGEMENT ==========
+
+@app.route('/api/save_interview_session', methods=['POST'])
+@login_required
+def save_interview_session():
+    """Save interview practice session with questions and answers"""
+    try:
+        data = request.get_json()
+        session_id = data.get('session_id')
+        session_type = data.get('session_type', 'hr')
+        questions = data.get('questions', [])
+        answers = data.get('answers', {})
+        
+        # Create new interview session
+        session = InterviewSession(
+            user_id=current_user.id,
+            session_type=session_type,
+            questions=json.dumps({
+                'questions': questions,
+                'answers': answers
+            }),
+            created_at=datetime.utcnow(),
+            completed_at=datetime.utcnow()
+        )
+        
+        db.session.add(session)
+        db.session.commit()
+        
+        return jsonify({
+            'success': True,
+            'message': 'Session saved successfully',
+            'session_id': session.id
+        })
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/interview_history', methods=['GET'])
+@login_required
+def get_interview_history():
+    """Get user's interview practice session history"""
+    try:
+        session_type = request.args.get('type', None)
+        
+        query = InterviewSession.query.filter_by(user_id=current_user.id)
+        
+        if session_type:
+            query = query.filter_by(session_type=session_type)
+        
+        sessions = query.order_by(InterviewSession.created_at.desc()).limit(20).all()
+        
+        history = []
+        for session in sessions:
+            questions_data = json.loads(session.questions) if session.questions else {}
+            history.append({
+                'id': session.id,
+                'session_type': session.session_type,
+                'created_at': session.created_at.isoformat(),
+                'completed_at': session.completed_at.isoformat() if session.completed_at else None,
+                'questions_count': len(questions_data.get('questions', [])),
+                'score': session.score,
+                'feedback': session.feedback
+            })
+        
+        return jsonify({
+            'success': True,
+            'sessions': history
+        })
+        
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+# ========== END OF NEW ROUTES ==========
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

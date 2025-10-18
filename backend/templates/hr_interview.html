@@ -7,6 +7,24 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-primary: #667eea;
+            --bg-secondary: #764ba2;
+            --bg-white: #ffffff;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --border-color: #e9ecef;
+        }
+
+        [data-theme="dark"] {
+            --bg-white: #1e1e1e;
+            --text-dark: #e0e0e0;
+            --text-light: #a0a0a0;
+            --border-color: #333;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,23 +33,23 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             min-height: 100vh;
-            color: #333;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            background: var(--bg-white);
             min-height: 100vh;
         }
 
         .header {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            background: linear-gradient(135deg, var(--accent-color) 0%, #c0392b 100%);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1.5rem 2rem;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: space-between;
@@ -46,12 +64,31 @@
 
         .logo i {
             font-size: 2rem;
-            color: #fff;
         }
 
         .logo h1 {
             font-size: 1.5rem;
             font-weight: 700;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .back-btn {
@@ -71,31 +108,31 @@
             padding: 2rem;
         }
 
-        .interview-header {
+        .intro-section {
             text-align: center;
-            margin-bottom: 2rem;
+            padding: 2rem 0;
         }
 
-        .interview-header h2 {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
+        .intro-section h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
         }
 
-        .interview-header p {
+        .intro-section p {
+            color: var(--text-light);
             font-size: 1.1rem;
-            color: #6c757d;
         }
 
-        .interview-controls {
+        .action-buttons {
             display: flex;
-            justify-content: center;
             gap: 1rem;
-            margin-bottom: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
         }
 
         .btn {
-            padding: 0.8rem 1.5rem;
+            padding: 1rem 2rem;
             border: none;
             border-radius: 10px;
             font-size: 1rem;
@@ -108,7 +145,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            background: linear-gradient(135deg, var(--accent-color), #c0392b);
             color: white;
         }
 
@@ -126,60 +163,47 @@
             background: #5a6268;
         }
 
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
+        .questions-section {
+            display: none;
+            margin-top: 2rem;
         }
 
         .question-card {
-            background: white;
+            background: var(--bg-white);
+            border: 2px solid var(--border-color);
             border-radius: 15px;
             padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
-            border-left: 5px solid #e74c3c;
-            display: none;
-        }
-
-        .question-card.active {
-            display: block;
-            animation: fadeIn 0.3s ease-in;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .question-header {
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .question-number {
-            background: #e74c3c;
+            background: var(--accent-color);
             color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            margin-right: 1rem;
-        }
-
-        .question-text {
-            font-size: 1.3rem;
-            color: #2c3e50;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
             font-weight: 600;
-            flex: 1;
         }
 
         .question-type {
-            background: rgba(231, 76, 60, 0.1);
-            color: #e74c3c;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            background: #3498db;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin: 1.5rem 0;
             font-weight: 500;
         }
 
@@ -191,125 +215,91 @@
             width: 100%;
             min-height: 150px;
             padding: 1rem;
-            border: 2px solid #e9ecef;
+            border: 2px solid var(--border-color);
             border-radius: 10px;
-            font-size: 1rem;
             font-family: inherit;
+            font-size: 1rem;
             resize: vertical;
-            transition: border-color 0.3s ease;
+            background: var(--bg-white);
+            color: var(--text-dark);
         }
 
         .answer-textarea:focus {
             outline: none;
-            border-color: #e74c3c;
+            border-color: var(--accent-color);
         }
 
-        .timer {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .timer-display {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #e74c3c;
-            margin-bottom: 0.5rem;
-        }
-
-        .timer-label {
-            color: #6c757d;
-            font-size: 1rem;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: #e9ecef;
-            border-radius: 3px;
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #e74c3c, #c0392b);
-            transition: width 0.3s ease;
-        }
-
-        .results-section {
-            display: none;
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        .results-section.show {
-            display: block;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        .results-icon {
-            font-size: 4rem;
-            color: #27ae60;
-            margin-bottom: 1rem;
-        }
-
-        .results-title {
-            font-size: 2rem;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .results-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        .session-controls {
+            display: flex;
             gap: 1rem;
-            margin: 2rem 0;
+            justify-content: center;
+            margin-top: 2rem;
         }
 
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
         }
 
-        .stat-number {
+        .loading i {
             font-size: 2rem;
-            font-weight: 700;
-            color: #e74c3c;
+            animation: spin 1s linear infinite;
         }
 
-        .stat-label {
-            color: #6c757d;
-            margin-top: 0.5rem;
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
         }
 
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 1rem;
-            }
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
 
-            .interview-header h2 {
-                font-size: 2rem;
-            }
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
 
-            .interview-controls {
-                flex-direction: column;
-                align-items: center;
-            }
+        .history-section {
+            margin-top: 3rem;
+        }
 
-            .timer-display {
-                font-size: 2rem;
-            }
+        .history-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
 
-            .results-stats {
-                grid-template-columns: 1fr;
-            }
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .history-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .score-badge {
+            background: var(--success-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -320,126 +310,117 @@
                 <i class="fas fa-users"></i>
                 <h1>HR Interview Practice</h1>
             </div>
-            <a href="/dashboard" class="back-btn">
-                <i class="fas fa-arrow-left"></i> Back to Dashboard
-            </a>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="/dashboard" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
         </header>
 
         <main class="main-content">
-            <section class="interview-header">
+            <div id="message" class="message"></div>
+
+            <section class="intro-section" id="intro-section">
                 <h2>HR Interview Simulation</h2>
                 <p>Practice behavioral and HR questions tailored to your profile</p>
-            </section>
-
-            <section class="interview-controls" id="interview-controls">
-                <button class="btn btn-primary" id="start-btn">
-                    <i class="fas fa-play"></i> Start Interview
-                </button>
-                <button class="btn btn-secondary" id="generate-btn">
-                    <i class="fas fa-refresh"></i> Generate New Questions
-                </button>
-            </section>
-
-            <section class="timer" id="timer" style="display: none;">
-                <div class="timer-display" id="timer-display">05:00</div>
-                <div class="timer-label">Time per question</div>
-            </section>
-
-            <div class="progress-bar" id="progress-bar" style="display: none;">
-                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
-            </div>
-
-            <div id="questions-container">
-                <!-- Questions will be dynamically loaded here -->
-            </div>
-
-            <div class="interview-controls" id="question-controls" style="display: none;">
-                <button class="btn btn-secondary" id="prev-btn" disabled>
-                    <i class="fas fa-chevron-left"></i> Previous
-                </button>
-                <button class="btn btn-primary" id="next-btn">
-                    Next <i class="fas fa-chevron-right"></i>
-                </button>
-                <button class="btn btn-primary" id="finish-btn" style="display: none;">
-                    <i class="fas fa-check"></i> Finish Interview
-                </button>
-            </div>
-
-            <section class="results-section" id="results-section">
-                <div class="results-icon">
-                    <i class="fas fa-trophy"></i>
-                </div>
-                <h2 class="results-title">Interview Completed!</h2>
-                <p>Great job completing the HR interview practice session.</p>
                 
-                <div class="results-stats">
-                    <div class="stat-card">
-                        <div class="stat-number" id="questions-answered">0</div>
-                        <div class="stat-label">Questions Answered</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="total-time">0</div>
-                        <div class="stat-label">Total Time (minutes)</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="avg-time">0</div>
-                        <div class="stat-label">Avg Time per Question</div>
-                    </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="start-interview-btn">
+                        <i class="fas fa-play"></i> Start Interview
+                    </button>
+                    <button class="btn btn-secondary" id="generate-questions-btn">
+                        <i class="fas fa-sync"></i> Generate New Questions
+                    </button>
                 </div>
+            </section>
 
-                <div class="interview-controls">
-                    <button class="btn btn-primary" id="restart-btn">
-                        <i class="fas fa-redo"></i> Practice Again
+            <div id="loading" class="loading" style="display: none;">
+                <i class="fas fa-spinner"></i>
+                <p>Generating questions...</p>
+            </div>
+
+            <section class="questions-section" id="questions-section">
+                <div id="questions-container"></div>
+                
+                <div class="session-controls">
+                    <button class="btn btn-primary" id="submit-session-btn">
+                        <i class="fas fa-check"></i> Submit Answers
                     </button>
-                    <button class="btn btn-secondary" onclick="location.href='/dashboard'">
-                        <i class="fas fa-home"></i> Back to Dashboard
+                    <button class="btn btn-secondary" id="cancel-session-btn">
+                        <i class="fas fa-times"></i> Cancel
                     </button>
                 </div>
+            </section>
+
+            <section class="history-section" id="history-section">
+                <h2>Previous Sessions</h2>
+                <div id="history-container"></div>
             </section>
         </main>
     </div>
 
     <script>
-        class HRInterview {
+        class HRInterviewManager {
             constructor() {
                 this.questions = [];
-                this.currentQuestion = 0;
                 this.answers = {};
-                this.startTime = null;
-                this.questionStartTime = null;
-                this.timer = null;
-                this.questionTime = 300; // 5 minutes per question
-                
+                this.currentSessionId = null;
+                this.initTheme();
                 this.bindEvents();
+                this.loadHistory();
+            }
+
+            initTheme() {
+                const theme = localStorage.getItem('theme') || 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+                this.updateThemeIcon(theme);
+            }
+
+            updateThemeIcon(theme) {
+                const icon = document.querySelector('#theme-toggle i');
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
             }
 
             bindEvents() {
-                document.getElementById('start-btn').addEventListener('click', () => this.startInterview());
-                document.getElementById('generate-btn').addEventListener('click', () => this.generateQuestions());
-                document.getElementById('prev-btn').addEventListener('click', () => this.previousQuestion());
-                document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
-                document.getElementById('finish-btn').addEventListener('click', () => this.finishInterview());
-                document.getElementById('restart-btn').addEventListener('click', () => this.restartInterview());
+                document.getElementById('theme-toggle').addEventListener('click', () => this.toggleTheme());
+                document.getElementById('start-interview-btn').addEventListener('click', () => this.startInterview());
+                document.getElementById('generate-questions-btn').addEventListener('click', () => this.generateQuestions());
+                document.getElementById('submit-session-btn').addEventListener('click', () => this.submitSession());
+                document.getElementById('cancel-session-btn').addEventListener('click', () => this.cancelSession());
+            }
+
+            toggleTheme() {
+                const current = document.documentElement.getAttribute('data-theme');
+                const newTheme = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                this.updateThemeIcon(newTheme);
             }
 
             async generateQuestions() {
+                this.showLoading();
+                
                 try {
                     const response = await fetch('/api/hr_questions', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' }
                     });
-                    
-                    const data = await response.json();
-                    
-                    if (data.success) {
-                        this.questions = data.questions;
-                        this.renderQuestions();
-                        document.getElementById('start-btn').disabled = false;
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        this.questions = result.questions;
+                        this.showMessage('Questions generated successfully!', 'success');
                     } else {
-                        alert('Failed to generate questions: ' + data.error);
+                        this.showMessage('Failed to generate questions: ' + result.error, 'error');
                     }
                 } catch (error) {
-                    alert('Error generating questions. Please try again.');
+                    this.showMessage('Error: ' + error.message, 'error');
+                } finally {
+                    this.hideLoading();
                 }
             }
 
@@ -447,172 +428,145 @@
                 if (this.questions.length === 0) {
                     await this.generateQuestions();
                 }
-                
-                this.currentQuestion = 0;
-                this.answers = {};
-                this.startTime = new Date();
-                
-                // Hide start controls, show interview UI
-                document.getElementById('interview-controls').style.display = 'none';
-                document.getElementById('timer').style.display = 'block';
-                document.getElementById('progress-bar').style.display = 'block';
-                document.getElementById('question-controls').style.display = 'flex';
-                
-                this.showQuestion(0);
-                this.startQuestionTimer();
+
+                if (this.questions.length > 0) {
+                    this.currentSessionId = Date.now();
+                    this.answers = {};
+                    this.displayQuestions();
+                    document.getElementById('intro-section').style.display = 'none';
+                    document.getElementById('questions-section').style.display = 'block';
+                }
             }
 
-            renderQuestions() {
+            displayQuestions() {
                 const container = document.getElementById('questions-container');
                 container.innerHTML = '';
 
                 this.questions.forEach((q, index) => {
-                    const questionCard = document.createElement('div');
-                    questionCard.className = 'question-card';
-                    questionCard.id = `question-${index}`;
-                    
-                    questionCard.innerHTML = `
+                    const card = document.createElement('div');
+                    card.className = 'question-card';
+                    card.innerHTML = `
                         <div class="question-header">
-                            <div class="question-number">${index + 1}</div>
-                            <div class="question-text">${q.question}</div>
-                            <div class="question-type">${q.type || 'HR'}</div>
+                            <span class="question-number">Question ${index + 1}</span>
+                            <span class="question-type">${q.type || 'General'}</span>
                         </div>
+                        <div class="question-text">${q.question}</div>
                         <div class="answer-section">
-                            <label for="answer-${index}" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Your Answer:</label>
-                            <textarea id="answer-${index}" class="answer-textarea" 
-                                     placeholder="Type your answer here..."></textarea>
+                            <textarea 
+                                class="answer-textarea" 
+                                id="answer-${index}"
+                                placeholder="Type your answer here..."
+                            ></textarea>
                         </div>
                     `;
-                    
-                    container.appendChild(questionCard);
+                    container.appendChild(card);
                 });
             }
 
-            showQuestion(index) {
-                // Hide all questions
-                document.querySelectorAll('.question-card').forEach(card => {
-                    card.classList.remove('active');
+            async submitSession() {
+                // Collect all answers
+                this.questions.forEach((q, index) => {
+                    const answer = document.getElementById(`answer-${index}`).value;
+                    this.answers[index] = answer;
                 });
-                
-                // Show current question
-                const questionCard = document.getElementById(`question-${index}`);
-                if (questionCard) {
-                    questionCard.classList.add('active');
-                }
-                
-                // Update progress
-                this.updateProgress();
-                
-                // Update navigation buttons
-                document.getElementById('prev-btn').disabled = index === 0;
-                document.getElementById('next-btn').style.display = 
-                    index === this.questions.length - 1 ? 'none' : 'inline-flex';
-                document.getElementById('finish-btn').style.display = 
-                    index === this.questions.length - 1 ? 'inline-flex' : 'none';
-                
-                this.questionStartTime = new Date();
-                this.startQuestionTimer();
-            }
 
-            startQuestionTimer() {
-                clearInterval(this.timer);
-                let timeLeft = this.questionTime;
-                
-                const updateDisplay = () => {
-                    const minutes = Math.floor(timeLeft / 60);
-                    const seconds = timeLeft % 60;
-                    document.getElementById('timer-display').textContent = 
-                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                };
-                
-                updateDisplay();
-                
-                this.timer = setInterval(() => {
-                    timeLeft--;
-                    updateDisplay();
-                    
-                    if (timeLeft <= 0) {
-                        clearInterval(this.timer);
-                        // Auto-advance to next question or finish
-                        if (this.currentQuestion < this.questions.length - 1) {
-                            this.nextQuestion();
-                        } else {
-                            this.finishInterview();
-                        }
+                // Save session to backend
+                try {
+                    const response = await fetch('/api/save_interview_session', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            session_id: this.currentSessionId,
+                            session_type: 'hr',
+                            questions: this.questions,
+                            answers: this.answers
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        this.showMessage('Session saved successfully!', 'success');
+                        this.loadHistory();
+                        this.cancelSession();
+                    } else {
+                        this.showMessage('Failed to save session', 'error');
                     }
-                }, 1000);
-            }
-
-            saveCurrentAnswer() {
-                const textarea = document.getElementById(`answer-${this.currentQuestion}`);
-                if (textarea) {
-                    this.answers[this.currentQuestion] = {
-                        answer: textarea.value,
-                        timeSpent: new Date() - this.questionStartTime
-                    };
+                } catch (error) {
+                    this.showMessage('Error saving session: ' + error.message, 'error');
                 }
             }
 
-            nextQuestion() {
-                this.saveCurrentAnswer();
-                if (this.currentQuestion < this.questions.length - 1) {
-                    this.currentQuestion++;
-                    this.showQuestion(this.currentQuestion);
-                }
-            }
-
-            previousQuestion() {
-                this.saveCurrentAnswer();
-                if (this.currentQuestion > 0) {
-                    this.currentQuestion--;
-                    this.showQuestion(this.currentQuestion);
-                }
-            }
-
-            updateProgress() {
-                const progress = ((this.currentQuestion + 1) / this.questions.length) * 100;
-                document.getElementById('progress-fill').style.width = `${progress}%`;
-            }
-
-            finishInterview() {
-                this.saveCurrentAnswer();
-                clearInterval(this.timer);
-                
-                const totalTime = (new Date() - this.startTime) / 1000 / 60; // minutes
-                const answeredQuestions = Object.keys(this.answers).length;
-                const avgTime = totalTime / answeredQuestions;
-                
-                // Update results
-                document.getElementById('questions-answered').textContent = answeredQuestions;
-                document.getElementById('total-time').textContent = totalTime.toFixed(1);
-                document.getElementById('avg-time').textContent = `${avgTime.toFixed(1)}m`;
-                
-                // Hide interview UI, show results
-                document.getElementById('timer').style.display = 'none';
-                document.getElementById('progress-bar').style.display = 'none';
-                document.getElementById('question-controls').style.display = 'none';
-                document.querySelectorAll('.question-card').forEach(card => {
-                    card.classList.remove('active');
-                });
-                
-                document.getElementById('results-section').classList.add('show');
-            }
-
-            restartInterview() {
-                document.getElementById('results-section').classList.remove('show');
-                document.getElementById('interview-controls').style.display = 'flex';
-                this.currentQuestion = 0;
+            cancelSession() {
+                document.getElementById('intro-section').style.display = 'block';
+                document.getElementById('questions-section').style.display = 'none';
+                this.currentSessionId = null;
                 this.answers = {};
+            }
+
+            async loadHistory() {
+                try {
+                    const response = await fetch('/api/interview_history?type=hr');
+                    const result = await response.json();
+
+                    if (result.success) {
+                        this.displayHistory(result.sessions);
+                    }
+                } catch (error) {
+                    console.error('Error loading history:', error);
+                }
+            }
+
+            displayHistory(sessions) {
+                const container = document.getElementById('history-container');
+                
+                if (sessions.length === 0) {
+                    container.innerHTML = '<p style="color: var(--text-light); text-align: center;">No previous sessions found.</p>';
+                    return;
+                }
+
+                container.innerHTML = '';
+                sessions.forEach(session => {
+                    const card = document.createElement('div');
+                    card.className = 'history-card';
+                    card.innerHTML = `
+                        <div class="history-header">
+                            <div>
+                                <strong>${session.session_type.toUpperCase()} Interview</strong>
+                                <div class="history-date">${new Date(session.created_at).toLocaleString()}</div>
+                            </div>
+                            ${session.score ? `<span class="score-badge">${session.score}%</span>` : ''}
+                        </div>
+                        <p>${session.questions_count} questions answered</p>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            showLoading() {
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('intro-section').style.display = 'none';
+            }
+
+            hideLoading() {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('intro-section').style.display = 'block';
+            }
+
+            showMessage(text, type) {
+                const message = document.getElementById('message');
+                message.textContent = text;
+                message.className = `message ${type}`;
+                message.style.display = 'block';
+                
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 5000);
             }
         }
 
-        // Initialize the interview system
-        const interview = new HRInterview();
-
-        // Auto-generate questions on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            interview.generateQuestions();
-        });
+        // Initialize manager
+        const hrManager = new HRInterviewManager();
     </script>
 </body>
 </html>
