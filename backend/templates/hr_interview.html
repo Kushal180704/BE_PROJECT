@@ -3,303 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HR Interview Practice - CS Interview Assistant</title>
+    <title>HR Interview Practice - AI Feedback</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #667eea;
-            --bg-secondary: #764ba2;
-            --bg-white: #ffffff;
-            --text-dark: #2c3e50;
-            --text-light: #6c757d;
-            --accent-color: #e74c3c;
-            --success-color: #27ae60;
-            --border-color: #e9ecef;
+            --primary: #667eea;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #3498db;
+            --bg: #ffffff;
+            --text: #2c3e50;
+            --border: #e9ecef;
+            --light: #f8f9fa;
         }
 
         [data-theme="dark"] {
-            --bg-white: #1e1e1e;
-            --text-dark: #e0e0e0;
-            --text-light: #a0a0a0;
-            --border-color: #333;
+            --bg: #1e1e1e;
+            --text: #e0e0e0;
+            --border: #333;
+            --light: #2d2d2d;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            min-height: 100vh;
-            color: var(--text-dark);
-            transition: all 0.3s ease;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: var(--bg-white);
-            min-height: 100vh;
-        }
-
-        .header {
-            background: linear-gradient(135deg, var(--accent-color) 0%, #c0392b 100%);
-            color: white;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        .logo h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .theme-toggle {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .back-btn {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .main-content {
-            padding: 2rem;
-        }
-
-        .intro-section {
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .intro-section h2 {
-            font-size: 2rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
-
-        .intro-section p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-color), #c0392b);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-
-        .questions-section {
-            display: none;
-            margin-top: 2rem;
-        }
-
-        .question-card {
-            background: var(--bg-white);
-            border: 2px solid var(--border-color);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .question-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .question-number {
-            background: var(--accent-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-
-        .question-type {
-            background: #3498db;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
-
-        .question-text {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin: 1.5rem 0;
-            font-weight: 500;
-        }
-
-        .answer-section {
-            margin-top: 1.5rem;
-        }
-
-        .answer-textarea {
-            width: 100%;
-            min-height: 150px;
-            padding: 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 1rem;
-            resize: vertical;
-            background: var(--bg-white);
-            color: var(--text-dark);
-        }
-
-        .answer-textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .session-controls {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-light);
-        }
-
-        .loading i {
-            font-size: 2rem;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .message {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        .message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .history-section {
-            margin-top: 3rem;
-        }
-
-        .history-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .history-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .history-date {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .score-badge {
-            background: var(--success-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%); min-height: 100vh; color: var(--text); transition: all 0.3s ease; }
+        .container { max-width: 1400px; margin: 0 auto; background: var(--bg); min-height: 100vh; }
+        
+        .header { background: linear-gradient(135deg, var(--accent), #c0392b); color: white; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { display: flex; align-items: center; gap: 1rem; font-size: 1.3rem; font-weight: 700; }
+        .header-right { display: flex; gap: 1rem; align-items: center; }
+        .theme-toggle { background: rgba(255,255,255,0.2); border: none; color: white; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+        .theme-toggle:hover { background: rgba(255,255,255,0.3); }
+        .back-btn { color: white; text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.1); transition: all 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.2); }
+        
+        .main-content { padding: 2rem; }
+        .tabs { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid var(--border); }
+        .tab-btn { padding: 1rem 1.5rem; background: none; border: none; cursor: pointer; font-weight: 600; color: var(--text); border-bottom: 3px solid transparent; transition: all 0.3s; }
+        .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .intro-section { text-align: center; padding: 3rem 0; }
+        .intro-section h2 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent); }
+        .intro-section p { font-size: 1.1rem; color: var(--text); margin-bottom: 2rem; }
+        
+        .action-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+        .btn { padding: 1rem 2rem; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent), #c0392b); color: white; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3); }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #5a6268; }
+        
+        .questions-section { display: none; }
+        .question-card { background: var(--bg); border: 2px solid var(--border); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: all 0.3s; }
+        .question-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        
+        .question-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem; }
+        .question-number { background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; }
+        .question-type { background: var(--info); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 0.95rem; }
+        
+        .question-text { font-size: 1.3rem; margin: 1.5rem 0; font-weight: 500; color: var(--text); }
+        .question-focus { font-size: 0.9rem; color: var(--warning); margin-bottom: 1rem; }
+        
+        .answer-section { margin: 1.5rem 0; }
+        .answer-label { font-weight: 600; margin-bottom: 0.5rem; color: var(--text); }
+        .answer-textarea { width: 100%; min-height: 180px; padding: 1.2rem; border: 2px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 1rem; resize: vertical; background: var(--bg); color: var(--text); transition: all 0.3s; }
+        .answer-textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1); }
+        
+        .button-group { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .evaluate-btn { background: var(--success); color: white; padding: 1rem 2rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .evaluate-btn:hover { background: #229954; transform: translateY(-2px); }
+        .evaluate-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+        
+        .feedback-panel { margin-top: 2rem; padding: 2rem; background: var(--light); border-left: 5px solid var(--success); border-radius: 10px; display: none; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .feedback-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .feedback-score { font-size: 3rem; font-weight: bold; color: var(--success); }
+        .score-out-of { font-size: 1rem; color: var(--text); margin-top: 0.5rem; }
+        
+        .feedback-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .feedback-box { padding: 1.5rem; background: var(--bg); border-radius: 10px; border-left: 4px solid var(--info); }
+        .feedback-box h4 { color: var(--accent); margin-bottom: 1rem; font-size: 1.1rem; }
+        .feedback-list { list-style: none; }
+        .feedback-list li { padding: 0.7rem 0; padding-left: 2rem; position: relative; color: var(--text); }
+        .feedback-list li:before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: bold; font-size: 1.2rem; }
+        .improvement-list li:before { content: "⚠"; color: var(--warning); }
+        .suggestion-list li:before { content: "💡"; }
+        
+        .star-method { margin-top: 1.5rem; }
+        .star-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .star-item { text-align: center; padding: 1.5rem; background: var(--bg); border-radius: 10px; border: 2px solid var(--border); }
+        .star-item.complete { background: #d4edda; border-color: var(--success); }
+        .star-item.incomplete { background: #f8d7da; border-color: var(--warning); }
+        
+        .loading { text-align: center; padding: 3rem; display: none; }
+        .loading-spinner { font-size: 3rem; animation: spin 1s linear infinite; margin-bottom: 1rem; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .message { padding: 1rem 1.5rem; border-radius: 8px; margin-bottom: 1rem; display: none; animation: slideIn 0.3s ease; }
+        .message.success { background: #d4edda; color: #155724; border-left: 4px solid var(--success); }
+        .message.error { background: #f8d7da; color: #721c24; border-left: 4px solid var(--warning); }
+        
+        .session-controls { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+        
+        .character-count { font-size: 0.85rem; color: var(--text); margin-top: 0.3rem; }
+        .word-count { color: var(--info); }
+        
+        /* History Styles */
+        .history-container { margin-top: 2rem; }
+        .history-empty { text-align: center; padding: 3rem; color: var(--text); }
+        .history-empty i { font-size: 3rem; margin-bottom: 1rem; color: var(--border); }
+        
+        .session-item { background: var(--bg); border: 2px solid var(--border); border-radius: 10px; padding: 1.5rem; margin-bottom: 1.5rem; cursor: pointer; transition: all 0.3s; }
+        .session-item:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        
+        .session-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .session-date { font-size: 0.9rem; color: var(--text); }
+        .session-badge { background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; }
+        
+        .session-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .detail-box { padding: 1rem; background: var(--light); border-radius: 8px; text-align: center; }
+        .detail-label { font-size: 0.85rem; color: var(--text); }
+        .detail-value { font-size: 1.5rem; font-weight: bold; color: var(--accent); }
+        
+        @media (max-width: 768px) {
+            .intro-section h2 { font-size: 1.8rem; }
+            .feedback-content { grid-template-columns: 1fr; }
+            .header { flex-direction: column; gap: 1rem; }
+            .tabs { flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -308,57 +142,67 @@
         <header class="header">
             <div class="logo">
                 <i class="fas fa-users"></i>
-                <h1>HR Interview Practice</h1>
+                <span>HR Interview Practice</span>
             </div>
-            <div class="header-actions">
-                <button class="theme-toggle" id="theme-toggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <a href="/dashboard" class="back-btn">
-                    <i class="fas fa-arrow-left"></i> Back to Dashboard
-                </a>
+            <div class="header-right">
+                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode"><i class="fas fa-moon"></i></button>
+                <a href="/dashboard" class="back-btn"><i class="fas fa-arrow-left"></i> Dashboard</a>
             </div>
         </header>
 
         <main class="main-content">
             <div id="message" class="message"></div>
 
-            <section class="intro-section" id="intro-section">
-                <h2>HR Interview Simulation</h2>
-                <p>Practice behavioral and HR questions tailored to your profile</p>
-                
-                <div class="action-buttons">
-                    <button class="btn btn-primary" id="start-interview-btn">
-                        <i class="fas fa-play"></i> Start Interview
-                    </button>
-                    <button class="btn btn-secondary" id="generate-questions-btn">
-                        <i class="fas fa-sync"></i> Generate New Questions
-                    </button>
-                </div>
-            </section>
-
-            <div id="loading" class="loading" style="display: none;">
-                <i class="fas fa-spinner"></i>
-                <p>Generating questions...</p>
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" id="practice-tab" onclick="switchTab('practice')">
+                    <i class="fas fa-book"></i> Practice
+                </button>
+                <button class="tab-btn" id="history-tab" onclick="switchTab('history')">
+                    <i class="fas fa-history"></i> Session History
+                </button>
             </div>
 
-            <section class="questions-section" id="questions-section">
-                <div id="questions-container"></div>
-                
-                <div class="session-controls">
-                    <button class="btn btn-primary" id="submit-session-btn">
-                        <i class="fas fa-check"></i> Submit Answers
-                    </button>
-                    <button class="btn btn-secondary" id="cancel-session-btn">
-                        <i class="fas fa-times"></i> Cancel
-                    </button>
-                </div>
-            </section>
+            <!-- Practice Tab -->
+            <div id="practice" class="tab-content active">
+                <section class="intro-section" id="intro-section">
+                    <h2>🎯 HR Interview Simulation</h2>
+                    <p>Get personalized questions and instant AI-powered feedback</p>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="start-interview-btn">
+                            <i class="fas fa-play"></i> Start Interview
+                        </button>
+                        <button class="btn btn-secondary" id="generate-questions-btn">
+                            <i class="fas fa-sync"></i> Generate New Questions
+                        </button>
+                    </div>
+                </section>
 
-            <section class="history-section" id="history-section">
-                <h2>Previous Sessions</h2>
-                <div id="history-container"></div>
-            </section>
+                <div id="loading" class="loading">
+                    <div class="loading-spinner"><i class="fas fa-spinner"></i></div>
+                    <p>Generating personalized questions...</p>
+                </div>
+
+                <section class="questions-section" id="questions-section">
+                    <div id="questions-container"></div>
+                    <div class="session-controls">
+                        <button class="btn btn-primary" id="submit-session-btn">
+                            <i class="fas fa-check-circle"></i> Submit Session
+                        </button>
+                        <button class="btn btn-secondary" id="cancel-session-btn">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- History Tab -->
+            <div id="history" class="tab-content">
+                <div class="history-container">
+                    <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-list"></i> Your Interview Sessions</h3>
+                    <div id="history-list"></div>
+                </div>
+            </div>
         </main>
     </div>
 
@@ -367,7 +211,9 @@
             constructor() {
                 this.questions = [];
                 this.answers = {};
-                this.currentSessionId = null;
+                this.feedbacks = {};
+                this.evaluatingIndex = null;
+                this.currentSessionData = null;
                 this.initTheme();
                 this.bindEvents();
                 this.loadHistory();
@@ -400,25 +246,34 @@
                 this.updateThemeIcon(newTheme);
             }
 
+            switchTab(tab) {
+                document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+                
+                document.getElementById(tab).classList.add('active');
+                event.target.closest('.tab-btn').classList.add('active');
+                
+                if (tab === 'history') {
+                    this.loadHistory();
+                }
+            }
+
             async generateQuestions() {
                 this.showLoading();
-                
                 try {
                     const response = await fetch('/api/hr_questions', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' }
                     });
-
                     const result = await response.json();
-
                     if (result.success) {
                         this.questions = result.questions;
-                        this.showMessage('Questions generated successfully!', 'success');
+                        this.showMessage('✓ Questions generated! Click "Start Interview" to begin.', 'success');
                     } else {
-                        this.showMessage('Failed to generate questions: ' + result.error, 'error');
+                        this.showMessage('✗ Failed to generate questions', 'error');
                     }
                 } catch (error) {
-                    this.showMessage('Error: ' + error.message, 'error');
+                    this.showMessage('✗ Error: ' + error.message, 'error');
                 } finally {
                     this.hideLoading();
                 }
@@ -428,13 +283,11 @@
                 if (this.questions.length === 0) {
                     await this.generateQuestions();
                 }
-
                 if (this.questions.length > 0) {
-                    this.currentSessionId = Date.now();
-                    this.answers = {};
                     this.displayQuestions();
                     document.getElementById('intro-section').style.display = 'none';
                     document.getElementById('questions-section').style.display = 'block';
+                    window.scrollTo(0, 0);
                 }
             }
 
@@ -447,36 +300,160 @@
                     card.className = 'question-card';
                     card.innerHTML = `
                         <div class="question-header">
-                            <span class="question-number">Question ${index + 1}</span>
-                            <span class="question-type">${q.type || 'General'}</span>
+                            <span class="question-number">Q${index + 1}/5</span>
+                            <span class="question-type"><i class="fas fa-tag"></i> ${q.type || 'General'}</span>
                         </div>
                         <div class="question-text">${q.question}</div>
+                        <div class="question-focus"><i class="fas fa-bullseye"></i> Focus: ${q.focus_area || 'general'}</div>
+                        
                         <div class="answer-section">
-                            <textarea 
-                                class="answer-textarea" 
-                                id="answer-${index}"
-                                placeholder="Type your answer here..."
-                            ></textarea>
+                            <label class="answer-label">Your Answer:</label>
+                            <textarea class="answer-textarea" id="answer-${index}" placeholder="Type your detailed answer here..."></textarea>
+                            <div class="character-count">
+                                <span id="char-${index}">0</span> characters | 
+                                <span id="word-${index}" class="word-count">0</span> words
+                            </div>
                         </div>
+                        
+                        <div class="button-group">
+                            <button class="evaluate-btn" onclick="hrManager.evaluateAnswer(${index})">
+                                <i class="fas fa-brain"></i> Get AI Feedback
+                            </button>
+                        </div>
+                        
+                        <div class="feedback-panel" id="feedback-${index}"></div>
                     `;
                     container.appendChild(card);
+
+                    const textarea = document.getElementById(`answer-${index}`);
+                    textarea.addEventListener('input', (e) => {
+                        const text = e.target.value;
+                        const chars = text.length;
+                        const words = text.trim().split(/\s+/).filter(w => w).length;
+                        document.getElementById(`char-${index}`).textContent = chars;
+                        document.getElementById(`word-${index}`).textContent = words;
+                    });
                 });
             }
 
-            async submitSession() {
-                // Collect all answers
-                this.questions.forEach((q, index) => {
-                    const answer = document.getElementById(`answer-${index}`).value;
-                    this.answers[index] = answer;
-                });
+            async evaluateAnswer(index) {
+                const textarea = document.getElementById(`answer-${index}`);
+                const answer = textarea.value.trim();
 
-                // Save session to backend
+                if (!answer) {
+                    this.showMessage('✗ Please write an answer first!', 'error');
+                    return;
+                }
+
+                if (answer.length < 20) {
+                    this.showMessage('✗ Please provide a more detailed answer', 'error');
+                    return;
+                }
+
+                const question = this.questions[index];
+                const feedbackPanel = document.getElementById(`feedback-${index}`);
+                const btn = event.target;
+
+                feedbackPanel.innerHTML = '<div class="loading"><div class="loading-spinner"><i class="fas fa-spinner"></i></div><p>AI is analyzing...</p></div>';
+                feedbackPanel.style.display = 'block';
+                btn.disabled = true;
+
+                try {
+                    const response = await fetch('/api/evaluate_answer', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            question: question.question,
+                            answer: answer,
+                            type: question.type,
+                            focus_area: question.focus_area
+                        })
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        this.displayFeedback(index, result.feedback);
+                        this.feedbacks[index] = result.feedback;
+                        this.answers[index] = answer;
+                    } else {
+                        feedbackPanel.innerHTML = '<p style="color: red;">✗ Failed to get feedback</p>';
+                    }
+                } catch (error) {
+                    feedbackPanel.innerHTML = '<p style="color: red;">✗ Error: ' + error.message + '</p>';
+                } finally {
+                    btn.disabled = false;
+                }
+            }
+
+            displayFeedback(index, feedback) {
+                const panel = document.getElementById(`feedback-${index}`);
+                const star = feedback.star_method || {};
+                
+                const starHTML = `
+                    <div class="star-grid">
+                        <div class="star-item ${star.situation?.present ? 'complete' : 'incomplete'}">
+                            <div><strong>S</strong>ituation</div>
+                            <div style="font-size: 1.5rem; margin: 0.5rem 0;">${star.situation?.present ? '✓' : '✗'}</div>
+                        </div>
+                        <div class="star-item ${star.task?.present ? 'complete' : 'incomplete'}">
+                            <div><strong>T</strong>ask</div>
+                            <div style="font-size: 1.5rem; margin: 0.5rem 0;">${star.task?.present ? '✓' : '✗'}</div>
+                        </div>
+                        <div class="star-item ${star.action?.present ? 'complete' : 'incomplete'}">
+                            <div><strong>A</strong>ction</div>
+                            <div style="font-size: 1.5rem; margin: 0.5rem 0;">${star.action?.present ? '✓' : '✗'}</div>
+                        </div>
+                        <div class="star-item ${star.result?.present ? 'complete' : 'incomplete'}">
+                            <div><strong>R</strong>esult</div>
+                            <div style="font-size: 1.5rem; margin: 0.5rem 0;">${star.result?.present ? '✓' : '✗'}</div>
+                        </div>
+                    </div>
+                `;
+
+                panel.innerHTML = `
+                    <div class="feedback-header">
+                        <div>
+                            <div class="feedback-score">${feedback.score}</div>
+                            <div class="score-out-of">/ 10</div>
+                        </div>
+                    </div>
+                    <p><strong>${feedback.overall_feedback}</strong></p>
+                    <div class="feedback-content">
+                        <div class="feedback-box">
+                            <h4><i class="fas fa-check-circle"></i> Strengths</h4>
+                            <ul class="feedback-list">
+                                ${feedback.strengths.map(s => `<li>${s}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="feedback-box">
+                            <h4><i class="fas fa-exclamation-circle"></i> Improvements</h4>
+                            <ul class="feedback-list improvement-list">
+                                ${feedback.improvements.map(i => `<li>${i}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="star-method">
+                        <h4><i class="fas fa-star"></i> STAR Method</h4>
+                        ${starHTML}
+                    </div>
+                `;
+            }
+
+            async submitSession() {
+                if (Object.keys(this.answers).length === 0) {
+                    this.showMessage('✗ Please answer at least one question!', 'error');
+                    return;
+                }
+
+                const btn = document.getElementById('submit-session-btn');
+                btn.disabled = true;
+                btn.textContent = 'Saving...';
+
                 try {
                     const response = await fetch('/api/save_interview_session', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            session_id: this.currentSessionId,
                             session_type: 'hr',
                             questions: this.questions,
                             answers: this.answers
@@ -484,24 +461,34 @@
                     });
 
                     const result = await response.json();
-
                     if (result.success) {
-                        this.showMessage('Session saved successfully!', 'success');
-                        this.loadHistory();
-                        this.cancelSession();
+                        this.showMessage('✓ Session saved successfully!', 'success');
+                        setTimeout(() => {
+                            this.resetSession();
+                            this.loadHistory();
+                        }, 1500);
                     } else {
-                        this.showMessage('Failed to save session', 'error');
+                        this.showMessage('✗ Failed to save session: ' + result.error, 'error');
                     }
                 } catch (error) {
-                    this.showMessage('Error saving session: ' + error.message, 'error');
+                    this.showMessage('✗ Error saving session: ' + error.message, 'error');
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = 'Submit Session';
                 }
             }
 
             cancelSession() {
                 document.getElementById('intro-section').style.display = 'block';
                 document.getElementById('questions-section').style.display = 'none';
-                this.currentSessionId = null;
+                this.resetSession();
+            }
+
+            resetSession() {
+                this.questions = [];
                 this.answers = {};
+                this.feedbacks = {};
+                window.scrollTo(0, 0);
             }
 
             async loadHistory() {
@@ -509,38 +496,53 @@
                     const response = await fetch('/api/interview_history?type=hr');
                     const result = await response.json();
 
-                    if (result.success) {
-                        this.displayHistory(result.sessions);
+                    const historyList = document.getElementById('history-list');
+
+                    if (result.success && result.sessions.length > 0) {
+                        historyList.innerHTML = result.sessions.map(session => `
+                            <div class="session-item">
+                                <div class="session-header">
+                                    <div>
+                                        <h4 style="margin-bottom: 0.5rem;">Session ${session.id}</h4>
+                                        <div class="session-date">
+                                            <i class="fas fa-calendar"></i> ${new Date(session.created_at).toLocaleDateString()} 
+                                            ${new Date(session.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                        </div>
+                                    </div>
+                                    <span class="session-badge">${session.session_type.toUpperCase()}</span>
+                                </div>
+                                <div class="session-details">
+                                    <div class="detail-box">
+                                        <div class="detail-label">Questions</div>
+                                        <div class="detail-value">${session.questions_count}</div>
+                                    </div>
+                                    <div class="detail-box">
+                                        <div class="detail-label">Score</div>
+                                        <div class="detail-value">${session.score ? session.score.toFixed(1) : 'N/A'}</div>
+                                    </div>
+                                    <div class="detail-box">
+                                        <div class="detail-label">Status</div>
+                                        <div class="detail-value"><i class="fas fa-check" style="color: var(--success);"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('');
+                    } else {
+                        historyList.innerHTML = `
+                            <div class="history-empty">
+                                <i class="fas fa-inbox"></i>
+                                <h3>No sessions yet</h3>
+                                <p>Start a practice session to see your history</p>
+                            </div>
+                        `;
                     }
                 } catch (error) {
-                    console.error('Error loading history:', error);
-                }
-            }
-
-            displayHistory(sessions) {
-                const container = document.getElementById('history-container');
-                
-                if (sessions.length === 0) {
-                    container.innerHTML = '<p style="color: var(--text-light); text-align: center;">No previous sessions found.</p>';
-                    return;
-                }
-
-                container.innerHTML = '';
-                sessions.forEach(session => {
-                    const card = document.createElement('div');
-                    card.className = 'history-card';
-                    card.innerHTML = `
-                        <div class="history-header">
-                            <div>
-                                <strong>${session.session_type.toUpperCase()} Interview</strong>
-                                <div class="history-date">${new Date(session.created_at).toLocaleString()}</div>
-                            </div>
-                            ${session.score ? `<span class="score-badge">${session.score}%</span>` : ''}
+                    document.getElementById('history-list').innerHTML = `
+                        <div class="history-empty">
+                            <p style="color: red;">Error loading history: ${error.message}</p>
                         </div>
-                        <p>${session.questions_count} questions answered</p>
                     `;
-                    container.appendChild(card);
-                });
+                }
             }
 
             showLoading() {
@@ -558,14 +560,15 @@
                 message.textContent = text;
                 message.className = `message ${type}`;
                 message.style.display = 'block';
-                
-                setTimeout(() => {
-                    message.style.display = 'none';
-                }, 5000);
+                setTimeout(() => { message.style.display = 'none'; }, 5000);
             }
         }
 
-        // Initialize manager
+        // Global function for tab switching
+        function switchTab(tab) {
+            hrManager.switchTab(tab);
+        }
+
         const hrManager = new HRInterviewManager();
     </script>
 </body>

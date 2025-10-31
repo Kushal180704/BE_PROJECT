@@ -15,6 +15,7 @@ import PyPDF2
 import docx
 from io import BytesIO
 import json
+import random
 
 # Load environment variables
 load_dotenv()
@@ -24,7 +25,7 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'your-secret-key-here')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///interview_prep.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs('backend/instance', exist_ok=True)
@@ -60,7 +61,7 @@ class User(UserMixin, db.Model):
     full_name = db.Column(db.String(100), nullable=True)
     phone = db.Column(db.String(20), nullable=True)
     experience_years = db.Column(db.Integer, default=0)
-    skills = db.Column(db.Text, nullable=True)  # JSON string of skills
+    skills = db.Column(db.Text, nullable=True)
     resume_filename = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     interviews = db.relationship('InterviewSession', backref='user', lazy=True)
@@ -91,12 +92,11 @@ def initialize_rag_system():
     try:
         api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
         if not api_key:
-            print("⚠️ Warning: No GEMINI_API_KEY found in environment. Gemini features will be disabled.")
+            print("⚠️ Warning: No GEMINI_API_KEY found in environment.")
             return False
         
         genai.configure(api_key=api_key)
         
-        # Test Gemini API connection
         try:
             test_model = genai.GenerativeModel("models/gemini-2.5-flash")
             test_response = test_model.generate_content("Hello")
@@ -105,7 +105,6 @@ def initialize_rag_system():
             print(f"⚠️ Gemini API error: {gemini_error}")
             return False
         
-        # Load RAG components if they exist
         try:
             topic_rules_path = 'config/topic_rules.json'
             with open(topic_rules_path, 'r', encoding='utf-8') as f:
@@ -123,7 +122,6 @@ def initialize_rag_system():
             print("✅ RAG system initialized successfully!")
         except Exception as rag_error:
             print(f"⚠️ RAG system files not found: {rag_error}")
-            print("📝 App will work without RAG features")
             
         return True
         
@@ -131,7 +129,7 @@ def initialize_rag_system():
         print(f"❌ Failed to initialize system: {e}")
         return False
 
-# Utility and helper functions
+# Utility functions
 def get_topic_and_subtopic_from_query(query, topic_rules):
     if not topic_rules:
         return None, None
@@ -152,9 +150,7 @@ def get_relevant_chunks(query, index, metas, model, k=5):
 
 def generate_rag_response(query, context):
     try:
-        # Using the exact model name from your list
         gemini_model = genai.GenerativeModel("models/gemini-2.5-flash")
-        
         full_prompt = (
             f"You are an expert computer science interview assistant specializing in DBMS, OOPs, and Operating Systems.\n"
             f"Provide a clear, concise answer based on the context below.\n\n"
@@ -215,7 +211,7 @@ def parse_resume_text(text):
         'raw_text': text[:1000]
     }
 
-# ------------- Routes start here ---------------
+# ============ ROUTES ============
 
 @app.route('/')
 def home():
@@ -301,7 +297,6 @@ def upload_resume():
             filename = secure_filename(f"{current_user.id}_{file.filename}")
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_path)
-            # Extract text from resume
             file_stream = BytesIO()
             file.stream.seek(0)
             file_stream.write(file.stream.read())
@@ -345,7 +340,6 @@ def rag_query():
         if not user_query:
             return jsonify({'error': 'Query cannot be empty'}), 400
         
-        # Check if RAG system is available
         if not all([index, metas, model, topic_rules]):
             return jsonify({'error': 'RAG system not initialized. Please contact administrator.'}), 500
         
@@ -370,43 +364,169 @@ def rag_query():
     except Exception as e:
         return jsonify({'error': f'Server error: {str(e)}'}), 500
 
+# ============ ENHANCED HR QUESTIONS ROUTE ============
 @app.route('/api/hr_questions', methods=['POST'])
 @login_required
 def generate_hr_questions():
+    """Generate VARIED HR interview questions using randomization"""
     try:
         skills = json.loads(current_user.skills) if current_user.skills else []
         experience = current_user.experience_years
+        random_seed = random.randint(1, 10000)
         
-        # Using the exact model name from your list
         gemini_model = genai.GenerativeModel("models/gemini-2.5-flash")
         
         prompt = f"""
-        Generate 5 HR interview questions for a candidate with the following profile:
-        - Skills: {', '.join(skills)}
+        Generate 5 UNIQUE and VARIED HR interview questions for a candidate with:
+        - Skills: {', '.join(skills) if skills else 'General'}
         - Experience: {experience} years
-
-        Include a mix of:
-        1. General HR questions
-        2. Behavioral questions
-        3. Technical leadership questions (if experienced)
-        4. Questions about their specific skills
-
-        Return as JSON array with questions and expected answer guidelines.
+        
+        MUST DO:
+        1. Generate COMPLETELY DIFFERENT questions each time (use randomization seed: {random_seed})
+        2. Mix types: behavioral, situational, technical, career, leadership
+        3. Include teamwork and conflict questions
+        4. Include skill-specific questions
+        5. Vary difficulty based on experience
+        
+        Return VALID JSON ONLY (no markdown):
+        [
+            {{"question": "...?", "type": "behavioral", "focus_area": "teamwork"}},
+            {{"question": "...?", "type": "situational", "focus_area": "problem_solving"}},
+            {{"question": "...?", "type": "career", "focus_area": "growth"}},
+            {{"question": "...?", "type": "leadership", "focus_area": "influence"}},
+            {{"question": "...?", "type": "technical", "focus_area": "skills"}}
+        ]
         """
+        
         response = gemini_model.generate_content(prompt)
+        response_text = response.text.strip()
+        
+        if response_text.startswith('```'):
+            response_text = response_text.split('```')[1]
+            if response_text.startswith('json'):
+                response_text = response_text[4:]
+        
         try:
-            questions = json.loads(response.text)
+            questions = json.loads(response_text)
+            if not isinstance(questions, list) or len(questions) == 0:
+                raise ValueError("Invalid format")
         except:
-            questions = [
-                {"question": "Tell me about yourself", "type": "general"},
-                {"question": "Why do you want to work here?", "type": "general"},
-                {"question": "Describe a challenging project you worked on", "type": "behavioral"},
-                {"question": "How do you handle tight deadlines?", "type": "behavioral"},
-                {"question": "Where do you see yourself in 5 years?", "type": "general"}
+            fallback_questions = [
+                {"question": "Tell me about yourself", "type": "general", "focus_area": "introduction"},
+                {"question": "Why are you interested in this role?", "type": "situational", "focus_area": "motivation"},
+                {"question": "Describe a challenge you overcame", "type": "behavioral", "focus_area": "problem_solving"},
+                {"question": "How do you handle conflict with team members?", "type": "behavioral", "focus_area": "teamwork"},
+                {"question": "Where do you see yourself in 5 years?", "type": "career", "focus_area": "growth"}
             ]
+            questions = random.sample(fallback_questions, 5)
+        
         return jsonify({'success': True, 'questions': questions})
     except Exception as e:
-        return jsonify({'success': False, 'error': str(e)})
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+# ============ REAL-TIME AI FEEDBACK ROUTE ============
+@app.route('/api/evaluate_answer', methods=['POST'])
+@login_required
+def evaluate_answer():
+    """Real-time AI evaluation of HR answers with detailed feedback"""
+    try:
+        data = request.get_json()
+        question = data.get('question', '')
+        answer = data.get('answer', '').strip()
+        question_type = data.get('type', 'general')
+        focus_area = data.get('focus_area', 'general')
+        
+        if not answer or len(answer) < 10:
+            return jsonify({
+                'success': False,
+                'error': 'Please provide a more detailed answer'
+            }), 400
+        
+        gemini_model = genai.GenerativeModel("models/gemini-2.5-flash")
+        
+        evaluation_prompt = f"""
+        You are an expert HR interviewer. Analyze this interview response DEEPLY and provide comprehensive feedback.
+        
+        QUESTION: {question}
+        QUESTION TYPE: {question_type}
+        FOCUS AREA: {focus_area}
+        
+        CANDIDATE ANSWER: "{answer}"
+        
+        Provide evaluation in VALID JSON format ONLY (no markdown, no code blocks):
+        {{
+            "score": <1-10>,
+            "overall_feedback": "2-3 sentence summary",
+            "strengths": ["strength 1", "strength 2", "strength 3"],
+            "improvements": ["improvement 1", "improvement 2", "improvement 3"],
+            "suggestions": [
+                {{"category": "Structure", "tip": "specific tip"}},
+                {{"category": "Content", "tip": "specific tip"}},
+                {{"category": "Communication", "tip": "specific tip"}}
+            ],
+            "star_method": {{
+                "situation": {{"present": true/false, "feedback": "comment"}},
+                "task": {{"present": true/false, "feedback": "comment"}},
+                "action": {{"present": true/false, "feedback": "comment"}},
+                "result": {{"present": true/false, "feedback": "comment"}}
+            }},
+            "key_metrics": {{
+                "clarity": <1-10>,
+                "relevance": <1-10>,
+                "confidence": <1-10>,
+                "specificity": <1-10>
+            }},
+            "next_steps": ["action 1", "action 2", "action 3"]
+        }}
+        
+        Evaluate on: clarity, relevance, STAR method, examples, confidence, professionalism.
+        """
+        
+        response = gemini_model.generate_content(evaluation_prompt)
+        response_text = response.text.strip()
+        
+        if response_text.startswith('```'):
+            response_text = response_text.split('```')[1]
+            if response_text.startswith('json'):
+                response_text = response_text[4:]
+        
+        try:
+            feedback = json.loads(response_text)
+        except:
+            feedback = {
+                "score": 6,
+                "overall_feedback": "Good attempt. Add more specific examples and structure your answer using STAR method.",
+                "strengths": ["You addressed the question", "Clear communication"],
+                "improvements": ["Add more concrete examples", "Structure better with STAR method"],
+                "suggestions": [
+                    {"category": "Structure", "tip": "Use STAR method: Situation, Task, Action, Result"},
+                    {"category": "Content", "tip": "Add measurable outcomes"},
+                    {"category": "Communication", "tip": "Be more confident and detailed"}
+                ],
+                "star_method": {
+                    "situation": {"present": False, "feedback": "Set context"},
+                    "task": {"present": False, "feedback": "Explain your role"},
+                    "action": {"present": True, "feedback": "Good action description"},
+                    "result": {"present": False, "feedback": "What was the outcome?"}
+                },
+                "key_metrics": {
+                    "clarity": 6,
+                    "relevance": 6,
+                    "confidence": 5,
+                    "specificity": 5
+                },
+                "next_steps": ["Practice STAR method", "Add more examples", "Rehearse your answer"]
+            }
+        
+        return jsonify({
+            'success': True,
+            'feedback': feedback
+        })
+        
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+# ============ EXISTING ROUTES (unchanged) ============
 
 @app.route('/api/user_stats', methods=['GET'])
 @login_required
@@ -445,20 +565,15 @@ def health_check():
         'rag_initialized': all([model is not None, index is not None, metas is not None, topic_rules is not None])
     })
 
-# ========== NEW ROUTES FOR HR INTERVIEW SESSION MANAGEMENT ==========
-
 @app.route('/api/save_interview_session', methods=['POST'])
 @login_required
 def save_interview_session():
-    """Save interview practice session with questions and answers"""
     try:
         data = request.get_json()
-        session_id = data.get('session_id')
         session_type = data.get('session_type', 'hr')
         questions = data.get('questions', [])
         answers = data.get('answers', {})
         
-        # Create new interview session
         session = InterviewSession(
             user_id=current_user.id,
             session_type=session_type,
@@ -483,14 +598,11 @@ def save_interview_session():
         db.session.rollback()
         return jsonify({'success': False, 'error': str(e)}), 500
 
-
 @app.route('/api/interview_history', methods=['GET'])
 @login_required
 def get_interview_history():
-    """Get user's interview practice session history"""
     try:
         session_type = request.args.get('type', None)
-        
         query = InterviewSession.query.filter_by(user_id=current_user.id)
         
         if session_type:
@@ -519,13 +631,10 @@ def get_interview_history():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
-# ========== END OF NEW ROUTES ==========
-
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     
-    # Initialize system - app will start even if some components fail
     initialize_rag_system()
     print("🚀 Starting Flask server...")
     app.run(debug=True, host='0.0.0.0', port=5000)
